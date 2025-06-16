@@ -1,0 +1,23 @@
+# virtual env
+venv/
+.env
+
+# compiled files
+__pycache__/
+*.py[cod]
+
+# temp files
+*.log
+*.sqlite3
+*.db
+
+# migration
+*/migrations/__pycache__/
+
+# IDE
+.vscode/
+.idea/
+
+# macOS / Windows
+.DS_Store
+Thumbs.db
