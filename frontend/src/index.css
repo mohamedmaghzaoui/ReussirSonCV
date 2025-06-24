@@ -1,2 +1,9 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+html,
+body {
+  height: auto;
+  min-height: 100vh;
+  overflow: auto !important;
+}
