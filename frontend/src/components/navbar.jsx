@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
 import { SignUp } from '../pages/SignUp/signUp';
 import { useState } from 'react';
+import { Login } from '../pages/Login/login';
 
 export const Navbar = () => {
   const [openSignUp,setOpenSignUp]=useState(false)
+  const [openLogin,setOpenLogin]=useState(false)
   return (
     <div className="navbar bg-base-100 shadow-sm">
       {/* Start (Mobile Menu) */}
@@ -21,7 +23,7 @@ export const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
       
-            <li><button className="btn btn-primary mt-2 ">Login</button></li>
+            <li><button onClick={()=>{setOpenLogin(true)}} className="btn btn-primary mt-2 ">Login</button></li>
             <li><button onClick={()=>{setOpenSignUp(true)}} className="btn btn-neutral mt-2">  Sign up</button></li>
           </ul>
         </div>
@@ -39,10 +41,11 @@ export const Navbar = () => {
       {/* center (desktop) */}
       <div className="navbar-center hidden lg:flex gap-2">
       
-        <button className="btn btn-primary mr-5 ml-10 btn-block">Login</button>
+        <button onClick={()=>{setOpenLogin(true)}} className="btn btn-primary mr-5 ml-10 btn-block">Login</button>
         <button onClick={()=>{setOpenSignUp(true)}} className="btn btn-neutral btn-block">Sign up</button>
       </div>
      {openSignUp &&  <SignUp setOpenSignUp={setOpenSignUp} />}
+     {openLogin &&  <Login setOpenLogin={setOpenLogin} />}
      
     </div>
   );

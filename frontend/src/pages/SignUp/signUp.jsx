@@ -4,17 +4,18 @@ export const SignUp = ({ setOpenSignUp }) => {
       <div className="modal modal-open">
         <div className="modal-box w-full max-w-3xl p-0 sm:p-4">
           
-          {/* 📦 SCROLLABLE CONTENT WRAPPER */}
-          <div className="max-h-[80vh] overflow-y-scroll p-4">
-            <h3 className="font-bold mb-4 text-3xl text-center">Inscription</h3>
+          {/*  SCROLLABLE CONTENT WRAPPER */}
+          <div className="max-h-[90vh] overflow-y-scroll p-4">
+            <h3 className="font-bold mb-4 text-6xl text-center">Inscription</h3>
             <p className="text-info-content text-center">
               Veuillez remplir les informations pour créer votre compte.
             </p>
+            <hr/>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-              {/* 📝 Form Section */}
+              {/*  Form Section */}
               <form className="flex flex-col gap-4">
-                <h1 className="text-info-content">Données personnelles</h1>
+                <h1 className="text-info-content font-bold">Données personnelles</h1>
                 <input type="text" placeholder="Prénom" className="input input-bordered w-full" />
                 <input type="text" placeholder="Nom" className="input input-bordered w-full" />
                 <input type="email" placeholder="Email" className="input input-bordered w-full" />
@@ -23,9 +24,9 @@ export const SignUp = ({ setOpenSignUp }) => {
                 <input type="date" placeholder="Date de naissance" className="input input-bordered w-full" />
               </form>
 
-              {/* 📷 Image Section */}
+              {/*  Image Section */}
               <div className="flex flex-col gap-4 items-center">
-                <p className="text-info-content text-center">Ajoutez votre photo de profil</p>
+                <p className="text-info-content text-center font-bold">Ajoutez votre photo de profil</p>
                 <label htmlFor="profileImage" className="w-40 h-32 bg-indigo-50 flex items-center justify-center rounded-lg cursor-pointer">
                   <span className="text-sm text-primary">Cliquez pour téléverser</span>
                 </label>
@@ -34,15 +35,18 @@ export const SignUp = ({ setOpenSignUp }) => {
               </div>
             </div>
 
-            {/* ✅ Buttons */}
-            <div className="mt-10 flex flex-wrap justify-center gap-4">
+            {/* Buttons */}
+            <div className="mt-10 flex flex-wrap ml-10  gap-4">
               <button onClick={() => setOpenSignUp(false)} className="btn">
                 Fermer
               </button>
               <button type="submit" className="btn btn-neutral">
                 Créer un compte
               </button>
+        
             </div>
+            <p className="ml-13 mt-3 text-info-content">Vous avez deja un compte? <span className="text-primary">Connecter</span></p>
+            
           </div>
         </div>
       </div>
