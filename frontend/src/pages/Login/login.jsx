@@ -3,6 +3,13 @@ export const Login = ({ setOpenLogin }) => {
     <>
       <div className="modal modal-open">
         <div className="modal-box w-full  p-0 sm:p-4">
+           <img 
+          className="absolute top-4 right-4 w-5 h-5 cursor-pointer" 
+          src="../../../public/close_icon.png" 
+          alt="Close" 
+          onClick={() => setOpenLogin(false)} 
+        />
+
           
           {/* 📦 SCROLLABLE CONTENT WRAPPER */}
           <div className="max-h-[80vh] overflow-y-scroll p-4">
