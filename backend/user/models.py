@@ -21,7 +21,7 @@ class User(AbstractUser):
     username = None
     email = models.EmailField(unique=True)
     profile_picture = models.ImageField(upload_to='profiles/', blank=True, null=True)
-
+    birthdate = models.DateField(null=True, blank=True) 
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
