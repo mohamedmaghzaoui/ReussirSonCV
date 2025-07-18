@@ -1,50 +1,124 @@
-export const Login = ({ setOpenLogin }) => {
+import { useState } from "react";
+import axios from "axios";
+const apiUrl = import.meta.env.VITE_API_URL;
+export const Login = ({ setOpenLogin ,refetch}) => {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Vérification basique
+    if (!formData.email || !formData.password) {
+      setError("Veuillez remplir tous les champs.");
+      return;
+    }
+
+    setIsSubmitting(true);
+    setError("");
+
+    try {
+      const response = await axios.post(`${apiUrl}/login/`, formData);
+
+      console.log("Login success:", response.data);
+      refetch()
+      setOpenLogin(false);
+    } catch (err) {
+      console.error("Login error:", err);
+      setError("Email ou mot de passe incorrect.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
-    <>
-      <div className="modal modal-open">
-        <div className="modal-box w-full  p-0 sm:p-4">
-           <img 
-          className="absolute top-4 right-4 w-5 h-5 cursor-pointer" 
-          src="../../../public/close_icon.png" 
-          alt="Close" 
-          onClick={() => setOpenLogin(false)} 
+    <div className="modal modal-open">
+      <div className="modal-box w-full p-0 sm:p-4 relative">
+        {/* Close Icon */}
+        <img
+          className="absolute top-4 right-4 w-5 h-5 cursor-pointer"
+          src="/close_icon.png"
+          alt="Close"
+          onClick={() => setOpenLogin(false)}
         />
 
-          
-          {/* 📦 SCROLLABLE CONTENT WRAPPER */}
-          <div className="max-h-[80vh] overflow-y-scroll p-4">
-            <h3 className="font-bold mb-4 text-6xl text-center">Login</h3>
-            <p className="text-info-content text-center">
-              Veuillez remplir les informations pour se connecter.
-            </p>
+        {/* Scrollable content */}
+        <div className="max-h-[80vh] overflow-y-scroll p-4">
+          <h3 className="font-bold mb-4 text-6xl text-center">Login</h3>
+          <p className="text-info-content text-center">
+            Veuillez remplir les informations pour se connecter.
+          </p>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-              {/* Form Section */}
-              <form className="flex flex-col gap-2">
-                <h1 className="text-info-content font-bold">Données personnelles</h1>
-               <label className="text-base-content">Email</label>
-                <input type="email" placeholder="Email" className="input input-bordered w-100" />
-                <label>Password</label>
-                <input type="password" placeholder="Mot de passe" className="input input-bordered w-100" />
-            
-              </form>
-
-          
+          {/* Affichage des erreurs */}
+          {error && (
+            <div className="alert alert-error my-4">
+              <span>{error}</span>
             </div>
+          )}
 
-            {/*  Buttons */}
-            <div className="mt-10 flex flex-wrap   gap-4">
-              <button onClick={() => setOpenLogin(false)} className="btn">
-                Fermer
-              </button>
-              <button type="submit" className="btn btn-neutral">
-                connecter
-              </button>
+          {/* FORMULAIRE */}
+          <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+            <div className="flex flex-col gap-4">
+              <h1 className="text-info-content font-bold">Données personnelles</h1>
+              <label className="text-base-content">Email</label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Email"
+                className="input input-bordered w-100"
+              />
+
+              <label className="text-base-content">Mot de passe</label>
+              <input
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                placeholder="Mot de passe"
+                className="input input-bordered w-100"
+              />
             </div>
-              <p className="ml-4 mt-3 text-info-content">Vous n'avez pas un compte? <span className="text-primary">Inscrire</span></p>
+          </form>
+
+          {/* Boutons */}
+          <div className="mt-10 flex flex-wrap gap-4">
+            <button type="button" onClick={() => setOpenLogin(false)} className="btn">
+              Fermer
+            </button>
+            <button
+              type="submit"
+              onClick={handleSubmit}
+              disabled={isSubmitting}
+              className="btn btn-neutral"
+            >
+              {isSubmitting ? (
+                <span className="loading loading-spinner loading-sm"></span>
+              ) : (
+                "Se connecter"
+              )}
+            </button>
           </div>
+
+          <p className="ml-4 mt-3 text-info-content">
+            Vous n'avez pas un compte ? <span className="text-primary cursor-pointer">Inscrire</span>
+          </p>
         </div>
       </div>
-    </>
+    </div>
   );
 };

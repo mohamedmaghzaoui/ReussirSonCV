@@ -9,10 +9,7 @@ load_dotenv()  # load from .env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5173',  
-]
-CORS_ALLOW_CREDENTIALS = True
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -38,7 +35,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    #local aps
     'user',
+    'resume'
 ]
 
 MIDDLEWARE = [
@@ -46,7 +45,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',  # MUST come before MessageMiddleware
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',  # MUST come AFTER SessionMiddleware
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -115,8 +114,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 # Session authentication
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.SessionAuthentication',
+     'DEFAULT_AUTHENTICATION_CLASSES': [
+        'user.auth.CsrfExemptSessionAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',  # default can be overridden
@@ -145,3 +144,12 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173',  
+]
+CORS_ALLOW_CREDENTIALS = True
+
+SESSION_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SECURE = True  

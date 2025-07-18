@@ -23,25 +23,25 @@ export const Home=()=>{
   
 </div>
 
-<section class="px-6 py-10 mb-10">
-  <h1 class="text-3xl sm:text-4xl font-bold text-center mb-10">
+<section className="px-6 py-10 mb-10">
+  <h1 className="text-3xl sm:text-4xl font-bold text-center mb-10">
     Pourquoi Nous
   </h1>
 
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
     
-    <div class="card bg-purple-50 shadow-md p-6 rounded-box text-center">
-      <h2 class="text-xl font-bold mb-2">Rapide</h2>
+    <div className="card bg-purple-50 shadow-md p-6 rounded-box text-center">
+      <h2 className="text-xl font-bold mb-2">Rapide</h2>
       <p>Créez votre CV en quelques minutes.</p>
     </div>
 
-    <div class="card bg-purple-50 shadow-md p-6 rounded-box text-center">
-      <h2 class="text-xl font-bold mb-2">Personnalisé</h2>
+    <div className="card bg-purple-50 shadow-md p-6 rounded-box text-center">
+      <h2 className="text-xl font-bold mb-2">Personnalisé</h2>
       <p>Adaptez le style à votre profil.</p>
     </div>
 
-    <div class="card bg-purple-50 shadow-md p-6 rounded-box text-center">
-      <h2 class="text-xl font-bold mb-2">Gratuit</h2>
+    <div className="card bg-purple-50 shadow-md p-6 rounded-box text-center">
+      <h2 className="text-xl font-bold mb-2">Gratuit</h2>
       <p>100% gratuit, sans engagement.</p>
     </div>
 

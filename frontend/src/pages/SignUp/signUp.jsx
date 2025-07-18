@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-
+const apiUrl = import.meta.env.VITE_API_URL;
 export const SignUp = ({ setOpenSignUp }) => {
   const [formData, setFormData] = useState({
     first_name: "",
@@ -73,7 +73,8 @@ export const SignUp = ({ setOpenSignUp }) => {
     }
 
     try {
-      const response = await axios.post("http://127.0.0.1:8000/api/register/", data);
+      const response = await axios.post(`${apiUrl}/register/`, data);
+
       console.log("Success:", response.data);
       setOpenSignUp(false);
      
@@ -91,7 +92,7 @@ export const SignUp = ({ setOpenSignUp }) => {
       <div className="modal-box w-full max-w-3xl p-0 sm:p-4 relative">
         <img
           className="absolute top-4 right-4 w-5 h-5 cursor-pointer"
-          src="../../../public/close_icon.png"
+          src="/close_icon.png"
           alt="Close"
           onClick={() => setOpenSignUp(false)}
         />
