@@ -89,7 +89,7 @@ export const SignUp = ({ setOpenSignUp }) => {
 
   return (
     <div className="modal modal-open">
-      <div className="modal-box w-full max-w-3xl p-0 sm:p-4 relative">
+      <div className="modal-box  max-w-3xl p-0 sm:p-4 relative">
         <img
           className="absolute top-4 right-4 w-5 h-5 cursor-pointer"
           src="/close_icon.png"
@@ -213,7 +213,7 @@ export const SignUp = ({ setOpenSignUp }) => {
           {/* Bottom link */}
           <p className="ml-13 mt-3 text-info-content">
             Vous avez déjà un compte ?{" "}
-            <span className="text-primary cursor-pointer">Connecter</span>
+            <span onClick={()=>setOpenSignUp(false)} className="text-primary cursor-pointer">Connecter</span>
           </p>
         </div>
       </div>

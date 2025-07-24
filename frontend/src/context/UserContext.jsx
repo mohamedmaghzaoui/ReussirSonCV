@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom"; 
 
 const apiUrl = import.meta.env.VITE_API_URL;
+axios.defaults.withCredentials = true;
 
 const UserContext = createContext();
 
@@ -56,10 +57,11 @@ const logoutUser = async () => {
   } = useQuery({
     queryKey: ["user"],
     queryFn: fetchUser,
-    staleTime: 1000 * 60 * 5, // Cache the result for 5 minutes
+    staleTime: 1000 * 60 * 5, 
     onSuccess: (data) => {
       console.log("User data fetched successfully:", data);
     },
+    refetchOnWindowFocus: false
   });
 
   // Logout function with immediate refetch

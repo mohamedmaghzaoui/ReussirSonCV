@@ -46,7 +46,7 @@ export const Login = ({ setOpenLogin ,refetch}) => {
 
   return (
     <div className="modal modal-open">
-      <div className="modal-box w-full p-0 sm:p-4 relative">
+      <div className="modal-box  p-0 sm:p-4 relative">
         {/* Close Icon */}
         <img
           className="absolute top-4 right-4 w-5 h-5 cursor-pointer"
@@ -115,7 +115,7 @@ export const Login = ({ setOpenLogin ,refetch}) => {
           </div>
 
           <p className="ml-4 mt-3 text-info-content">
-            Vous n'avez pas un compte ? <span className="text-primary cursor-pointer">Inscrire</span>
+            Vous n'avez pas un compte ? <span onClick={()=>{setOpenLogin(false)}} className="text-primary cursor-pointer">Inscrire</span>
           </p>
         </div>
       </div>

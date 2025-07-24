@@ -3,7 +3,7 @@ import { AuthenticatedNavbar } from './AuthenticatedNavbar';
 import { useUser } from "../context/UserContext.jsx";
 
 export const Navbar = () => {
-  const { user, loading, error, logout, refetch } = useUser();
+  const { user, loading, logout, refetch } = useUser();
 
   // 👉 While loading, show a placeholder with same height as navbar to avoid layout shift
   if (loading) {

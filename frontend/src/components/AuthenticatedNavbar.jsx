@@ -1,6 +1,13 @@
+import { useState } from "react";
 import userIcon from "../assets/user_icon.jpg";
 import { Link } from 'react-router-dom';
 export const AuthenticatedNavbar = ({ user, logout }) => {
+  const [isLoading,setIsLoading]=useState(false)
+  const handleLogout=async()=>{
+    setIsLoading(true)
+    await logout()
+    setIsLoading(false)
+  }
   return (
     <div className="navbar bg-base-100 shadow-sm px-4">
       {/* Start */}
@@ -38,9 +45,18 @@ export const AuthenticatedNavbar = ({ user, logout }) => {
                 Profile
               </button>
               {console.log("user",user)}
-              <button onClick={logout} className="text-red-500 hover:bg-red-100 py-2 rounded">
-                Logout
-              </button>
+        
+
+                    <button
+            className="text-red-500 hover:bg-red-100 py-2 rounded"
+            onClick={ () => {
+        handleLogout()
+            }}
+          >
+             {isLoading ? (
+    <span className="loading loading-spinner loading-sm text-neutral text- " />
+  ) : ("Deconnecter")}
+          </button>
             </li>
           </ul>
         </div>
