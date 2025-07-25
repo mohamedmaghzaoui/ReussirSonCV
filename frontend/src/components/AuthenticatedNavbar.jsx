@@ -44,7 +44,7 @@ export const AuthenticatedNavbar = ({ user, logout }) => {
               <button className="text-black hover:bg-black hover:text-white py-2 rounded">
                 Profile
               </button>
-              {console.log("user",user)}
+  
         
 
                     <button
