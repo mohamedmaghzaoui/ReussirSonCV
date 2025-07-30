@@ -1,4 +1,6 @@
+import { Link } from 'react-router-dom';
 export const Home=()=>{
+  
     return (<div>
 
  <div className="mt-5 w-full grid grid-cols-1 lg:grid-cols-2 items-center px-6 py-10 gap-10">
@@ -10,7 +12,7 @@ export const Home=()=>{
     <p className="mt-5 text-info-content font-semibold">It will take a couple of minutes. 
     <span className="block">Change profile settings and confirm with SMS code</span>
 </p>
-<button className="btn btn-neutral mt-2">Get started</button>
+<Link to={"/dashboard"} className="btn btn-neutral mt-2">Get started</Link>
   </div>
 
   <div>

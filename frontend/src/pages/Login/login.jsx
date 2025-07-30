@@ -57,7 +57,7 @@ export const Login = ({ setOpenLogin ,refetch}) => {
 
         {/* Scrollable content */}
         <div className="max-h-[80vh] overflow-y-scroll p-4">
-          <h3 className="font-bold mb-4 text-6xl text-center">Login</h3>
+          <h3 className="font-bold mb-4 text-5xl text-center">Login</h3>
           <p className="text-info-content text-center">
             Veuillez remplir les informations pour se connecter.
           </p>

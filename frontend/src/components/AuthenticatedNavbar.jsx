@@ -8,6 +8,8 @@ export const AuthenticatedNavbar = ({ user, logout }) => {
     await logout()
     setIsLoading(false)
   }
+  console.log(`${user.profile_picture}`);
+
   return (
     <div className="navbar bg-base-100 shadow-sm px-4">
       {/* Start */}
@@ -23,14 +25,17 @@ export const AuthenticatedNavbar = ({ user, logout }) => {
       <div className="navbar-center hidden lg:flex"></div>
 
       {/* End - User Info */}
+      
       <div className="navbar-end">
         <div className="dropdown dropdown-end">
           <div tabIndex={0} role="button" className="flex items-center gap-2 cursor-pointer">
-            <img
-              src={userIcon}
-              alt="User Icon"
-              className="w-8 h-8 rounded-full object-cover"
-            />
+<img
+  src={user?.profile_picture ? `http://127.0.0.1:8000/${user.profile_picture}` : userIcon}
+  alt="User Icon"
+  className="w-8 h-8 rounded-full object-contain  "
+/>
+
+
             <span className="font-medium hidden sm:inline">
               {user?.first_name || user?.email}
             </span>

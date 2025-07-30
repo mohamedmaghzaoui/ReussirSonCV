@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 
 const NotFound = () => {
   return (
-    <div className="h-screen flex flex-col items-center justify-center bg-gray-100 text-center">
+    <div className="flex flex-col items-center justify-center min-h-[70vh] bg-gray-100 text-center px-4 py-10">
       <div className="space-y-6">
         <h1 className="text-6xl font-extrabold text-red-500">404</h1>
         <p className="text-xl text-gray-700">
-          Oops! The page you're looking for doesn't exist.
+          Oups ! La page que vous cherchez n'existe pas.
         </p>
         <Link to="/" className="btn btn-primary px-6 py-3 text-white text-lg">
-          Go Back to Home
+          Retour à l'accueil
         </Link>
       </div>
     </div>

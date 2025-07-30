@@ -89,7 +89,7 @@ export const SignUp = ({ setOpenSignUp }) => {
 
   return (
     <div className="modal modal-open">
-      <div className="modal-box  max-w-3xl p-0 sm:p-4 relative">
+      <div className="modal-box   max-w-3xl p-0 sm:p-4 relative">
         <img
           className="absolute top-4 right-4 w-5 h-5 cursor-pointer"
           src="/close_icon.png"
@@ -98,7 +98,7 @@ export const SignUp = ({ setOpenSignUp }) => {
         />
 
         <div className="max-h-[90vh] overflow-y-scroll p-4">
-          <h3 className="font-bold mb-4 text-6xl text-center">Inscription</h3>
+          <h3 className="font-bold mb-4 text-5xl text-center">Inscription</h3>
           <p className="text-info-content text-center">
             Veuillez remplir les informations pour créer votre compte.
           </p>

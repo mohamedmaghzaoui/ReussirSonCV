@@ -1,28 +1,35 @@
 import React, { useState } from "react";
 import { MoreVertical } from "lucide-react";
 import purpleBg from "../../assets/purple_bg.jpg";
+import { useNavigate } from 'react-router-dom';
+
 import addIcon from "../../assets/add_icon_purple.png";
 const ResumePopUp = React.lazy(() => import("../../components/ResumePopUp"));
 
 import { useResumes } from "../../context/ResumeContext";
 export const Dashboard = () => {
+  const navigate = useNavigate();
+
   const [activeMenu, setActiveMenu] = useState(null);
   const [isPopUpOpen,setIsPopUpOpen]=useState(false)
   const [isLoading, setIsLoading] = useState(false);
+
   const {resumes,deleteResume}=useResumes()
   console.log(resumes)
+
   const openPopUp=()=>{
     setIsPopUpOpen(true)
+  
   }
   const closePopUp=()=>{
     setIsPopUpOpen(false)
   }
+
   const handleDelete=async(id)=>{
       setIsLoading(true)
       await deleteResume(id);
       setIsLoading(false)
       setActiveMenu(null);
-
   }
 
   const toggleMenu = (index) => {
@@ -68,9 +75,13 @@ export const Dashboard = () => {
 
       {activeMenu === index && (
         <div className="absolute right-4 top-full mt-2 flex space-x-2 bg-white shadow-md rounded z-20 px-3 py-2">
-          <button className="px-3 py-1 text-sm font-semibold bg-gray-100 hover:bg-gray-200 rounded">
-            Preview
-          </button>
+        <button
+  className="px-3 py-1 text-sm font-semibold bg-gray-100 hover:bg-gray-200 rounded"
+  onClick={() => navigate(`/dashboard/edit/${resume.id}`)}
+>
+  Modifier
+</button>
+
           <button
             className="px-3 py-1 text-sm font-semibold bg-red-100 text-red-600 hover:bg-red-200 rounded"
             onClick={ () => {

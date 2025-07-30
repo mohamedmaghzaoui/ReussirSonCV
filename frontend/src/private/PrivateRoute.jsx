@@ -10,7 +10,7 @@ export const PrivateRoute = ({ element }) => {
   if (loading) {
     // Full page spinner
     return (
-      <div className="h-screen w-full flex items-center justify-center bg-gray-100">
+      <div className=" w-full flex items-center justify-center bg-gray-100">
         <div className="loading loading-spinner loading-lg text-primary"></div> {/* DaisyUI Spinner */}
       </div>
     );

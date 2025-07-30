@@ -2,8 +2,12 @@
 @plugin "daisyui";
 
 html,
-body {
-  height: auto;
-  min-height: 100vh;
-  overflow: auto !important;
+body,
+#root {
+  min-height: 100vh !important;
+  height: auto !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  scroll-behavior: smooth !important;
+  -webkit-overflow-scrolling: touch !important;
 }
