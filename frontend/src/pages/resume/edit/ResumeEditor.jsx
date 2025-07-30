@@ -8,7 +8,7 @@ import { ResumeForm } from '../form/resumeForm';
 
 export const ResumeEditor = () => {
   const { id } = useParams();
-  const { resumes } = useResumes();
+  const { resumes} = useResumes();
   const [resume, setResume] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -38,7 +38,7 @@ export const ResumeEditor = () => {
           {/* Resume name + theme */}
              <div className="w-full lg:w-1/2 flex flex-col lg:flex-row items-start lg:items-center gap-4">
         <h1 className="text-3xl font-bold text-neutral">{resume.name}</h1>
-        <ThemeColor resume={resume}/>
+        <ThemeColor setResume={setResume} resume={resume}/>
         
       </div>
 

@@ -2,7 +2,7 @@ import { LayoutList } from 'lucide-react';
 import { useState } from 'react';
 import axios from 'axios';
 
-const ThemeColor = ({ resume}) => {
+const ThemeColor = ({ resume,setResume}) => {
   console.log(resume)
   const [resumeTheme, setResumeTheme] = useState(resume.theme || "");
   const apiUrl = import.meta.env.VITE_API_URL;
@@ -25,6 +25,7 @@ const ThemeColor = ({ resume}) => {
         theme: color,
       });
       setResumeTheme(color);
+      setResume({ ...resume, theme: color });
       
     } catch (err) {
       console.error("Erreur lors de la mise à jour du thème :", err);
