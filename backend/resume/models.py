@@ -19,6 +19,7 @@ class Experience(models.Model):
     start_date = models.DateField()
     end_date = models.DateField(null=True, blank=True)
     description = models.TextField()
+    address = models.CharField(max_length=255, blank=True)
 
 class Education(models.Model):
     cv = models.ForeignKey(CV, on_delete=models.CASCADE, related_name='educations')
@@ -27,6 +28,7 @@ class Education(models.Model):
     start_date = models.DateField()
     end_date = models.DateField(null=True, blank=True)
     description = models.TextField()
+    address = models.CharField(max_length=255, blank=True)
 
 class Project(models.Model):
     cv = models.ForeignKey(CV, on_delete=models.CASCADE, related_name='projects')
@@ -55,6 +57,7 @@ class PersonalInfo(models.Model):
     phone_number = models.CharField(max_length=20, blank=True)
     address = models.CharField(max_length=255, blank=True)
     age = models.PositiveIntegerField(null=True, blank=True)
+    user_picture = models.ImageField(upload_to='resumeImages/', blank=True, null=True)
 
     linkedin = models.URLField(blank=True)
     website = models.URLField(blank=True)
