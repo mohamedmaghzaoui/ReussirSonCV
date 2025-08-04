@@ -5,10 +5,11 @@ import { SecondPersonalInfoForm } from './formList/SecondPersonalInfoForm';
 import { ProfileForm } from './formList/ProfileForm';
 import { EducationForm } from './formList/EducationForm';
 import { ExperienceForm } from './formList/ExperienceForm';
+import { ProjectForm } from './formList/ProjectForm';
 
 
 export const ResumeForm = ({setResume,resume}) => {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(6);
   const goToNextStep = () => setStep((prev) => prev + 1);
   const goToPrevStep = () => setStep((prev) => prev - 1);
   console.log(step)
@@ -52,6 +53,15 @@ export const ResumeForm = ({setResume,resume}) => {
       )}
       {step === 5&& (
         <ExperienceForm
+          resume={resume}
+          setResume={setResume}
+          goToPrevStep={goToPrevStep}
+          goToNextStep={goToNextStep}
+
+        />
+      )}
+      {step === 6&& (
+        <ProjectForm
           resume={resume}
           setResume={setResume}
           goToPrevStep={goToPrevStep}

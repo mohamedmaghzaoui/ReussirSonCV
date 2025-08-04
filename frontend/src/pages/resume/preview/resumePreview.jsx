@@ -3,6 +3,7 @@ import { PersonalInfoPreview } from './previewList/PersonalInfoPreview'
 import { ProfilePreview } from './previewList/ProfilePreview'
 import { EducationPreview } from './previewList/EducationPreview'
 import { ExperiencesPreview } from './previewList/ExperiencesPreview'
+import { ProjectsPreview } from './previewList/ProjectsPreview'
 
 function ResumePreview({resume}) {
 
@@ -20,6 +21,7 @@ function ResumePreview({resume}) {
             <ProfilePreview theme={resume.theme} data={resume.profile} />
             <EducationPreview theme={resume.theme} data={resume.educations} />
             <ExperiencesPreview theme={resume.theme} data={resume.experiences} />
+            <ProjectsPreview theme={resume.theme} data={resume.projects} />
       
     </div>
   )

@@ -1,6 +1,9 @@
 # virtual env
 venv/
 .env
+profiles/
+resumeImages/
+
 
 # compiled files
 __pycache__/

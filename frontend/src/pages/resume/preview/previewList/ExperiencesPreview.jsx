@@ -32,9 +32,9 @@ export const ExperiencesPreview=({data,theme})=> {
       <span className="text-right">{experience?.address}</span>
     </div>
 
-    {/* Description */}
+     {/* Description */}
     {experience?.description && (
-      <p className="text-xs my-2 ">{experience.description}</p>
+      <p className="text-xs my-2" dangerouslySetInnerHTML={{__html:experience.description}}></p>
     )}
   </div>
 ))}
