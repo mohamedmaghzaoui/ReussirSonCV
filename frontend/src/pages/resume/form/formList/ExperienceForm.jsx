@@ -4,14 +4,14 @@ import axios from 'axios';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css'; // thème de base
 
-export const EducationForm = ({ goToPrevStep, goToNextStep, resume, setResume }) => {
+export const ExperienceForm = ({ goToPrevStep, goToNextStep, resume, setResume }) => {
   const apiUrl = import.meta.env.VITE_API_URL;
   
-  const [educations, setEducations] = useState([]);
+  const [experiences, setExperiences] = useState([]);
   const [deletingIndex, setDeletingIndex] = useState(null);
   const [form, setForm] = useState({
-    degree: '',
-    institution: '',
+    title: '',
+    company: '',
     start_date: '',
     end_date: '',
     description: '',
@@ -21,8 +21,8 @@ export const EducationForm = ({ goToPrevStep, goToNextStep, resume, setResume })
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (resume?.educations) {
-      setEducations(resume.educations);
+    if (resume?.experiences) {
+      setExperiences(resume.experiences);
     }
   }, [resume]);
 
@@ -31,12 +31,12 @@ export const EducationForm = ({ goToPrevStep, goToNextStep, resume, setResume })
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const addEducation = () => {
-    if (!form.degree || !form.institution) return;
-    setEducations((prev) => [...prev, form]);
+  const addExperience = () => {
+    if (!form.title || !form.company) return;
+    setExperiences((prev) => [...prev, form]);
     setForm({
-      degree: '',
-      institution: '',
+      title: '',
+      company: '',
       start_date: '',
       end_date: '',
       description: '',
@@ -44,24 +44,24 @@ export const EducationForm = ({ goToPrevStep, goToNextStep, resume, setResume })
     });
   };
 
-const removeEducation = async (index) => {
-  const edu = educations[index];
+const removeExperience = async (index) => {
+  const exp = experiences[index];
   setDeletingIndex(index);
 
   try {
     // Si l'éducation a été enregistrée dans la BDD
-    if (edu.id) {
-      await axios.delete(`${apiUrl}/educations/${edu.id}/`);
+    if (exp.id) {
+      await axios.delete(`${apiUrl}/experiences/${exp.id}/`);
     }
 
     // Supprimer localement du tableau
-    const updatedEducations = educations.filter((_, i) => i !== index);
-    setEducations(updatedEducations);
+    const updatedexperiences = experiences.filter((_, i) => i !== index);
+    setExperiences(updatedexperiences);
 
     // 🔁 Met à jour aussi le resume global
     setResume((prev) => ({
       ...prev,
-      educations: updatedEducations,
+      experiences: updatedexperiences,
     }));
   } catch (error) {
     console.error("Erreur lors de la suppression :", error);
@@ -71,55 +71,52 @@ const removeEducation = async (index) => {
 };
 
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  setLoading(true);
-  try {
-    const responses = [];
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const responses = [];
 
-    for (let edu of educations) {
-      // ✅ Skip if already saved (has an ID)
-      if (edu.id) {
-        responses.push(edu); // Keep the already saved one
-        continue;
+      for (let exp of experiences) {
+        if(exp.id){
+           responses.push(exp); 
+          continue;
+        }
+        const payload = { ...exp, cv: resume.id };
+        const response = await axios.post(`${apiUrl}/experiences/`, payload);
+        responses.push(response.data);
       }
 
-      const payload = { ...edu, cv: resume.id };
-      const response = await axios.post(`${apiUrl}/educations/`, payload);
-      responses.push(response.data);
+      setResume((prev) => ({
+        ...prev,
+        experiences: responses,
+      }));
+
+      goToNextStep();
+    } catch (error) {
+      console.error("Erreur lors de l’envoi des éducations :", error);
+    } finally {
+      setLoading(false);
     }
-
-    setResume((prev) => ({
-      ...prev,
-      educations: responses,
-    }));
-
-    goToNextStep();
-  } catch (error) {
-    console.error("Erreur lors de l’envoi des éducations :", error);
-  } finally {
-    setLoading(false);
-  }
-};
-
+  };
 
   return (
     <div className="w-80 lg:w-[610px] md:w-[500px] mx-auto bg-base-100 shadow-md p-6 rounded-lg overflow-y-auto max-h-[80vh] lg:mb-40">
       <progress className="progress progress-primary w-full mb-4" value={40} max="100"></progress>
 
-      <h1 className="text-xl font-bold text-info-content mb-6">Formation</h1>
+      <h1 className="text-xl font-bold text-info-content mb-6">Experience</h1>
 
       <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Education Form Inputs */}
+        {/* Experience Form Inputs */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <input name="degree" value={form.degree} onChange={handleChange} placeholder="Diplôme" className="input input-bordered w-full" />
-          <input name="institution" value={form.institution} onChange={handleChange} placeholder="Établissement" className="input input-bordered w-full" />
+          <input name="title" value={form.title} onChange={handleChange} placeholder="Titre" className="input input-bordered w-full" />
+          <input name="company" value={form.company} onChange={handleChange} placeholder="Entreprise" className="input input-bordered w-full" />
           <input type="date" name="start_date" value={form.start_date} onChange={handleChange} className="input input-bordered w-full" />
           <input type="date" name="end_date" value={form.end_date} onChange={handleChange} className="input input-bordered w-full" />
           <input name="address" value={form.address} onChange={handleChange} placeholder="Adresse (optionnelle)" className="input input-bordered w-full md:col-span-2" />
-          <div className="md:col-span-2 mb-3 ">
+          <div className="md:col-span-2 mb-2">
   <ReactQuill
-    className='h-20'
+    className='h-25'
     value={form.description}
     onChange={(value) => setForm((prev) => ({ ...prev, description: value }))}
     theme="snow"
@@ -130,25 +127,25 @@ const handleSubmit = async (e) => {
 
         </div>
 
-        <button type="button" onClick={addEducation} className="btn btn-neutral mt-10 w-full ">
+        <button type="button" onClick={addExperience} className="btn btn-neutral mt-10 w-full">
           <Plus className="w-4 h-4 mr-2" />
           Ajouter cette formation à la liste
         </button>
 
-        {/* Preview list of educations */}
-        {educations.length > 0 && (
+        {/* Preview list of experiences */}
+        {experiences.length > 0 && (
           <div className="mt-6 space-y-2">
             <h2 className="font-semibold">Éléments ajoutés :</h2>
-            {educations.map((edu, index) => (
+            {experiences.map((exp, index) => (
               <div key={index} className="p-4 border rounded-md bg-base-200 flex justify-between items-start">
                 <div>
-                  <p className="font-bold">{edu.degree} - {edu.institution}</p>
-                  <p className="text-sm">{edu.start_date} à {edu.end_date || "présent"}</p>
-                  <p className="text-xs text-gray-600">{edu.address}</p>
-                   <p className="text-xs my-2" dangerouslySetInnerHTML={{__html:edu.description}}></p>
+                  <p className="font-bold">{exp.title} - {exp.company}</p>
+                  <p className="text-sm">{exp.start_date} à {exp.end_date || "présent"}</p>
+                  <p className="text-xs text-gray-600">{exp.address}</p>
+                   <p className="text-xs my-2" dangerouslySetInnerHTML={{__html:exp.description}}></p>
                 </div>
                 <button
-  onClick={() => removeEducation(index)}
+  onClick={() => removeExperience(index)}
   type="button"
   className="text-error ml-4"
   disabled={deletingIndex === index}

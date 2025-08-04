@@ -1,4 +1,4 @@
-import { LayoutList } from 'lucide-react';
+import { Palette } from 'lucide-react';
 import { useState } from 'react';
 import axios from 'axios';
 
@@ -9,10 +9,10 @@ const ThemeColor = ({ resume,setResume}) => {
   const [loading, setLoading] = useState(false);
 
   const colors = [
-    "#34d399", "#FF5733", "#3abff8", "#f000b8",
-    "#1fb2a6", "#FF7133", "#570df8", "#FF3371",
-    "#335AFF", "#71FF33", "#3371FF", "#33FFA1",
-    "#5733FF", "#7133FF", "#33FF5A", "#33A1FF"
+    "#065F46", "black", "#374151", "#0F766E",
+    "#1fb2a6", "#3B82F6", "#570df8", "#FF3371",
+    "#2563EB", "#4B3869", "#0F4C81", "#7C2D12",
+    "#5733FF", "#4B5563", "#8B5CF6", "#312E81"
   ];
 
   const handleThemeChange = async (color) => {
@@ -39,9 +39,9 @@ const ThemeColor = ({ resume,setResume}) => {
       <div
         tabIndex={0}
         role="button"
-        className="btn btn-outline w-full sm:w-auto text-base font-medium flex items-center gap-2"
+        className="btn  btn-outline w-full sm:w-auto text-base font-medium flex items-center gap-2"
       >
-        <LayoutList className="w-5 h-5" />
+        <Palette className="w-5 h-5" />
         {loading ? (
           <span className="loading loading-spinner loading-sm text-primary" />
         ) : (

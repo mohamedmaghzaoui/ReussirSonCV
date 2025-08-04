@@ -4,6 +4,7 @@ import purpleBg from "../../assets/purple_bg.jpg";
 import { useNavigate } from 'react-router-dom';
 
 import addIcon from "../../assets/add_icon_purple.png";
+import { Suspense } from "react";
 const ResumePopUp = React.lazy(() => import("../../components/ResumePopUp"));
 
 import { useResumes } from "../../context/ResumeContext";
@@ -101,7 +102,11 @@ export const Dashboard = () => {
           
         </div>
       </section>
-      {isPopUpOpen && <ResumePopUp closePopUp={closePopUp}/>}
+     {isPopUpOpen && (
+  <Suspense fallback={<div className="text-center p-4">Chargement...</div>}>
+    <ResumePopUp closePopUp={closePopUp} />
+  </Suspense>
+)}
     </div>
   );
 };

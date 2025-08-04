@@ -1,7 +1,7 @@
 from rest_framework import viewsets, permissions
 from rest_framework.exceptions import PermissionDenied
 
-from .models import CV, Experience, Education, Project, Language, Skill,PersonalInfo
+from .models import CV, Experience, Education, Project, Language, Skill,PersonalInfo,Profile
 from .serializers import (
     CVSerializer,
     ExperienceSerializer,
@@ -9,7 +9,8 @@ from .serializers import (
     ProjectSerializer,
     LanguageSerializer,
     SkillSerializer,
-    PersonalInfoSerializer
+    PersonalInfoSerializer,
+    ProfileSerializer
 )
 
 class CVViewSet(viewsets.ModelViewSet):
@@ -83,3 +84,7 @@ class SkillViewSet(CVSubModelViewSet):
 class PersonalInfoViewSet(CVSubModelViewSet):
     serializer_class = PersonalInfoSerializer
     model = PersonalInfo
+class ProfileViewSet(CVSubModelViewSet):
+    serializer_class = ProfileSerializer
+    model = Profile
+

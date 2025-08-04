@@ -2,14 +2,15 @@ import { useParams } from 'react-router-dom';
 import { useResumes } from '../../../context/ResumeContext';
 import { useEffect, useState } from 'react';
 import ThemeColor from '../themes/ThemeColor';
-import { Download, Trash2, RefreshCcw } from 'lucide-react';
+import { Download, Trash2, BrainCog  } from 'lucide-react';
 import ResumePreview from '../preview/resumePreview';
-import { ResumeForm } from '../form/resumeForm';
+import { ResumeForm } from '../form/ResumeForm';
 
 export const ResumeEditor = () => {
   const { id } = useParams();
   const { resumes} = useResumes();
   const [resume, setResume] = useState(null);
+  console.log(resume)
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -43,7 +44,7 @@ export const ResumeEditor = () => {
       </div>
 
           {/* Resume Form */}
-          <ResumeForm />
+          <ResumeForm  setResume={setResume} resume={resume} />
         </div>
 
         {/* RIGHT COLUMN */}
@@ -51,8 +52,8 @@ export const ResumeEditor = () => {
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row justify-end items-start sm:items-center gap-2 sm:gap-4">
             <button className="btn btn-neutral flex items-center gap-2 w-full sm:w-auto">
-              <RefreshCcw className="w-4 h-4" />
-              Recharger
+              <BrainCog  className="w-4 h-4" />
+              Analyser mon CV
             </button>
             <button className="btn btn-outline btn-error flex items-center gap-2 w-full sm:w-auto">
               <Trash2 className="w-4 h-4" />

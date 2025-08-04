@@ -1,19 +1,28 @@
-// ResumePreview.jsx
-const ResumePreview = ({resume}) => {
+
+import { PersonalInfoPreview } from './previewList/PersonalInfoPreview'
+import { ProfilePreview } from './previewList/ProfilePreview'
+import { EducationPreview } from './previewList/EducationPreview'
+import { ExperiencesPreview } from './previewList/ExperiencesPreview'
+
+function ResumePreview({resume}) {
+
+   
+
   return (
-    <div className="bg-white text-black shadow-md p-6 rounded-lg w-full max-w-xl mx-auto mt-6 border border-base-200">
- <h1
-  className="text-2xl font-bold mb-2"
-  style={{ color: resume.theme }}
->
-  Jean Dupont
-</h1>
+    <div className='  shadow-lg h-full p-14 border-t-[20px] font-poppins '
+    style={{
+        borderColor:resume?.theme,
+        fontWeight:"500"
 
-      <p className="text-sm text-gray-700">exemple@email.com</p>
-      <p className="text-sm text-gray-700">+33 6 00 00 00 00</p>
-      <p className="text-sm text-gray-700">123 Rue Exemple, Paris</p>
+    }}>
+        {/* Personal Detail  */}
+            <PersonalInfoPreview theme={resume.theme} data={resume.personal_info} />
+            <ProfilePreview theme={resume.theme} data={resume.profile} />
+            <EducationPreview theme={resume.theme} data={resume.educations} />
+            <ExperiencesPreview theme={resume.theme} data={resume.experiences} />
+      
     </div>
-  );
-};
+  )
+}
 
-export default ResumePreview;
+export default ResumePreview

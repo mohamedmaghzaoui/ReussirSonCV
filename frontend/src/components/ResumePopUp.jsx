@@ -26,26 +26,25 @@ const ResumePopUp = ({ closePopUp }) => {
           onClick={closePopUp}
         />
         <h2 className="text-xl font-semibold mb-8 text-center">Ajouter un CV</h2>
+         <label className="label font-medium mb-2 text-base-content">Titre de cv</label>
         <input
           required
           type="text"
-          placeholder="Nom du CV"
+          placeholder="EX :mon premier cv "
           value={resumeName}
           onChange={(e) => setResumeName(e.target.value)}
           className="input input-bordered w-full mb-8"
         />
-        <div className="flex justify-end gap-2">
-          <button className="btn btn-outline" onClick={closePopUp}>
-            Fermer
-          </button>
+        <div className="flex justify-end gap-2 w-full">
+       
 <button
   onClick={handleAdd}
   disabled={isLoading}
-  className="btn btn-primary flex items-center justify-center gap-2"
+  className="btn btn-neutral flex items-center justify-center gap-2 w-full"
 >
   {isLoading ? (
     <span className="loading loading-spinner loading-sm text-neutral " />
-  ) : ("Ajouter")}
+  ) : ("Ajouter votre cv")}
 
 </button>
 

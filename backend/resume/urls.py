@@ -6,6 +6,8 @@ from .views import (
     ProjectViewSet,
     LanguageViewSet,
     SkillViewSet,
+    PersonalInfoViewSet,
+    ProfileViewSet
 )
 
 router = DefaultRouter()
@@ -15,5 +17,7 @@ router.register('educations', EducationViewSet, basename='education')
 router.register('projects', ProjectViewSet, basename='project')
 router.register('languages', LanguageViewSet, basename='language')
 router.register('skills', SkillViewSet, basename='skill')
+router.register('personal-infos', PersonalInfoViewSet, basename='personal-infos')
+router.register('profiles', ProfileViewSet, basename='profiles')
 
 urlpatterns = router.urls
