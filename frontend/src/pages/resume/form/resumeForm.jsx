@@ -9,7 +9,7 @@ import { ProjectForm } from './formList/ProjectForm';
 
 
 export const ResumeForm = ({setResume,resume}) => {
-  const [step, setStep] = useState(6);
+  const [step, setStep] = useState(1);
   const goToNextStep = () => setStep((prev) => prev + 1);
   const goToPrevStep = () => setStep((prev) => prev - 1);
   console.log(step)

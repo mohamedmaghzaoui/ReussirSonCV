@@ -4,7 +4,7 @@ export const ExperiencesPreview=({data,theme})=> {
   console.log(data)
   return (
     <div className='my-4'>
-    <h1 className='text-start font-bold  mb-2'
+    <h1 className='text-start font-bold   mb-2'
     style={{
         color:theme
     }}
@@ -14,8 +14,8 @@ export const ExperiencesPreview=({data,theme})=> {
     }} />
 
    {data?.map((experience, index) => (
-  <div key={index} className="my-5">
-    {/* Ligne 1 : École (gauche) | Date (droite) */}
+  <div key={index} className="my-3">
+    {/* first */}
     <div className="flex justify-between items-center">
       <h2 className="text-sm font-bold capitalize">{experience.title}</h2>
       <span className="text-xs font-bold text-right">
@@ -26,7 +26,7 @@ export const ExperiencesPreview=({data,theme})=> {
       </span>
     </div>
 
-    {/* Ligne 2 : Diplôme (gauche) | Adresse (droite) */}
+    {/* second */}
     <div className="flex justify-between items-center text-xs mt-1">
       <span className="">{experience?.company}</span>
       <span className="text-right">{experience?.address}</span>

@@ -3,10 +3,15 @@ import { useResumes } from '../../../context/ResumeContext';
 import { useEffect, useState } from 'react';
 import ThemeColor from '../themes/ThemeColor';
 import { Download, Trash2, BrainCog  } from 'lucide-react';
-import ResumePreview from '../preview/resumePreview';
+import { ResumePreview } from '../preview/ResumePreview';
 import { ResumeForm } from '../form/ResumeForm';
+import { useReactToPrint } from "react-to-print";
+import { useRef } from "react";
 
 export const ResumeEditor = () => {
+  
+const contentRef = useRef(null)
+const reactToPrintFn = useReactToPrint({ contentRef });
   const { id } = useParams();
   const { resumes} = useResumes();
   const [resume, setResume] = useState(null);
@@ -59,14 +64,15 @@ export const ResumeEditor = () => {
               <Trash2 className="w-4 h-4" />
               Supprimer
             </button>
-            <button className="btn btn-outline btn-primary flex items-center gap-2 w-full sm:w-auto">
+            <button onClick={reactToPrintFn} className="btn btn-outline btn-primary flex items-center gap-2 w-full sm:w-auto">
               <Download className="w-4 h-4" />
               Télécharger
             </button>
           </div>
 
           {/* Resume Preview */}
-          <ResumePreview resume={resume} />
+        
+          <div ref={contentRef} >  <ResumePreview   resume={resume} /></div>
         </div>
       </div>
     </div>

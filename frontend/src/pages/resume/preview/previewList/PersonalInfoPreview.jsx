@@ -34,7 +34,7 @@ export const PersonalInfoPreview = ({ data, theme  }) => {
       {/* Adresse */}
       {data?.address && (
         <p
-          className="text-xs  text-center mb-2"
+          className=" text-xs  text-center mb-2"
           
         >
           {data.address}

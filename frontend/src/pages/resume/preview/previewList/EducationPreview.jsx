@@ -14,7 +14,7 @@ export const EducationPreview=({data,theme})=> {
     }} />
 
    {data?.map((education, index) => (
-  <div key={index} className="my-5">
+  <div key={index} className="my-3">
     {/* Ligne 1 : École (gauche) | Date (droite) */}
     <div className="flex justify-between items-center">
       <h2 className="text-sm font-bold capitalize">{education.institution}</h2>
