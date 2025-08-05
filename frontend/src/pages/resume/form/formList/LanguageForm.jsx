@@ -4,24 +4,21 @@ import axios from 'axios';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css'; // thème de base
 
-export const ProjectForm = ({ goToPrevStep, goToNextStep, resume, setResume }) => {
+export const LanguageForm = ({ goToPrevStep, goToNextStep, resume, setResume }) => {
   const apiUrl = import.meta.env.VITE_API_URL;
   
-  const [projects, setProjects] = useState([]);
+  const [languages, setLanguages] = useState([]);
   const [deletingIndex, setDeletingIndex] = useState(null);
   const [form, setForm] = useState({
-    title: '',
-    start_date: '',
-    end_date: '',
-    description: '',
-   
+    name: '',
+    level:''
   });
 
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (resume?.projects) {
-      setProjects(resume.projects);
+    if (resume?.languages) {
+      setLanguages(resume.languages);
     }
   }, [resume]);
 
@@ -30,36 +27,33 @@ export const ProjectForm = ({ goToPrevStep, goToNextStep, resume, setResume }) =
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const addProject = () => {
-    if (!form.title ) return;
-    setProjects((prev) => [...prev, form]);
+  const addLanguage = () => {
+    if (!form.name ) return;
+    setLanguages((prev) => [...prev, form]);
     setForm({
-      title: '',
-      start_date: '',
-      end_date: '',
-      description: '',
-     
+      name:'',
+      level:''
     });
   };
 
-const removeProject = async (index) => {
-  const project = projects[index];
+const removeLanguage = async (index) => {
+  const language = languages[index];
   setDeletingIndex(index);
 
   try {
-    // Si l'éducation a été enregistrée dans la BDD
-    if (project.id) {
-      await axios.delete(`${apiUrl}/projects/${project.id}/`);
+
+    if (language.id) {
+      await axios.delete(`${apiUrl}/languages/${language.id}/`);
     }
 
     // Supprimer localement du tableau
-    const updatedProjects = projects.filter((_, i) => i !== index);
-    setProjects(updatedProjects);
+    const updatedLanguages = languages.filter((_, i) => i !== index);
+    setLanguages(updatedLanguages);
 
     // 🔁 Met à jour aussi le resume global
     setResume((prev) => ({
       ...prev,
-      projects: updatedProjects,
+      languages: updatedLanguages,
     }));
   } catch (error) {
     console.error("Erreur lors de la suppression :", error);
@@ -75,24 +69,24 @@ const removeProject = async (index) => {
     try {
       const responses = [];
 
-      for (let project of projects) {
-        if(project.id){
-           responses.push(project); 
+      for (let language of languages) {
+        if(language.id){
+           responses.push(language); 
           continue;
         }
-        const payload = { ...project, cv: resume.id };
-        const response = await axios.post(`${apiUrl}/projects/`, payload);
+        const payload = { ...language, cv: resume.id };
+        const response = await axios.post(`${apiUrl}/languages/`, payload);
         responses.push(response.data);
       }
 
       setResume((prev) => ({
         ...prev,
-        projects: responses,
+        languages: responses,
       }));
 
       goToNextStep();
     } catch (error) {
-      console.error("Erreur lors de l’envoi des projets :", error);
+      console.error("Erreur lors de l’envoi des competences :", error);
     } finally {
       setLoading(false);
     }
@@ -100,51 +94,47 @@ const removeProject = async (index) => {
 
   return (
     <div className="w-80 lg:w-[610px] md:w-[500px] mx-auto bg-base-100 shadow-md p-6 rounded-lg overflow-y-auto max-h-[80vh] lg:mb-40">
-      <progress className="progress progress-primary w-full mb-4" value={60} max="100"></progress>
+      <progress className="progress progress-primary w-full mb-4" value={70} max="100"></progress>
 
-      <h1 className="text-xl font-bold text-info-content mb-6">Projets</h1>
+      <h1 className="text-xl font-bold text-info-content mb-6">Langues</h1>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Experience Form Inputs */}
-        <input name="title" value={form.title} onChange={handleChange} placeholder="Titre" className="input input-bordered w-full" />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          
-    
-          <input type="date" name="start_date" value={form.start_date} onChange={handleChange} className="input input-bordered w-full" />
-          <input type="date" name="end_date" value={form.end_date} onChange={handleChange} className="input input-bordered w-full" />
-        
-          <div className="md:col-span-2 mb-3">
-  <ReactQuill
-    className='h-25'
-    value={form.description}
-    onChange={(value) => setForm((prev) => ({ ...prev, description: value }))}
-    theme="snow"
-    placeholder="Description"
-  />
+        <input name="name" value={form.name} onChange={handleChange} placeholder="Nom" className="input input-bordered w-full" />
+        <select
+            name="level"
+            value={form.level}
+            onChange={handleChange}
+            className="select select-bordered w-full"
+          >
+                  <option value="">-- Niveau de langue --</option>
+                  <option value="Débutant">Débutant</option>
+                  <option value="Intermédiaire">Intermédiaire</option>
+                  <option value="Avancé">Avancé</option>
+                  <option value="Maîtrisé">Maîtrisé</option>
+                  <option value="Bilingue">Bilingue</option>
+                  <option value="Langue maternelle">Langue maternelle</option>
+    </select>
+
   
-</div>
 
-        </div>
-
-        <button type="button" onClick={addProject} className="btn btn-neutral mt-10 w-full">
+        <button type="button" onClick={addLanguage} className="btn btn-neutral mt-10 w-full">
           <Plus className="w-4 h-4 mr-2" />
-          Ajouter ce Projet à la liste
+          Ajouter cet Langue à la liste
         </button>
 
-        {/* Preview list of projects */}
-        {projects.length > 0 && (
+        {/* Preview list of languages */}
+        {languages.length > 0 && (
           <div className="mt-6 space-y-2">
             <h2 className="font-semibold">Éléments ajoutés :</h2>
-            {projects.map((project, index) => (
+            {languages.map((language, index) => (
               <div key={index} className="p-4 border rounded-md bg-base-200 flex justify-between items-start">
                 <div>
-                  <p className="font-bold">{project.title} </p>
-                  <p className="text-sm">{project.start_date} à {project.end_date || "présent"}</p>
-          
-                   <p className="text-xs my-2" dangerouslySetInnerHTML={{__html:project.description}}></p>
+                  <p className="font-bold">{language.name} </p>
+                  <p className="font-bold">{language.level} </p>
                 </div>
                 <button
-  onClick={() => removeProject(index)}
+  onClick={() => removeLanguage(index)}
   type="button"
   className="text-error ml-4"
   disabled={deletingIndex === index}

@@ -45,13 +45,13 @@ const removeSkill = async (index) => {
     }
 
     // Supprimer localement du tableau
-    const updatedProjects = skills.filter((_, i) => i !== index);
-    setSkills(updatedProjects);
+    const updatedSkills = skills.filter((_, i) => i !== index);
+    setSkills(updatedSkills);
 
     // 🔁 Met à jour aussi le resume global
     setResume((prev) => ({
       ...prev,
-      skills: updatedProjects,
+      skills: updatedSkills,
     }));
   } catch (error) {
     console.error("Erreur lors de la suppression :", error);
@@ -84,7 +84,7 @@ const removeSkill = async (index) => {
 
       goToNextStep();
     } catch (error) {
-      console.error("Erreur lors de l’envoi des projets :", error);
+      console.error("Erreur lors de l’envoi des competences :", error);
     } finally {
       setLoading(false);
     }
@@ -92,35 +92,18 @@ const removeSkill = async (index) => {
 
   return (
     <div className="w-80 lg:w-[610px] md:w-[500px] mx-auto bg-base-100 shadow-md p-6 rounded-lg overflow-y-auto max-h-[80vh] lg:mb-40">
-      <progress className="progress progress-primary w-full mb-4" value={40} max="100"></progress>
+      <progress className="progress progress-primary w-full mb-4" value={70} max="100"></progress>
 
-      <h1 className="text-xl font-bold text-info-content mb-6">Projets</h1>
+      <h1 className="text-xl font-bold text-info-content mb-6">Compétences</h1>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Experience Form Inputs */}
-        <input name="title" value={form.title} onChange={handleChange} placeholder="Titre" className="input input-bordered w-full" />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          
-    
-          <input type="date" name="start_date" value={form.start_date} onChange={handleChange} className="input input-bordered w-full" />
-          <input type="date" name="end_date" value={form.end_date} onChange={handleChange} className="input input-bordered w-full" />
-        
-          <div className="md:col-span-2 mb-3">
-  <ReactQuill
-    className='h-25'
-    value={form.description}
-    onChange={(value) => setForm((prev) => ({ ...prev, description: value }))}
-    theme="snow"
-    placeholder="Description"
-  />
+        <input name="name" value={form.name} onChange={handleChange} placeholder="Nom" className="input input-bordered w-full" />
   
-</div>
-
-        </div>
 
         <button type="button" onClick={addSkill} className="btn btn-neutral mt-10 w-full">
           <Plus className="w-4 h-4 mr-2" />
-          Ajouter ce Projet à la liste
+          Ajouter cet competence à la liste
         </button>
 
         {/* Preview list of skills */}
@@ -130,10 +113,7 @@ const removeSkill = async (index) => {
             {skills.map((skill, index) => (
               <div key={index} className="p-4 border rounded-md bg-base-200 flex justify-between items-start">
                 <div>
-                  <p className="font-bold">{skill.title} </p>
-                  <p className="text-sm">{skill.start_date} à {skill.end_date || "présent"}</p>
-          
-                   <p className="text-xs my-2" dangerouslySetInnerHTML={{__html:skill.description}}></p>
+                  <p className="font-bold">{skill.name} </p>
                 </div>
                 <button
   onClick={() => removeSkill(index)}
