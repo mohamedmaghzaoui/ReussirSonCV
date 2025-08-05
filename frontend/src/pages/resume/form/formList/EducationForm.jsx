@@ -104,7 +104,7 @@ const handleSubmit = async (e) => {
 
 
   return (
-    <div className="w-80 lg:w-[610px] md:w-[500px] mx-auto bg-base-100 shadow-md p-6 rounded-lg overflow-y-auto max-h-[80vh] lg:mb-40">
+    <div className="w-80 lg:w-[610px] md:w-[500px] mx-auto bg-base-100 shadow-md p-6 rounded-lg  lg:mb-40">
       <progress className="progress progress-primary w-full mb-4" value={40} max="100"></progress>
 
       <h1 className="text-xl font-bold text-info-content mb-6">Formations</h1>

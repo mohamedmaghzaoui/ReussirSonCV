@@ -3,7 +3,7 @@ import React from 'react'
 export const ProjectsPreview=({data,theme})=> {
   console.log(data)
   return (
-    <div className='my-4'>
+    <div className='my-3'>
     <h1 className='text-start font-bold  mb-2'
     style={{
         color:theme

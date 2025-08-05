@@ -66,7 +66,7 @@ export const FirstPersonalInfoForm = ({ goToNextStep, resume, setResume }) => {
   };
 
   return (
-    <div className="w-80 lg:w-[610px] md:w-[500px] mx-auto bg-base-100 shadow-md p-6 rounded-lg overflow-y-auto max-h-[80vh]">
+    <div className="w-80 lg:w-[610px] md:w-[500px] mx-auto bg-base-100 shadow-md p-6 rounded-lg ">
       <progress className="progress progress-primary w-full mb-4" value={10} max="100"></progress>
 
       <h1 className="text-xl font-bold text-info-content mb-6">Informations personnelles</h1>

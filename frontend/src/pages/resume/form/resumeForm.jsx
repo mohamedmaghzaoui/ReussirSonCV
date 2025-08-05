@@ -8,10 +8,11 @@ import { ExperienceForm } from './formList/ExperienceForm';
 import { ProjectForm } from './formList/ProjectForm';
 import { SkillForm } from './formList/SkillForm';
 import { LanguageForm } from './formList/LanguageForm';
+import { SectionOrderForm } from './formList/SectionOrderForm';
 
 
 export const ResumeForm = ({setResume,resume}) => {
-  const [step, setStep] = useState(7);
+  const [step, setStep] = useState(9);
   const goToNextStep = () => setStep((prev) => prev + 1);
   const goToPrevStep = () => setStep((prev) => prev - 1);
   console.log(step)
@@ -82,6 +83,15 @@ export const ResumeForm = ({setResume,resume}) => {
       )}
       {step === 8&& (
         <LanguageForm
+          resume={resume}
+          setResume={setResume}
+          goToPrevStep={goToPrevStep}
+          goToNextStep={goToNextStep}
+
+        />
+      )}
+      {step === 9&& (
+        <SectionOrderForm
           resume={resume}
           setResume={setResume}
           goToPrevStep={goToPrevStep}

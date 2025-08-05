@@ -72,7 +72,7 @@ const reactToPrintFn = useReactToPrint({ contentRef });
 
           {/* Resume Preview */}
         
-          <div ref={contentRef} >  <ResumePreview   resume={resume} /></div>
+          <div className='' ref={contentRef} >  <ResumePreview   resume={resume} /></div>
         </div>
       </div>
     </div>

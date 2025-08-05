@@ -97,7 +97,7 @@ export const SignUp = ({ setOpenSignUp }) => {
           onClick={() => setOpenSignUp(false)}
         />
 
-        <div className="max-h-[90vh] overflow-y-scroll p-4">
+        <div className="max-h-[80vh] overflow-y-scroll p-4">
           <h3 className="font-bold mb-4 text-5xl text-center">Inscription</h3>
           <p className="text-info-content text-center">
             Veuillez remplir les informations pour créer votre compte.

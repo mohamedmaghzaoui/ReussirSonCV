@@ -3,7 +3,7 @@ import React from 'react'
 export const ExperiencesPreview=({data,theme})=> {
   console.log(data)
   return (
-    <div className='my-4'>
+    <div className='my-3'>
     <h1 className='text-start font-bold   mb-2'
     style={{
         color:theme
@@ -38,8 +38,6 @@ export const ExperiencesPreview=({data,theme})=> {
     )}
   </div>
 ))}
-
-
     </div>
   )
 }

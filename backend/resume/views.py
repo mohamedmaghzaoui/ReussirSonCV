@@ -13,6 +13,7 @@ from .serializers import (
     ProfileSerializer
 )
 
+
 class CVViewSet(viewsets.ModelViewSet):
     serializer_class = CVSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -21,7 +22,16 @@ class CVViewSet(viewsets.ModelViewSet):
         return CV.objects.filter(user=self.request.user)
 
     def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+        serializer.save(user=self.request.user,section_order=[
+            "profile",
+            "education",
+            "experience",
+            "projects",
+            "skills",
+            "languages"
+        ])
+   
+        serializer.save()
 
     def perform_update(self, serializer):
         if serializer.instance.user != self.request.user:
