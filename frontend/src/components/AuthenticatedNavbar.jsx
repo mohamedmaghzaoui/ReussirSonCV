@@ -46,9 +46,9 @@ export const AuthenticatedNavbar = ({ user, logout }) => {
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-40"
           >
             <li>
-              <button className="text-black hover:bg-black hover:text-white py-2 rounded">
+              <Link to={"/profile"} className="text-black hover:bg-black hover:text-white py-2 rounded">
                 Profile
-              </button>
+              </Link>
   
         
 

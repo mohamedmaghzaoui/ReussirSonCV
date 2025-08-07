@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useResumes } from '../../../context/ResumeContext';
 import { useEffect, useState } from 'react';
 import ThemeColor from '../themes/ThemeColor';
-import { Download, Trash2, BrainCog  } from 'lucide-react';
+import { Download, CheckCircle , BrainCog  } from 'lucide-react';
 import { ResumePreview } from '../preview/ResumePreview';
 import { ResumeForm } from '../form/ResumeForm';
 import { useReactToPrint } from "react-to-print";
@@ -60,10 +60,11 @@ const reactToPrintFn = useReactToPrint({ contentRef });
               <BrainCog  className="w-4 h-4" />
               Analyser mon CV
             </button>
-            <button className="btn btn-outline btn-error flex items-center gap-2 w-full sm:w-auto">
-              <Trash2 className="w-4 h-4" />
-              Supprimer
-            </button>
+            <button className="btn  btn-accent flex items-center gap-2 w-full sm:w-auto">
+        <CheckCircle className="w-4 h-4" />
+        Vérifier la compatibilité ATS
+      </button>
+
             <button onClick={reactToPrintFn} className="btn btn-outline btn-primary flex items-center gap-2 w-full sm:w-auto">
               <Download className="w-4 h-4" />
               Télécharger

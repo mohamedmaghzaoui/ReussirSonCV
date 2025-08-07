@@ -68,7 +68,16 @@ export const Dashboard = () => {
   >
     <div className="relative w-full">
       <div className="flex items-center justify-between w-70 bg-neutral text-neutral-content rounded px-4 py-2">
-        <span className="text-left">{resume.name}</span>
+        <p className="text-left font-bold">{resume.name}</p>
+        
+      <p className=" font-light">
+  {new Date(resume.created_at).toLocaleDateString("fr-FR", {
+    day: "numeric",
+    month: "long",
+    year: "numeric"
+  })}
+</p>
+
         <button onClick={() => toggleMenu(index)}>
           <MoreVertical size={18} />
         </button>
