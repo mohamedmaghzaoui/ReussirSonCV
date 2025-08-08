@@ -18,21 +18,25 @@ export const ResumePreview = ({ resume }) => {
   ];
 
   const sectionComponents = {
-    personal_info: <PersonalInfoPreview theme={theme} data={resume.personal_info} />,
-    profile: <ProfilePreview theme={theme} data={resume.profile} />,
-    education: <EducationPreview theme={theme} data={resume.educations} />,
-    experience: <ExperiencesPreview theme={theme} data={resume.experiences} />,
-    projects: <ProjectsPreview theme={theme} data={resume.projects} />,
-    skills: <SkillsPreview theme={theme} data={resume.skills} />,
-    languages: <LanguagesPreview theme={theme} data={resume.languages} />,
+    personal_info: <PersonalInfoPreview theme={theme.color} data={resume.personal_info} />,
+    profile: <ProfilePreview theme={theme.color} data={resume.profile} />,
+    education: <EducationPreview theme={theme.color} data={resume.educations} />,
+    experience: <ExperiencesPreview theme={theme.color} data={resume.experiences} />,
+    projects: <ProjectsPreview theme={theme.color} data={resume.projects} />,
+    skills: <SkillsPreview theme={theme.color} data={resume.skills} />,
+    languages: <LanguagesPreview theme={theme.color} data={resume.languages} />,
   };
 
   return (
     <div
-      className="h-full p-6 md:p-10 border-t-[20px] font-poppins"
+      className="h-full 	 p-10 p-6 md:p-10 border-t-[20px] "
       style={{
-        borderColor: theme,
+        borderColor: theme.color,
         fontWeight: '500',
+        backgroundColor:theme.background_color,
+        fontFamily: theme.font !== "default" ? theme.font : "",
+        
+
       }}
     >
       {[

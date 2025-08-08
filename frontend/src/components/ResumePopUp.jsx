@@ -10,7 +10,15 @@ const ResumePopUp = ({ closePopUp }) => {
 
   const handleAdd = async () => {
     setIsLoading(true);
-    await addResume({ name: resumeName, theme: "default" });
+   await addResume({
+  name: resumeName,
+  theme: {
+    font: "Arial",  // Default font, change it as needed
+    color: "#000000",  // Default text color, change it as needed
+    background_color: "#FFFFFF"  // Default background color, change it as needed
+  }
+});
+
    
     setIsLoading(false);
     closePopUp();

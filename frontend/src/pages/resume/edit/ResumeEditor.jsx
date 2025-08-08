@@ -1,7 +1,9 @@
 import { useParams } from 'react-router-dom';
 import { useResumes } from '../../../context/ResumeContext';
 import { useEffect, useState } from 'react';
-import ThemeColor from '../themes/ThemeColor';
+import { ColorSelector } from '../themes/ColorSelector';
+import { BackgroundColorSelector } from '../themes/BackgroundColorSelector';
+import { FontSelector } from '../themes/FontSelector';
 import { Download, CheckCircle , BrainCog  } from 'lucide-react';
 import { ResumePreview } from '../preview/ResumePreview';
 import { ResumeForm } from '../form/ResumeForm';
@@ -44,7 +46,9 @@ const reactToPrintFn = useReactToPrint({ contentRef });
           {/* Resume name + theme */}
              <div className="w-full lg:w-1/2 flex flex-col lg:flex-row items-start lg:items-center gap-4">
         <h1 className="text-3xl font-bold text-neutral">{resume.name}</h1>
-        <ThemeColor setResume={setResume} resume={resume}/>
+        <ColorSelector setResume={setResume} resume={resume}/>
+        <BackgroundColorSelector setResume={setResume} resume={resume}/>
+        <FontSelector setResume={setResume} resume={resume}/>
         
       </div>
 
