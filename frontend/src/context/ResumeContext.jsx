@@ -46,7 +46,7 @@ export const ResumeProvider = ({ children }) => {
     },
     onSuccess: (deletedId) => {
       queryClient.setQueryData(["resumes"], (old = []) =>
-        old.filter((cv) => cv.id !== deletedId)
+        old.filter((cv) => cv.id !== deletedId),
       );
     },
     onError: (err) => {

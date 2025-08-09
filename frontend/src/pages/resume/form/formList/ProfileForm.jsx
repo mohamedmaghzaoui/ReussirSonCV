@@ -1,8 +1,13 @@
-import { ArrowRight, ArrowLeft, Loader2 } from 'lucide-react';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { ArrowRight, ArrowLeft, Loader2 } from "lucide-react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-export const ProfileForm = ({ goToPrevStep, goToNextStep, resume, setResume }) => {
+export const ProfileForm = ({
+  goToPrevStep,
+  goToNextStep,
+  resume,
+  setResume,
+}) => {
   const [description, setDescription] = useState("");
   const apiUrl = import.meta.env.VITE_API_URL;
   const [loading, setLoading] = useState(false);
@@ -20,17 +25,20 @@ export const ProfileForm = ({ goToPrevStep, goToNextStep, resume, setResume }) =
     try {
       const payload = {
         description,
-        cv: resume.id
+        cv: resume.id,
       };
 
       let response;
 
       if (resume.profile?.id) {
-        response = await axios.put(`${apiUrl}/profiles/${resume.profile.id}/`, payload);
+        response = await axios.put(
+          `${apiUrl}/profiles/${resume.profile.id}/`,
+          payload,
+        );
       } else {
         response = await axios.post(`${apiUrl}/profiles/`, payload);
       }
-      console.log("response = ",response)
+      console.log("response = ", response);
 
       setResume((prev) => ({
         ...prev,
@@ -39,7 +47,7 @@ export const ProfileForm = ({ goToPrevStep, goToNextStep, resume, setResume }) =
 
       goToNextStep();
     } catch (err) {
-      console.error('Erreur lors de l’envoi :', err);
+      console.error("Erreur lors de l’envoi :", err);
     } finally {
       setLoading(false);
     }
@@ -47,7 +55,11 @@ export const ProfileForm = ({ goToPrevStep, goToNextStep, resume, setResume }) =
 
   return (
     <div className="w-80 lg:w-[610px] md:w-[500px] mx-auto bg-base-100 shadow-md p-6 rounded-lg  lg:mb-40">
-      <progress className="progress progress-primary w-full mb-4" value={30} max="100"></progress>
+      <progress
+        className="progress progress-primary w-full mb-4"
+        value={30}
+        max="100"
+      ></progress>
 
       <h1 className="text-xl font-bold text-info-content mb-6">Profil</h1>
 
@@ -69,8 +81,12 @@ export const ProfileForm = ({ goToPrevStep, goToNextStep, resume, setResume }) =
             <ArrowLeft className="w-4 h-4" />
             Retourner
           </button>
-          <button type="submit" className="btn btn-primary flex items-center gap-2" disabled={loading}>
-            {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Suivant'}
+          <button
+            type="submit"
+            className="btn btn-primary flex items-center gap-2"
+            disabled={loading}
+          >
+            {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Suivant"}
             {!loading && <ArrowRight className="w-4 h-4" />}
           </button>
         </div>

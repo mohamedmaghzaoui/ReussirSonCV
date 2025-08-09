@@ -1,23 +1,22 @@
-import { useParams } from 'react-router-dom';
-import { useResumes } from '../../../context/ResumeContext';
-import { useEffect, useState } from 'react';
-import { ColorSelector } from '../themes/ColorSelector';
-import { BackgroundColorSelector } from '../themes/BackgroundColorSelector';
-import { FontSelector } from '../themes/FontSelector';
-import { Download, CheckCircle , BrainCog  } from 'lucide-react';
-import { ResumePreview } from '../preview/ResumePreview';
-import { ResumeForm } from '../form/ResumeForm';
+import { useParams } from "react-router-dom";
+import { useResumes } from "../../../context/ResumeContext";
+import { useEffect, useState } from "react";
+import { ColorSelector } from "../themes/ColorSelector";
+import { BackgroundColorSelector } from "../themes/BackgroundColorSelector";
+import { FontSelector } from "../themes/FontSelector";
+import { Download, CheckCircle, BrainCog } from "lucide-react";
+import { ResumePreview } from "../preview/ResumePreview";
+import { ResumeForm } from "../form/ResumeForm";
 import { useReactToPrint } from "react-to-print";
 import { useRef } from "react";
 
 export const ResumeEditor = () => {
-  
-const contentRef = useRef(null)
-const reactToPrintFn = useReactToPrint({ contentRef });
+  const contentRef = useRef(null);
+  const reactToPrintFn = useReactToPrint({ contentRef });
   const { id } = useParams();
-  const { resumes} = useResumes();
+  const { resumes } = useResumes();
   const [resume, setResume] = useState(null);
-  console.log(resume)
+  console.log(resume);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -44,16 +43,15 @@ const reactToPrintFn = useReactToPrint({ contentRef });
         {/* LEFT COLUMN */}
         <div className="w-25 lg:w-1/2 space-y-4">
           {/* Resume name + theme */}
-             <div className="w-full lg:w-1/2 flex flex-col lg:flex-row items-start lg:items-center gap-4">
-        <h1 className="text-3xl font-bold text-neutral">{resume.name}</h1>
-        <ColorSelector setResume={setResume} resume={resume}/>
-        <BackgroundColorSelector setResume={setResume} resume={resume}/>
-        <FontSelector setResume={setResume} resume={resume}/>
-        
-      </div>
+          <div className="w-full lg:w-1/2 flex flex-col lg:flex-row items-start lg:items-center gap-4">
+            <h1 className="text-3xl font-bold text-neutral">{resume.name}</h1>
+            <ColorSelector setResume={setResume} resume={resume} />
+            <BackgroundColorSelector setResume={setResume} resume={resume} />
+            <FontSelector setResume={setResume} resume={resume} />
+          </div>
 
           {/* Resume Form */}
-          <ResumeForm  setResume={setResume} resume={resume} />
+          <ResumeForm setResume={setResume} resume={resume} />
         </div>
 
         {/* RIGHT COLUMN */}
@@ -61,23 +59,29 @@ const reactToPrintFn = useReactToPrint({ contentRef });
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row justify-end items-start sm:items-center gap-2 sm:gap-4">
             <button className="btn btn-neutral flex items-center gap-2 w-full sm:w-auto">
-              <BrainCog  className="w-4 h-4" />
+              <BrainCog className="w-4 h-4" />
               Analyser mon CV
             </button>
             <button className="btn  btn-accent flex items-center gap-2 w-full sm:w-auto">
-        <CheckCircle className="w-4 h-4" />
-        Vérifier la compatibilité ATS
-      </button>
+              <CheckCircle className="w-4 h-4" />
+              Vérifier la compatibilité ATS
+            </button>
 
-            <button onClick={reactToPrintFn} className="btn btn-outline btn-primary flex items-center gap-2 w-full sm:w-auto">
+            <button
+              onClick={reactToPrintFn}
+              className="btn btn-outline btn-primary flex items-center gap-2 w-full sm:w-auto"
+            >
               <Download className="w-4 h-4" />
               Télécharger
             </button>
           </div>
 
           {/* Resume Preview */}
-        
-          <div className='' ref={contentRef} >  <ResumePreview   resume={resume} /></div>
+
+          <div className="" ref={contentRef}>
+            {" "}
+            <ResumePreview resume={resume} />
+          </div>
         </div>
       </div>
     </div>

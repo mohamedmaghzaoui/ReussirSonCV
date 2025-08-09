@@ -1,17 +1,31 @@
-import { Palette } from 'lucide-react';
-import { useState } from 'react';
-import axios from 'axios';
+import { Palette } from "lucide-react";
+import { useState } from "react";
+import axios from "axios";
 
 export const ColorSelector = ({ resume, setResume }) => {
-  const [resumeTheme, setResumeTheme] = useState(resume.theme || { color: "", background_color: "", font: "Arial" });
+  const [resumeTheme, setResumeTheme] = useState(
+    resume.theme || { color: "", background_color: "", font: "Arial" },
+  );
   const apiUrl = import.meta.env.VITE_API_URL;
   const [loading, setLoading] = useState(false);
 
   const colors = [
-    "#065F46", "black", "#374151", "#0F766E",
-    "#1fb2a6", "#3B82F6", "#570df8", "#FF3371",
-    "#2563EB", "#4B3869", "#0F4C81", "#7C2D12",
-    "#5733FF", "#4B5563", "#8B5CF6", "#312E81"
+    "#065F46",
+    "black",
+    "#374151",
+    "#0F766E",
+    "#1fb2a6",
+    "#3B82F6",
+    "#570df8",
+    "#FF3371",
+    "#2563EB",
+    "#4B3869",
+    "#0F4C81",
+    "#7C2D12",
+    "#5733FF",
+    "#4B5563",
+    "#8B5CF6",
+    "#312E81",
   ];
 
   const handleThemeChange = async (color) => {
@@ -23,10 +37,10 @@ export const ColorSelector = ({ resume, setResume }) => {
       await axios.put(`${apiUrl}/cvs/${resume.id}/`, {
         ...resume,
         theme: {
-          ...resume.theme,           // Keep the existing theme properties
-          color: color,              // Change the text color (this is the new color)
-          background_color: resume.theme.background_color // Keep the existing background color
-        }
+          ...resume.theme, // Keep the existing theme properties
+          color: color, // Change the text color (this is the new color)
+          background_color: resume.theme.background_color, // Keep the existing background color
+        },
       });
 
       // Update local state
@@ -60,7 +74,7 @@ export const ColorSelector = ({ resume, setResume }) => {
         {loading ? (
           <span className="loading loading-spinner loading-sm text-primary" />
         ) : (
-          "Couleurs"
+          "Couleur"
         )}
       </div>
 
@@ -75,7 +89,9 @@ export const ColorSelector = ({ resume, setResume }) => {
               key={index}
               onClick={() => handleThemeChange(color)}
               className={`h-6 w-6 rounded-full cursor-pointer border transition-all duration-150 hover:scale-110 ${
-                resumeTheme.color === color ? 'ring-2 ring-primary border-black' : ''
+                resumeTheme.color === color
+                  ? "ring-2 ring-primary border-black"
+                  : ""
               }`}
               style={{ backgroundColor: color }}
               title={color}

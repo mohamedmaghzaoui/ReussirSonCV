@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 const apiUrl = import.meta.env.VITE_API_URL;
-export const Login = ({ setOpenLogin ,refetch}) => {
+export const Login = ({ setOpenLogin, refetch }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -34,7 +34,7 @@ export const Login = ({ setOpenLogin ,refetch}) => {
       const response = await axios.post(`${apiUrl}/login/`, formData);
 
       console.log("Login success:", response.data);
-      refetch()
+      refetch();
       setOpenLogin(false);
     } catch (err) {
       console.error("Login error:", err);
@@ -70,9 +70,14 @@ export const Login = ({ setOpenLogin ,refetch}) => {
           )}
 
           {/* FORMULAIRE */}
-          <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+          <form
+            onSubmit={handleSubmit}
+            className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6"
+          >
             <div className="flex flex-col gap-4">
-              <h1 className="text-info-content font-bold">Données personnelles</h1>
+              <h1 className="text-info-content font-bold">
+                Données personnelles
+              </h1>
               <label className="text-base-content">Email</label>
               <input
                 type="email"
@@ -97,7 +102,11 @@ export const Login = ({ setOpenLogin ,refetch}) => {
 
           {/* Boutons */}
           <div className="mt-10 flex flex-wrap gap-4">
-            <button type="button" onClick={() => setOpenLogin(false)} className="btn">
+            <button
+              type="button"
+              onClick={() => setOpenLogin(false)}
+              className="btn"
+            >
               Fermer
             </button>
             <button
@@ -115,7 +124,15 @@ export const Login = ({ setOpenLogin ,refetch}) => {
           </div>
 
           <p className="ml-4 mt-3 text-info-content">
-            Vous n'avez pas un compte ? <span onClick={()=>{setOpenLogin(false)}} className="text-primary cursor-pointer">Inscrire</span>
+            Vous n'avez pas un compte ?{" "}
+            <span
+              onClick={() => {
+                setOpenLogin(false);
+              }}
+              className="text-primary cursor-pointer"
+            >
+              Inscrire
+            </span>
           </p>
         </div>
       </div>

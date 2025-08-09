@@ -1,17 +1,17 @@
-import { ArrowRight, Loader2 } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { ArrowRight, Loader2 } from "lucide-react";
+import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export const FirstPersonalInfoForm = ({ goToNextStep, resume, setResume }) => {
   const apiUrl = import.meta.env.VITE_API_URL;
   const [formData, setFormData] = useState({
-    email: '',
-    first_name: '',
-    last_name: '',
-    age: '',
-    phone: '',
-    title: ''
+    email: "",
+    first_name: "",
+    last_name: "",
+    age: "",
+    phone: "",
+    title: "",
   });
 
   const [loading, setLoading] = useState(false);
@@ -20,12 +20,12 @@ export const FirstPersonalInfoForm = ({ goToNextStep, resume, setResume }) => {
   useEffect(() => {
     if (resume?.personal_info) {
       setFormData({
-        email: resume.personal_info.email || '',
-        first_name: resume.personal_info.first_name || '',
-        last_name: resume.personal_info.last_name || '',
-        age: resume.personal_info.age || '',
-        phone_number: resume.personal_info.phone_number || '',
-        title: resume.personal_info.title || ''
+        email: resume.personal_info.email || "",
+        first_name: resume.personal_info.first_name || "",
+        last_name: resume.personal_info.last_name || "",
+        age: resume.personal_info.age || "",
+        phone_number: resume.personal_info.phone_number || "",
+        title: resume.personal_info.title || "",
       });
     }
   }, [resume]);
@@ -41,13 +41,16 @@ export const FirstPersonalInfoForm = ({ goToNextStep, resume, setResume }) => {
     try {
       const payload = {
         ...formData,
-        cv: resume.id
+        cv: resume.id,
       };
 
       let response;
 
       if (resume.personal_info?.id) {
-        response = await axios.put(`${apiUrl}/personal-infos/${resume.personal_info.id}/`, payload);
+        response = await axios.put(
+          `${apiUrl}/personal-infos/${resume.personal_info.id}/`,
+          payload,
+        );
       } else {
         response = await axios.post(`${apiUrl}/personal-infos/`, payload);
       }
@@ -59,7 +62,7 @@ export const FirstPersonalInfoForm = ({ goToNextStep, resume, setResume }) => {
 
       goToNextStep();
     } catch (err) {
-      console.error('Erreur lors de l’envoi :', err);
+      console.error("Erreur lors de l’envoi :", err);
     } finally {
       setLoading(false);
     }
@@ -67,9 +70,15 @@ export const FirstPersonalInfoForm = ({ goToNextStep, resume, setResume }) => {
 
   return (
     <div className="w-80 lg:w-[610px] md:w-[500px] mx-auto bg-base-100 shadow-md p-6 rounded-lg ">
-      <progress className="progress progress-primary w-full mb-4" value={10} max="100"></progress>
+      <progress
+        className="progress progress-primary w-full mb-4"
+        value={10}
+        max="100"
+      ></progress>
 
-      <h1 className="text-xl font-bold text-info-content mb-6">Informations personnelles</h1>
+      <h1 className="text-xl font-bold text-info-content mb-6">
+        Informations personnelles
+      </h1>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Email */}
@@ -126,7 +135,9 @@ export const FirstPersonalInfoForm = ({ goToNextStep, resume, setResume }) => {
             />
           </div>
           <div className="flex-1">
-            <label className="label text-base-content">Numéro de téléphone</label>
+            <label className="label text-base-content">
+              Numéro de téléphone
+            </label>
             <input
               type="tel"
               name="phone_number"
@@ -156,8 +167,12 @@ export const FirstPersonalInfoForm = ({ goToNextStep, resume, setResume }) => {
           <Link to="/" className="btn">
             Accueil
           </Link>
-          <button type="submit" className="btn btn-primary flex items-center gap-2" disabled={loading}>
-            {loading ? <Loader2 className="animate-spin w-4 h-4" /> : 'Suivant'}
+          <button
+            type="submit"
+            className="btn btn-primary flex items-center gap-2"
+            disabled={loading}
+          >
+            {loading ? <Loader2 className="animate-spin w-4 h-4" /> : "Suivant"}
             {!loading && <ArrowRight className="w-4 h-4" />}
           </button>
         </div>

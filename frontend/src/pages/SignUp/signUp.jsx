@@ -42,7 +42,7 @@ export const SignUp = ({ setOpenSignUp }) => {
       !formData.email ||
       !formData.password ||
       !formData.confirmPassword ||
-      !formData.birthdate||
+      !formData.birthdate ||
       !imageName
     ) {
       setError("Veuillez remplir toutes les informations.");
@@ -77,13 +77,11 @@ export const SignUp = ({ setOpenSignUp }) => {
 
       console.log("Success:", response.data);
       setOpenSignUp(false);
-     
     } catch (error) {
       console.error("Error:", error);
       setError("Un utilisateur existe deja avec ce email.");
     } finally {
       setIsSubmitting(false);
-       
     }
   };
 
@@ -116,7 +114,9 @@ export const SignUp = ({ setOpenSignUp }) => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-5">
               {/* Left Side */}
               <div className="flex flex-col gap-4">
-                <h1 className="text-info-content font-bold">Données personnelles</h1>
+                <h1 className="text-info-content font-bold">
+                  Données personnelles
+                </h1>
                 <input
                   type="text"
                   name="first_name"
@@ -175,7 +175,9 @@ export const SignUp = ({ setOpenSignUp }) => {
                   htmlFor="profileImage"
                   className="w-40 h-32 bg-indigo-50 flex items-center justify-center rounded-lg cursor-pointer"
                 >
-                  <span className="text-sm text-primary">Cliquez pour téléverser</span>
+                  <span className="text-sm text-primary">
+                    Cliquez pour téléverser
+                  </span>
                 </label>
                 <input
                   type="file"
@@ -185,7 +187,9 @@ export const SignUp = ({ setOpenSignUp }) => {
                   accept="image/*"
                 />
                 {imageName && (
-                  <p className="text-sm text-center text-info-content mt-2">{imageName}</p>
+                  <p className="text-sm text-center text-info-content mt-2">
+                    {imageName}
+                  </p>
                 )}
               </div>
             </div>
@@ -200,7 +204,11 @@ export const SignUp = ({ setOpenSignUp }) => {
                 Fermer
               </button>
 
-              <button type="submit" className="btn btn-neutral" disabled={isSubmitting}>
+              <button
+                type="submit"
+                className="btn btn-neutral"
+                disabled={isSubmitting}
+              >
                 {isSubmitting ? (
                   <span className="loading loading-spinner loading-sm"></span>
                 ) : (
@@ -213,7 +221,12 @@ export const SignUp = ({ setOpenSignUp }) => {
           {/* Bottom link */}
           <p className="ml-13 mt-3 text-info-content">
             Vous avez déjà un compte ?{" "}
-            <span onClick={()=>setOpenSignUp(false)} className="text-primary cursor-pointer">Connecter</span>
+            <span
+              onClick={() => setOpenSignUp(false)}
+              className="text-primary cursor-pointer"
+            >
+              Connecter
+            </span>
           </p>
         </div>
       </div>

@@ -1,16 +1,21 @@
-import { ArrowRight, ArrowLeft } from 'lucide-react';
-import { useState, useEffect } from 'react';
-import { Loader2 } from 'lucide-react';
+import { ArrowRight, ArrowLeft } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Loader2 } from "lucide-react";
 
-import axios from 'axios';
-  const apiUrl = import.meta.env.VITE_API_URL;
-export const SecondPersonalInfoForm = ({ goToPrevStep, goToNextStep, resume, setResume }) => {
+import axios from "axios";
+const apiUrl = import.meta.env.VITE_API_URL;
+export const SecondPersonalInfoForm = ({
+  goToPrevStep,
+  goToNextStep,
+  resume,
+  setResume,
+}) => {
   const [formData, setFormData] = useState({
-    address: '',
-    linkedin: '',
-    portfolio: '',
-    website: '',
-    user_picture: null
+    address: "",
+    linkedin: "",
+    portfolio: "",
+    website: "",
+    user_picture: null,
   });
   const [loading, setLoading] = useState(false);
 
@@ -19,11 +24,11 @@ export const SecondPersonalInfoForm = ({ goToPrevStep, goToNextStep, resume, set
   useEffect(() => {
     if (resume?.personal_info) {
       setFormData({
-        address: resume.personal_info.address || '',
-        linkedin: resume.personal_info.linkedin || '',
-        portfolio: resume.personal_info.portfolio || '',
-        website: resume.personal_info.website || '',
-        user_picture: resume.personal_info.user_picture || null
+        address: resume.personal_info.address || "",
+        linkedin: resume.personal_info.linkedin || "",
+        portfolio: resume.personal_info.portfolio || "",
+        website: resume.personal_info.website || "",
+        user_picture: resume.personal_info.user_picture || null,
       });
     }
   }, [resume]);
@@ -32,7 +37,7 @@ export const SecondPersonalInfoForm = ({ goToPrevStep, goToNextStep, resume, set
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -41,63 +46,68 @@ export const SecondPersonalInfoForm = ({ goToPrevStep, goToNextStep, resume, set
     if (file) {
       setFormData((prev) => ({
         ...prev,
-        user_picture: file
+        user_picture: file,
       }));
       setImageName(file.name);
     }
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  setLoading(true);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
 
-  try {
-    const formPayload = new FormData();
-    formPayload.append("address", formData.address);
-    formPayload.append("linkedin", formData.linkedin);
-    formPayload.append("portfolio", formData.portfolio);
-    formPayload.append("website", formData.website);
-    formPayload.append("cv", resume.id);
-    
-    if (formData.user_picture instanceof File) {
-      formPayload.append("user_picture", formData.user_picture);
-    }
+    try {
+      const formPayload = new FormData();
+      formPayload.append("address", formData.address);
+      formPayload.append("linkedin", formData.linkedin);
+      formPayload.append("portfolio", formData.portfolio);
+      formPayload.append("website", formData.website);
+      formPayload.append("cv", resume.id);
 
-    let response;
+      if (formData.user_picture instanceof File) {
+        formPayload.append("user_picture", formData.user_picture);
+      }
 
-    if (resume.personal_info?.id) {
-      response = await axios.put(
-        `${apiUrl}/personal-infos/${resume.personal_info.id}/`,
-        formPayload,
-        {
+      let response;
+
+      if (resume.personal_info?.id) {
+        response = await axios.put(
+          `${apiUrl}/personal-infos/${resume.personal_info.id}/`,
+          formPayload,
+          {
+            headers: { "Content-Type": "multipart/form-data" },
+          },
+        );
+      } else {
+        response = await axios.post(`${apiUrl}/personal-infos/`, formPayload, {
           headers: { "Content-Type": "multipart/form-data" },
-        }
-      );
-    } else {
-      response = await axios.post(`${apiUrl}/personal-infos/`, formPayload, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+        });
+      }
+
+      setResume((prev) => ({
+        ...prev,
+        personal_info: response.data,
+      }));
+
+      goToNextStep();
+    } catch (err) {
+      console.error("Erreur lors de l’envoi :", err);
+    } finally {
+      setLoading(false);
     }
-
-    setResume((prev) => ({
-      ...prev,
-      personal_info: response.data,
-    }));
-
-    goToNextStep();
-  } catch (err) {
-    console.error("Erreur lors de l’envoi :", err);
-  } finally {
-    setLoading(false);
-  }
-};
-
+  };
 
   return (
     <div className="w-80 lg:w-[610px] md:w-[500px] mx-auto bg-base-100 shadow-md p-6 rounded-lg ">
-      <progress className="progress progress-primary w-full mb-4" value={20} max="100"></progress>
+      <progress
+        className="progress progress-primary w-full mb-4"
+        value={20}
+        max="100"
+      ></progress>
 
-      <h1 className="text-xl font-bold text-info-content mb-6">Informations personnelles</h1>
+      <h1 className="text-xl font-bold text-info-content mb-6">
+        Informations personnelles
+      </h1>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Adresse */}
@@ -140,7 +150,9 @@ const handleSubmit = async (e) => {
             />
           </div>
           <div className="flex-1">
-            <label className="label text-base-content">Site web personnel</label>
+            <label className="label text-base-content">
+              Site web personnel
+            </label>
             <input
               type="url"
               name="website"
@@ -163,7 +175,9 @@ const handleSubmit = async (e) => {
             onChange={handleImageChange}
           />
           {imageName && (
-            <p className="text-sm text-gray-500 mt-1">Image sélectionnée : <strong>{imageName}</strong></p>
+            <p className="text-sm text-gray-500 mt-1">
+              Image sélectionnée : <strong>{imageName}</strong>
+            </p>
           )}
         </div>
 
@@ -173,8 +187,12 @@ const handleSubmit = async (e) => {
             <ArrowLeft className="w-4 h-4" />
             Retourner
           </button>
-              <button type="submit" className="btn btn-primary flex items-center gap-2" disabled={loading}>
-            {loading ? <Loader2 className="animate-spin w-4 h-4" /> : 'Suivant'}
+          <button
+            type="submit"
+            className="btn btn-primary flex items-center gap-2"
+            disabled={loading}
+          >
+            {loading ? <Loader2 className="animate-spin w-4 h-4" /> : "Suivant"}
             {!loading && <ArrowRight className="w-4 h-4" />}
           </button>
         </div>

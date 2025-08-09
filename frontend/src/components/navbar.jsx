@@ -1,5 +1,5 @@
-import { UnauthenticatedNavbar } from './UnauthenticatedNavbar';
-import { AuthenticatedNavbar } from './AuthenticatedNavbar';
+import { UnauthenticatedNavbar } from "./UnauthenticatedNavbar";
+import { AuthenticatedNavbar } from "./AuthenticatedNavbar";
 import { useUser } from "../context/UserContext.jsx";
 
 export const Navbar = () => {
@@ -8,7 +8,10 @@ export const Navbar = () => {
   // 👉 While loading, show a placeholder with same height as navbar to avoid layout shift
   if (loading) {
     return (
-      <div style={{ height: '70px' }} className="w-full shadow-sm bg-base-100" />
+      <div
+        style={{ height: "70px" }}
+        className="w-full shadow-sm bg-base-100"
+      />
     );
   }
 

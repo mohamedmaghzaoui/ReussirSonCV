@@ -1,17 +1,30 @@
-import { Palette } from 'lucide-react';
-import { useState } from 'react';
-import axios from 'axios';
+import { Palette } from "lucide-react";
+import { useState } from "react";
+import axios from "axios";
 
 export const BackgroundColorSelector = ({ resume, setResume }) => {
   const [loading, setLoading] = useState(false);
   const apiUrl = import.meta.env.VITE_API_URL;
 
- const backgroundColors = [
-  "#F7F7F7", "#F0F4F8", "#E6F7FF", "#FFF8E1", 
-  "#FFFFFF", "#F1FAF6", "#E0F7FA", "#FFFBF0",
-   "#F9F9F9", "#F1F5F9", "#FFFAF1", "#EAEAEA", "#F4F4F4", "#D9E8D6", "#F2F0F1",  , "#F7EBFF"                               
-];
-
+  const backgroundColors = [
+    "#F7F7F7",
+    "#F0F4F8",
+    "#E6F7FF",
+    "#FFF8E1",
+    "#FFFFFF",
+    "#F1FAF6",
+    "#E0F7FA",
+    "#FFFBF0",
+    "#F9F9F9",
+    "#F1F5F9",
+    "#FFFAF1",
+    "#EAEAEA",
+    "#F4F4F4",
+    "#D9E8D6",
+    "#F2F0F1",
+    ,
+    "#F7EBFF",
+  ];
 
   const handleBackgroundColorChange = async (color) => {
     if (loading || color === resume.theme.background_color) return;
@@ -22,7 +35,7 @@ export const BackgroundColorSelector = ({ resume, setResume }) => {
         ...resume,
         theme: {
           ...resume.theme,
-          background_color: color,  // Update the background color
+          background_color: color, // Update the background color
         },
       });
 
@@ -34,7 +47,10 @@ export const BackgroundColorSelector = ({ resume, setResume }) => {
         },
       });
     } catch (err) {
-      console.error("Erreur lors de la mise à jour de la couleur d'arrière-plan :", err);
+      console.error(
+        "Erreur lors de la mise à jour de la couleur d'arrière-plan :",
+        err,
+      );
     } finally {
       setLoading(false);
     }
@@ -45,13 +61,13 @@ export const BackgroundColorSelector = ({ resume, setResume }) => {
       <div
         tabIndex={0}
         role="button"
-        className="btn  btn-outline w-full sm:w-auto text-base font-medium flex items-center gap-2"
+        className="btn btn-outline w-full sm:w-auto text-base font-medium flex items-center gap-2"
       >
         <Palette className="w-5 h-5" />
         {loading ? (
           <span className="loading loading-spinner loading-sm text-primary" />
         ) : (
-          "Couleur de Fond"
+          "Fond"
         )}
       </div>
 
@@ -59,14 +75,18 @@ export const BackgroundColorSelector = ({ resume, setResume }) => {
         tabIndex={0}
         className="dropdown-content z-[1] bg-base-100 p-4 mt-2 shadow rounded-box w-52"
       >
-        <h2 className="mb-3 text-sm font-semibold">Choisir une couleur d'arrière-plan</h2>
+        <h2 className="mb-3 text-sm font-semibold">
+          Choisir une couleur d'arrière-plan
+        </h2>
         <div className="grid grid-cols-4 gap-3">
           {backgroundColors.map((color, index) => (
             <div
               key={index}
               onClick={() => handleBackgroundColorChange(color)}
               className={`h-6 w-6 rounded-full cursor-pointer border transition-all duration-150 hover:scale-110 ${
-                resume.theme.background_color === color ? 'ring-2 ring-primary border-black' : ''
+                resume.theme.background_color === color
+                  ? "ring-2 ring-primary border-black"
+                  : ""
               }`}
               style={{ backgroundColor: color }}
               title={color}
