@@ -10,6 +10,7 @@ import { CGU } from "./pages/legal/CGU";
 import { PrivateRoute } from "./private/PrivateRoute";
 import NotFound from "./pages/notFound/NotFound";
 import { Profile } from "./pages/profile/profile";
+import { ResumeAnalyser } from "./pages/analyse/ResumeAnalyser";
 
 import axios from "axios";
 axios.defaults.withCredentials = true;
@@ -28,6 +29,10 @@ function App() {
           <Route
             path="/dashboard/edit/:id"
             element={<PrivateRoute element={<ResumeEditor />} />}
+          />
+          <Route
+            path="/dashboard/analyse/:id"
+            element={<PrivateRoute element={<ResumeAnalyser />} />}
           />
           <Route
             path="/profile"

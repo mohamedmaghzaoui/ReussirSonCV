@@ -4,13 +4,16 @@ import { useEffect, useState } from "react";
 import { ColorSelector } from "../themes/ColorSelector";
 import { BackgroundColorSelector } from "../themes/BackgroundColorSelector";
 import { FontSelector } from "../themes/FontSelector";
-import { Download, CheckCircle, BrainCog } from "lucide-react";
+import { Download, CheckCircle, Home } from "lucide-react";
 import { ResumePreview } from "../preview/ResumePreview";
 import { ResumeForm } from "../form/ResumeForm";
 import { useReactToPrint } from "react-to-print";
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const ResumeEditor = () => {
+  const navigate = useNavigate();
   const contentRef = useRef(null);
   const reactToPrintFn = useReactToPrint({ contentRef });
   const { id } = useParams();
@@ -58,13 +61,19 @@ export const ResumeEditor = () => {
         <div className="w-full lg:w-1/2 space-y-4">
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row justify-end items-start sm:items-center gap-2 sm:gap-4">
-            <button className="btn btn-neutral flex items-center gap-2 w-full sm:w-auto">
-              <BrainCog className="w-4 h-4" />
-              Analyser mon CV
-            </button>
-            <button className="btn  btn-accent flex items-center gap-2 w-full sm:w-auto">
+            <Link
+              to={"/dashboard"}
+              className="btn btn-neutral flex items-center gap-2 w-full sm:w-auto"
+            >
+              <Home className="w-4 h-4" />
+              Accueil
+            </Link>
+            <button
+              onClick={() => navigate(`/dashboard/analyse/${resume.id}`)}
+              className="btn  btn-accent flex items-center gap-2 w-full sm:w-auto"
+            >
               <CheckCircle className="w-4 h-4" />
-              Vérifier la compatibilité ATS
+              Analyser mon CV
             </button>
 
             <button

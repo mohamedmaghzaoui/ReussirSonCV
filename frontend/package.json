@@ -24,6 +24,8 @@
     "react-dom": "^18.2.0",
     "react-quill": "^2.0.0",
     "react-router-dom": "^7.6.2",
+    "react-score-indicator": "^2.2.1",
+    "react-spinners": "^0.17.0",
     "react-to-pdf": "^2.0.1",
     "react-to-print": "^3.1.1",
     "tailwindcss": "^4.1.10"

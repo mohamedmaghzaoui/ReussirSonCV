@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 
 
 load_dotenv()  # load from .env
-
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 MEDIA_URL = '/media/'
@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'rest_framework',
     #local aps
     'user',
-    'resume'
+    'resume',
+    'ats'
 ]
 
 MIDDLEWARE = [
