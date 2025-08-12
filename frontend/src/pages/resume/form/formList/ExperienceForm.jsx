@@ -14,6 +14,7 @@ export const ExperienceForm = ({
 
   const [experiences, setExperiences] = useState([]);
   const [deletingIndex, setDeletingIndex] = useState(null);
+  const [formErrors, setFormErrors] = useState({});
   const [form, setForm] = useState({
     title: "",
     company: "",
@@ -37,7 +38,16 @@ export const ExperienceForm = ({
   };
 
   const addExperience = () => {
-    if (!form.title || !form.company) return;
+    const errors = {};
+
+  if (!form.title.trim()) errors.title = "Le titre est requis.";
+  if (!form.company.trim()) errors.company = "L'entreprise est requis.";
+  if (!form.start_date.trim()) errors.start_date = "date de début est requis.";
+
+  setFormErrors(errors);
+
+  // if error return
+  if (Object.keys(errors).length > 0) return;
     setExperiences((prev) => [...prev, form]);
     setForm({
       title: "",
@@ -86,7 +96,12 @@ export const ExperienceForm = ({
           responses.push(exp);
           continue;
         }
-        const payload = { ...exp, cv: resume.id };
+           const payload = {
+  ...exp,
+  start_date: exp.start_date === "" ? null : exp.start_date,
+  end_date: exp.end_date === "" ? null : exp.end_date,
+  cv: resume.id,
+};
         const response = await axios.post(`${apiUrl}/experiences/`, payload);
         responses.push(response.data);
       }
@@ -122,21 +137,21 @@ export const ExperienceForm = ({
             value={form.title}
             onChange={handleChange}
             placeholder="Titre"
-            className="input input-bordered w-full"
+            className={`input input-bordered w-full ${formErrors.title ? "input-error" : ""}`}
           />
           <input
             name="company"
             value={form.company}
             onChange={handleChange}
             placeholder="Entreprise"
-            className="input input-bordered w-full"
+            className={`input input-bordered w-full ${formErrors.company ? "input-error" : ""}`}
           />
           <input
             type="date"
             name="start_date"
             value={form.start_date}
             onChange={handleChange}
-            className="input input-bordered w-full"
+            className={`input input-bordered w-full ${formErrors.start_date ? "input-error" : ""}`}
           />
           <input
             type="date"
@@ -171,7 +186,7 @@ export const ExperienceForm = ({
           className="btn btn-neutral mt-10 w-full"
         >
           <Plus className="w-4 h-4 mr-2" />
-          Ajouter cette formation à la liste
+          Ajouter cette expérience à la liste
         </button>
 
         {/* Preview list of experiences */}
@@ -205,7 +220,7 @@ export const ExperienceForm = ({
                   {deletingIndex === index ? (
                     <Loader2 className="w-5 h-5 animate-spin" />
                   ) : (
-                    <Trash2 className="w-5 h-5" />
+                    <Trash2 className="w-5 h-5 cursor-pointer" />
                   )}
                 </button>
               </div>
@@ -217,7 +232,7 @@ export const ExperienceForm = ({
         <div className="mt-8 flex flex-wrap justify-between gap-4">
           <button type="button" onClick={goToPrevStep} className="btn">
             <ArrowLeft className="w-4 h-4" />
-            Retourner
+            Précédent
           </button>
           <button
             type="submit"

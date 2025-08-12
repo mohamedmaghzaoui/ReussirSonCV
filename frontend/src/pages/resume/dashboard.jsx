@@ -41,11 +41,10 @@ export const Dashboard = () => {
       <div className="mt-5 w-full grid grid-cols-1 lg:grid-cols-2 items-center px-6 py-10 gap-10">
         <div className="text-center lg:text-left">
           <h1 className="font-bold text-2xl sm:text-4xl md:text-4xl leading-tight">
-            Tous Tes projets
+            Tous tes projets
           </h1>
           <p className="mt-5 text-info-content font-semibold">
-            Commencer Maintenant à créer votre CV pour décrocher votre futur
-            emploi
+            Commencez dès maintenant à créer votre CV pour décrocher votre futur emploi
           </p>
         </div>
       </div>

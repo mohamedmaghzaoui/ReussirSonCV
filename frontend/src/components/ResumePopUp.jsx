@@ -36,12 +36,12 @@ const ResumePopUp = ({ closePopUp }) => {
           Ajouter un CV
         </h2>
         <label className="label font-medium mb-2 text-base-content">
-          Titre de cv
+          Titre du CV
         </label>
         <input
           required
           type="text"
-          placeholder="EX :mon premier cv "
+          placeholder="Ex : Mon premier CV"
           value={resumeName}
           onChange={(e) => setResumeName(e.target.value)}
           className="input input-bordered w-full mb-8"

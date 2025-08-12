@@ -15,8 +15,8 @@ export const SkillsPreview = ({ data, theme }) => {
             key={index}
             className="text-xs px-3 py-1 rounded-full border font-medium"
             style={{
-              borderColor: theme,
-              color: theme,
+              
+              
             }}
           >
             {skill.name}

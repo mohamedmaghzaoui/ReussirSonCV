@@ -13,6 +13,7 @@ export const ProjectForm = ({
   const apiUrl = import.meta.env.VITE_API_URL;
 
   const [projects, setProjects] = useState([]);
+  const [formErrors, setFormErrors] = useState({});
   const [deletingIndex, setDeletingIndex] = useState(null);
   const [form, setForm] = useState({
     title: "",
@@ -35,8 +36,14 @@ export const ProjectForm = ({
   };
 
   const addProject = () => {
-    if (!form.title) return;
-    setProjects((prev) => [...prev, form]);
+  const errors = {};
+
+  if (!form.title.trim()) errors.title = "Le titre est requis.";
+  if (!form.start_date.trim()) errors.start_date = "date de début est requis.";
+
+  setFormErrors(errors);
+  if (Object.keys(errors).length > 0) return;
+  setProjects((prev) => [...prev, form]);
     setForm({
       title: "",
       start_date: "",
@@ -117,7 +124,7 @@ export const ProjectForm = ({
           value={form.title}
           onChange={handleChange}
           placeholder="Titre"
-          className="input input-bordered w-full"
+           className={`input input-bordered w-full ${formErrors.title ? "input-error" : ""}`}
         />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <input
@@ -125,7 +132,7 @@ export const ProjectForm = ({
             name="start_date"
             value={form.start_date}
             onChange={handleChange}
-            className="input input-bordered w-full"
+            className={`input input-bordered w-full ${formErrors.start_date ? "input-error" : ""}`}
           />
           <input
             type="date"
@@ -154,7 +161,7 @@ export const ProjectForm = ({
           className="btn btn-neutral mt-10 w-full"
         >
           <Plus className="w-4 h-4 mr-2" />
-          Ajouter ce Projet à la liste
+          Ajouter ce projet à la liste
         </button>
 
         {/* Preview list of projects */}
@@ -186,7 +193,7 @@ export const ProjectForm = ({
                   {deletingIndex === index ? (
                     <Loader2 className="w-5 h-5 animate-spin" />
                   ) : (
-                    <Trash2 className="w-5 h-5" />
+                    <Trash2 className="w-5 h-5 cursor-pointer" />
                   )}
                 </button>
               </div>
@@ -198,7 +205,7 @@ export const ProjectForm = ({
         <div className="mt-8 flex flex-wrap justify-between gap-4">
           <button type="button" onClick={goToPrevStep} className="btn">
             <ArrowLeft className="w-4 h-4" />
-            Retourner
+            Précédent
           </button>
           <button
             type="submit"

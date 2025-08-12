@@ -9,13 +9,13 @@ export const Home = () => {
             <span className="text-primary block">ReussirSonCv</span>
           </h1>
           <p className="mt-5 text-info-content font-semibold">
-            It will take a couple of minutes.
+            Cela prendra seulement quelques minutes.
             <span className="block">
-              Change profile settings and confirm with SMS code
+              Modifiez vos informations et confirmez avec un code SMS.
             </span>
           </p>
           <Link to={"/dashboard"} className="btn btn-neutral mt-2">
-            Get started
+            Commencer 
           </Link>
         </div>
 

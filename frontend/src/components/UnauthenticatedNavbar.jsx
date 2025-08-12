@@ -55,11 +55,17 @@ export const UnauthenticatedNavbar = ({ refetch }) => {
             </li>
           </ul>
         </div>
-        <Link to="/" className="btn btn-ghost  font-bold  text-2xl">
-          <h1>
-            Reussir<span className="text-primary">SonCV</span>
-          </h1>
-        </Link>
+ <Link to="/" className="btn btn-ghost font-bold text-2xl items-center gap-2">
+  <img
+    src="/logo.png"
+    alt="site preview"
+    className="h-15 w-auto" // height matches text, keeps aspect ratio
+  />
+  <h1>
+    Reussir<span className="text-primary">SonCV</span>
+  </h1>
+</Link>
+
       </div>
 
       {/* center (desktop) */}

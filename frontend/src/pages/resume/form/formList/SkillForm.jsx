@@ -13,6 +13,7 @@ export const SkillForm = ({
   const apiUrl = import.meta.env.VITE_API_URL;
 
   const [skills, setSkills] = useState([]);
+  const [formErrors, setFormErrors] = useState({});
   const [deletingIndex, setDeletingIndex] = useState(null);
   const [form, setForm] = useState({
     name: "",
@@ -32,7 +33,13 @@ export const SkillForm = ({
   };
 
   const addSkill = () => {
-    if (!form.name) return;
+  const errors = {};
+
+  if (!form.name.trim()) errors.name = "Le nom est requis.";
+ 
+
+  setFormErrors(errors);
+  if (Object.keys(errors).length > 0) return;
     setSkills((prev) => [...prev, form]);
     setForm({
       name: "",
@@ -106,11 +113,12 @@ export const SkillForm = ({
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Experience Form Inputs */}
         <input
+          
           name="name"
           value={form.name}
           onChange={handleChange}
           placeholder="Nom"
-          className="input input-bordered w-full"
+          className={`input input-bordered w-full ${formErrors.name ? "input-error" : ""}`}
         />
 
         <button
@@ -119,7 +127,7 @@ export const SkillForm = ({
           className="btn btn-neutral mt-10 w-full"
         >
           <Plus className="w-4 h-4 mr-2" />
-          Ajouter cet competence à la liste
+          Ajouter cette compétence à la liste
         </button>
 
         {/* Preview list of skills */}
@@ -143,7 +151,7 @@ export const SkillForm = ({
                   {deletingIndex === index ? (
                     <Loader2 className="w-5 h-5 animate-spin" />
                   ) : (
-                    <Trash2 className="w-5 h-5" />
+                    <Trash2 className="w-5 h-5 cursor-pointer" />
                   )}
                 </button>
               </div>
@@ -155,7 +163,7 @@ export const SkillForm = ({
         <div className="mt-8 flex flex-wrap justify-between gap-4">
           <button type="button" onClick={goToPrevStep} className="btn">
             <ArrowLeft className="w-4 h-4" />
-            Retourner
+            Précédent
           </button>
           <button
             type="submit"

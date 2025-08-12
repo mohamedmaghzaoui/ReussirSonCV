@@ -13,6 +13,7 @@ export const LanguageForm = ({
   const apiUrl = import.meta.env.VITE_API_URL;
 
   const [languages, setLanguages] = useState([]);
+  const [formErrors, setFormErrors] = useState({});
   const [deletingIndex, setDeletingIndex] = useState(null);
   const [form, setForm] = useState({
     name: "",
@@ -33,7 +34,13 @@ export const LanguageForm = ({
   };
 
   const addLanguage = () => {
-    if (!form.name) return;
+  const errors = {};
+
+  if (!form.name.trim()) errors.name = "Le titre est requis.";
+  if (!form.level.trim()) errors.level = "Le niveau est requis.";
+  setFormErrors(errors);
+  if (Object.keys(errors).length > 0) return;
+  setFormErrors(errors);
     setLanguages((prev) => [...prev, form]);
     setForm({
       name: "",
@@ -112,13 +119,13 @@ export const LanguageForm = ({
           value={form.name}
           onChange={handleChange}
           placeholder="Nom"
-          className="input input-bordered w-full"
+          className={`input input-bordered w-full ${formErrors.name ? "input-error" : ""}`}
         />
         <select
           name="level"
           value={form.level}
           onChange={handleChange}
-          className="select select-bordered w-full"
+          className={`input input-bordered w-full ${formErrors.level ? "input-error" : ""}`}
         >
           <option value="">-- Niveau de langue --</option>
           <option value="Débutant">Débutant</option>
@@ -135,7 +142,7 @@ export const LanguageForm = ({
           className="btn btn-neutral mt-10 w-full"
         >
           <Plus className="w-4 h-4 mr-2" />
-          Ajouter cet Langue à la liste
+          Ajouter cette langue à la liste
         </button>
 
         {/* Preview list of languages */}
@@ -160,7 +167,7 @@ export const LanguageForm = ({
                   {deletingIndex === index ? (
                     <Loader2 className="w-5 h-5 animate-spin" />
                   ) : (
-                    <Trash2 className="w-5 h-5" />
+                    <Trash2 className="w-5 h-5 cursor-pointer" />
                   )}
                 </button>
               </div>
@@ -172,7 +179,7 @@ export const LanguageForm = ({
         <div className="mt-8 flex flex-wrap justify-between gap-4">
           <button type="button" onClick={goToPrevStep} className="btn">
             <ArrowLeft className="w-4 h-4" />
-            Retourner
+            Précédent
           </button>
           <button
             type="submit"

@@ -13,6 +13,8 @@ export const EducationForm = ({
   const apiUrl = import.meta.env.VITE_API_URL;
 
   const [educations, setEducations] = useState([]);
+  const [formErrors, setFormErrors] = useState({});
+
   const [deletingIndex, setDeletingIndex] = useState(null);
   const [form, setForm] = useState({
     degree: "",
@@ -37,7 +39,16 @@ export const EducationForm = ({
   };
 
   const addEducation = () => {
-    if (!form.degree || !form.institution) return;
+   const errors = {};
+
+  if (!form.degree.trim()) errors.degree = "Le diplôme est requis.";
+  if (!form.institution.trim()) errors.institution = "L'établissement est requis.";
+  if (!form.start_date.trim()) errors.start_date = "date de début est requis.";
+
+  setFormErrors(errors);
+
+  // if error return
+  if (Object.keys(errors).length > 0) return;
     setEducations((prev) => [...prev, form]);
     setForm({
       degree: "",
@@ -88,7 +99,12 @@ export const EducationForm = ({
           continue;
         }
 
-        const payload = { ...edu, cv: resume.id };
+        const payload = {
+  ...edu,
+  start_date: edu.start_date === "" ? null : edu.start_date,
+  end_date: edu.end_date === "" ? null : edu.end_date,
+  cv: resume.id,
+};
         const response = await axios.post(`${apiUrl}/educations/`, payload);
         responses.push(response.data);
       }
@@ -120,25 +136,27 @@ export const EducationForm = ({
         {/* Education Form Inputs */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <input
+            
             name="degree"
             value={form.degree}
             onChange={handleChange}
             placeholder="Diplôme"
-            className="input input-bordered w-full"
+             className={`input input-bordered w-full ${formErrors.degree ? "input-error" : ""}`}
           />
           <input
+            
             name="institution"
             value={form.institution}
             onChange={handleChange}
             placeholder="Établissement"
-            className="input input-bordered w-full"
+            className={`input input-bordered w-full ${formErrors.institution ? "input-error" : ""}`}
           />
           <input
             type="date"
             name="start_date"
             value={form.start_date}
             onChange={handleChange}
-            className="input input-bordered w-full"
+            className={`input input-bordered w-full ${formErrors.start_date ? "input-error" : ""}`}
           />
           <input
             type="date"
@@ -207,7 +225,7 @@ export const EducationForm = ({
                   {deletingIndex === index ? (
                     <Loader2 className="w-5 h-5 animate-spin" />
                   ) : (
-                    <Trash2 className="w-5 h-5" />
+                    <Trash2 className="w-5 h-5 cursor-pointer" />
                   )}
                 </button>
               </div>
@@ -219,7 +237,7 @@ export const EducationForm = ({
         <div className="mt-8 flex flex-wrap justify-between gap-4">
           <button type="button" onClick={goToPrevStep} className="btn">
             <ArrowLeft className="w-4 h-4" />
-            Retourner
+            Précédent
           </button>
           <button
             type="submit"

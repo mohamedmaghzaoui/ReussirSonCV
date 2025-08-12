@@ -6,21 +6,16 @@ export const Footer = () => {
     <footer className="footer sm:footer-horizontal bg-neutral text-neutral-content p-10">
       <nav>
         <h6 className="footer-title">Services</h6>
-        <a className="link link-hover">Création de CV</a>
-        <a className="link link-hover">Conseils de carrière</a>
-        <a className="link link-hover">Consultation professionnelle</a>
+        <Link to="/dashboard" className="link link-hover">Création de CV</Link>
+        <Link to={"/dashboard"} className="link link-hover">Conseils de carrière</Link>
+        <Link to={"/dashboard"} className="link link-hover">Consultation professionnelle</Link>
       </nav>
       <nav>
-        <h6 className="footer-title">Entreprise</h6>
+        <h6 className="footer-title">Application</h6>
         <Link to="/" className="link link-hover">
           À propos
         </Link>
-        <a href="mailto:contact@reussirsoncv.com" className="link link-hover">
-          Contact
-        </a>
-        <a href="tel:+33612345678" className="link link-hover">
-          Assistance
-        </a>
+     
       </nav>
       <nav>
         <h6 className="footer-title">Légal</h6>

@@ -16,7 +16,9 @@ export const PolitiqueConfidentialite = () => {
         site :
       </p>
       <ul className="list-disc list-inside ml-4">
-        <li>Nom, prénom, email lors de l'inscription</li>
+        <li>Prénom, nom, email, mot de passe, confirmation de mot de passe, date de naissance lors de l'inscription</li>
+        <li>Données personnelles et professionnelles saisies dans votre CV (expériences, formations, projets, compétences, langues, informations personnelles)</li>
+
         <li>Adresse IP à des fins de sécurité</li>
         <li>Cookies de session pour l’authentification</li>
       </ul>
@@ -50,7 +52,8 @@ export const PolitiqueConfidentialite = () => {
       </ul>
       <p>
         Pour exercer ces droits, contactez-nous à :{" "}
-        <strong>contact@reussirsoncv.com</strong>
+        <strong>mohamedmaghzaoui53@gmail.com</strong>
+
       </p>
     </div>
   );

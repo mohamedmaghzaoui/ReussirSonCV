@@ -54,6 +54,7 @@ export const UserProvider = ({ children }) => {
     queryKey: ["user"],
     queryFn: fetchUser,
     staleTime: 1000 * 60 * 5,
+    retry:"false",
     onSuccess: (data) => {
       console.log("User data fetched successfully:", data);
     },

@@ -16,27 +16,41 @@ export const ResumePreview = ({ resume }) => {
     "skills",
     "languages",
   ];
-
-  const sectionComponents = {
-    personal_info: (
-      <PersonalInfoPreview theme={theme.color} data={resume.personal_info} />
-    ),
-    profile: <ProfilePreview theme={theme.color} data={resume.profile} />,
-    education: (
-      <EducationPreview theme={theme.color} data={resume.educations} />
-    ),
-    experience: (
-      <ExperiencesPreview theme={theme.color} data={resume.experiences} />
-    ),
-    projects: <ProjectsPreview theme={theme.color} data={resume.projects} />,
-    skills: <SkillsPreview theme={theme.color} data={resume.skills} />,
-    languages: <LanguagesPreview theme={theme.color} data={resume.languages} />,
-  };
+  const hasData = (data) => {
+  if (!data) return false;
+  if (Array.isArray(data)) return data.length > 0;
+  if (typeof data === "object") return Object.keys(data).length > 0;
+  return true; // pour les autres types (string, number), tu peux ajuster si besoin
+};
+const sectionComponents = {
+  personal_info: hasData(resume.personal_info) ? (
+    <PersonalInfoPreview theme={theme.color} data={resume.personal_info} />
+  ) : null,
+  profile: hasData(resume.profile) ? (
+    <ProfilePreview theme={theme.color} data={resume.profile} />
+  ) : null,
+  education: hasData(resume.educations) ? (
+    <EducationPreview theme={theme.color} data={resume.educations} />
+  ) : null,
+  experience: hasData(resume.experiences) ? (
+    <ExperiencesPreview theme={theme.color} data={resume.experiences} />
+  ) : null,
+  projects: hasData(resume.projects) ? (
+    <ProjectsPreview theme={theme.color} data={resume.projects} />
+  ) : null,
+  skills: hasData(resume.skills) ? (
+    <SkillsPreview theme={theme.color} data={resume.skills} />
+  ) : null,
+  languages: hasData(resume.languages) ? (
+    <LanguagesPreview theme={theme.color} data={resume.languages} />
+  ) : null,
+};
 
   return (
     <div
       className="h-full 	 p-10 p-6 md:p-10 border-t-[20px] "
       style={{
+        color: "black !important",
         borderColor: theme.color,
         fontWeight: "500",
         backgroundColor: theme.background_color,

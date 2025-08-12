@@ -8,11 +8,13 @@ import { Download, CheckCircle, Home } from "lucide-react";
 import { ResumePreview } from "../preview/ResumePreview";
 import { ResumeForm } from "../form/ResumeForm";
 import { useReactToPrint } from "react-to-print";
+import { usePDF } from 'react-to-pdf';
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 export const ResumeEditor = () => {
+  
   const navigate = useNavigate();
   const contentRef = useRef(null);
   const reactToPrintFn = useReactToPrint({ contentRef });
@@ -87,7 +89,7 @@ export const ResumeEditor = () => {
 
           {/* Resume Preview */}
 
-          <div className="" ref={contentRef}>
+          <div  ref={contentRef}>
             {" "}
             <ResumePreview resume={resume} />
           </div>

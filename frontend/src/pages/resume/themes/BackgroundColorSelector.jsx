@@ -22,7 +22,7 @@ export const BackgroundColorSelector = ({ resume, setResume }) => {
     "#F4F4F4",
     "#D9E8D6",
     "#F2F0F1",
-    ,
+    
     "#F7EBFF",
   ];
 

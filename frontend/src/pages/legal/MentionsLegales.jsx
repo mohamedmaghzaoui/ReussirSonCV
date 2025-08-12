@@ -14,13 +14,14 @@ export const MentionsLegales = () => {
         <strong>Nom :</strong> Mohamed Maghzaoui
       </p>
       <p>
-        <strong>Email :</strong> contact@reussirsoncv.com
+        <strong>Email :</strong> mohamedmaghzaoui53@gmail.com
+
       </p>
       <p>
         <strong>Responsable de la publication :</strong> Mohamed Maghzaoui
       </p>
 
-      <h2 className="text-xl font-semibold mt-6 mb-2">Hébergement</h2>
+      {/* <h2 className="text-xl font-semibold mt-6 mb-2">Hébergement</h2>
       <p>
         Le site est hébergé par : <strong>Vercel</strong>
       </p>
@@ -38,7 +39,7 @@ export const MentionsLegales = () => {
         >
           vercel.com
         </a>
-      </p>
+      </p> */}
 
       <h2 className="text-xl font-semibold mt-6 mb-2">
         Propriété intellectuelle

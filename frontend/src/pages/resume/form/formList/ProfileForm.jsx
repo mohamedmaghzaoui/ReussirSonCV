@@ -67,6 +67,7 @@ export const ProfileForm = ({
         <div className="flex-1">
           <label className="label text-base-content">Description</label>
           <textarea
+            required
             onChange={(e) => setDescription(e.target.value)}
             name="description"
             value={description}
@@ -79,7 +80,7 @@ export const ProfileForm = ({
         <div className="mt-8 flex flex-wrap justify-between gap-4">
           <button type="button" onClick={goToPrevStep} className="btn">
             <ArrowLeft className="w-4 h-4" />
-            Retourner
+            Précédent
           </button>
           <button
             type="submit"
