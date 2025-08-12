@@ -17,7 +17,7 @@ router.register('educations', EducationViewSet, basename='education')
 router.register('projects', ProjectViewSet, basename='project')
 router.register('languages', LanguageViewSet, basename='language')
 router.register('skills', SkillViewSet, basename='skill')
-router.register('personal-infos', PersonalInfoViewSet, basename='personal-infos')
-router.register('profiles', ProfileViewSet, basename='profiles')
+router.register('personal-infos', PersonalInfoViewSet, basename='personalInfo')
+router.register('profiles', ProfileViewSet, basename='profile')
 
 urlpatterns = router.urls
