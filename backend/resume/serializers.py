@@ -2,6 +2,7 @@ from rest_framework import serializers
 from .models import CV, Profile, Experience, Education, Project, Skill, Language,PersonalInfo
 
 class ProfileSerializer(serializers.ModelSerializer):
+    
     class Meta:
         model = Profile
         fields = '__all__'
@@ -32,6 +33,12 @@ class LanguageSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class PersonalInfoSerializer(serializers.ModelSerializer):
+    age = serializers.IntegerField(required=False, allow_null=True)
+
+    def to_internal_value(self, data):
+        if 'age' in data and data['age'] == "":
+            data['age'] = None
+        return super().to_internal_value(data)
     class Meta:
         model = PersonalInfo
         fields = '__all__'

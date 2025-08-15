@@ -15,7 +15,7 @@ export const Dashboard = () => {
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const { resumes, deleteResume } = useResumes();
+  const { resumes, deleteResume,loading } = useResumes();
   console.log(resumes);
 
   const openPopUp = () => {
@@ -35,7 +35,14 @@ export const Dashboard = () => {
   const toggleMenu = (index) => {
     setActiveMenu((prev) => (prev === index ? null : index));
   };
-
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <span className="loading loading-spinner loading-lg text-neutral" />
+        <p className="ml-4 text-lg font-semibold">Chargement des CV...</p>
+      </div>
+    );
+  }
   return (
     <div>
       <div className="mt-5 w-full grid grid-cols-1 lg:grid-cols-2 items-center px-6 py-10 gap-10">

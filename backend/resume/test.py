@@ -65,7 +65,7 @@ class ResumeCRUDTestCase(APITestCase):
             level="Advanced"
         )
         
-    # test permission denied for other user trying to edit/delete resources they font have access to
+    # test access denied for other user trying to edit/delete resources they font have access to
     def assertAccessForbidden(self, url, method, data=None):
         self.client.logout()
         self.client.login(email="user2@email.com", password="password123")
