@@ -1,57 +1,73 @@
-name: CI/CD
+name: CI Pipeline
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
-  backend-tests:
-    name: Django Tests
+  backend:
+    name: Backend Django
     runs-on: ubuntu-latest
+    env:
+      # Secrets pour la base de données
+      DB_NAME: ${{ secrets.DB_NAME }}
+      DB_USER: ${{ secrets.DB_USER }}
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      DB_HOST: ${{ secrets.DB_HOST }}
+      DB_PORT: ${{ secrets.DB_PORT }}
+    defaults:
+      run:
+        working-directory: backend
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - name: Set up Docker Compose
-        run: sudo apt-get update && sudo apt-get install -y docker-compose
-
-      - name: Build Docker image
-        run: docker-compose -f docker-compose.yml build web
-
-      - name: Run migrations
-        run: |
-          docker-compose -f docker-compose.yml run --rm \
-            -e DB_NAME=${{ secrets.DB_NAME }} \
-            -e DB_USER=${{ secrets.DB_USER }} \
-            -e DB_PASSWORD=${{ secrets.DB_PASSWORD }} \
-            -e DB_HOST=${{ secrets.DB_HOST }} \
-            -e DB_PORT=${{ secrets.DB_PORT }} \
-            web python manage.py migrate
-
-      - name: Run Django tests
-        run: |
-          docker-compose -f docker-compose.yml run --rm \
-            -e DB_NAME=${{ secrets.DB_NAME }} \
-            -e DB_USER=${{ secrets.DB_USER }} \
-            -e DB_PASSWORD=${{ secrets.DB_PASSWORD }} \
-            -e DB_HOST=${{ secrets.DB_HOST }} \
-            -e DB_PORT=${{ secrets.DB_PORT }} \
-            web python manage.py test
-
-  frontend-tests:
-    name: React Tests
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Set up Node
-        uses: actions/setup-node@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          node-version: '20'
+          python-version: '3.11'
+
       - name: Install dependencies
         run: |
-          cd frontend
-          npm install
-      - name: Run React tests
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Create .env file
         run: |
-          cd frontend
-          npm run test
+          echo "DB_NAME=${DB_NAME}" >> .env
+          echo "DB_USER=${DB_USER}" >> .env
+          echo "DB_PASSWORD=${DB_PASSWORD}" >> .env
+          echo "DB_HOST=${DB_HOST}" >> .env
+          echo "DB_PORT=${DB_PORT}" >> .env
+
+      - name: Run migrations
+        run: python manage.py migrate
+
+      - name: Run backend tests
+        run: python manage.py test
+
+  frontend:
+    name: Frontend React
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Clean Vite cache
+        run: rm -rf node_modules/.vite
+
+      - name: Run frontend tests
+        run: npm test -- --watchAll=false
