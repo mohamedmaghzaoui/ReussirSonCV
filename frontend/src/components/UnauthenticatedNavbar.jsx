@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { SignUp } from "../pages/signUp/signUp.jsx";
 import { useState } from "react";
-import { Login } from "../pages/Login/Login.jsx";
+import { Login } from "../pages/login/Login.jsx"
 
 export const UnauthenticatedNavbar = ({ refetch }) => {
   const [openSignUp, setOpenSignUp] = useState(false);

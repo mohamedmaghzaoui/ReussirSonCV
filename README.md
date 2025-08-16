@@ -1,4 +1,4 @@
-# ✅ RéussirSonCV – Générateur de CV intelligent et compatible ATS
+# ✅ RéussirSonCV – Créer votre CV facilement et rapidement
 
 **Auteur** : Mohamed Maghzaoui  
 **Formation** : Certification Concepteur Développeur d'Applications – École Hexagone  
