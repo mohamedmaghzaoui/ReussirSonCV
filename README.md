@@ -33,7 +33,7 @@ Backend :
 - Appels IA via l’API OpenAI ou Gemini
 
 Base de données :
-- MySQL ou MongoDB
+- MySQL 
 
 Autres outils :
 - Git + GitHub
@@ -102,6 +102,25 @@ L’utilisateur peut générer un PDF fidèle au template choisi, compatible ave
 - Gestion des rôles  
 - Interface accessible sur tous les appareils
 
+## 🐳 DevOps & Tests
+
+### Dockerisation :
+
+Backend  conteneurisé pour simplifier le déploiement
+
+Exemple de docker-compose.yml pour lancer l’ensemble du projet facilement
+
+### Tests :
+
+Tests unitaires Django avec pytest-django
+
+Tests de composants React avec Jest et React Testing Library
+
+### CI/CD :
+
+GitHub Actions pour automatiser les tests et le déploiement
+
+Build Docker et push vers un registre privé ou Docker Hub
 ## 💡 Améliorations futures
 
 - Éditeur drag-and-drop  
