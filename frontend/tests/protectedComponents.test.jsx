@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import App from "../src/App";
-import { ResumeProvider } from "../src/context/ResumeContext";
+import App from "../src/App.jsx";
+import { ResumeProvider } from "../src/context/ResumeContext.jsx";
 import { vi } from 'vitest';
 // Mock du hook
 vi.mock('../src/context/UserContext', () => ({

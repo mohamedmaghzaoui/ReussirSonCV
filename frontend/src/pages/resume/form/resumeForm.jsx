@@ -1,14 +1,14 @@
 // ResumeForm.jsx
 import React, { useState } from "react";
-import { FirstPersonalInfoForm } from "./formList/FirstPersonalInfoForm";
-import { SecondPersonalInfoForm } from "./formList/SecondPersonalInfoForm";
-import { ProfileForm } from "./formList/ProfileForm";
-import { EducationForm } from "./formList/EducationForm";
-import { ExperienceForm } from "./formList/ExperienceForm";
-import { ProjectForm } from "./formList/ProjectForm";
-import { SkillForm } from "./formList/SkillForm";
-import { LanguageForm } from "./formList/LanguageForm";
-import { SectionOrderForm } from "./formList/SectionOrderForm";
+import { FirstPersonalInfoForm } from "./formList/FirstPersonalInfoForm.jsx";
+import { SecondPersonalInfoForm } from "./formList/SecondPersonalInfoForm.jsx";
+import { ProfileForm } from "./formList/ProfileForm.jsx";
+import { EducationForm } from "./formList/EducationForm.jsx";
+import { ExperienceForm } from "./formList/ExperienceForm.jsx";
+import { ProjectForm } from "./formList/ProjectForm.jsx";
+import { SkillForm } from "./formList/SkillForm.jsx";
+import { LanguageForm } from "./formList/LanguageForm.jsx";
+import { SectionOrderForm } from "./formList/SectionOrderForm.jsx";
 
 export const ResumeForm = ({ setResume, resume }) => {
   const [step, setStep] = useState(1);

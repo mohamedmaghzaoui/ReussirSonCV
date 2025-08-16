@@ -1,16 +1,16 @@
 import { Routes, Route } from "react-router-dom";
-import { Navbar } from "./components/Navbar";
-import { Footer } from "./components/Footer";
-import { Home } from "./pages/home/home";
-import { Dashboard } from "./pages/resume/dashboard";
-import { ResumeEditor } from "./pages/resume/edit/ResumeEditor";
-import { MentionsLegales } from "./pages/legal/MentionsLegales";
-import { PolitiqueConfidentialite } from "./pages/legal/PolitiqueConfidentialite";
-import { CGU } from "./pages/legal/CGU";
-import { PrivateRoute } from "./private/PrivateRoute";
-import NotFound from "./pages/notFound/NotFound";
-import { Profile } from "./pages/profile/profile";
-import { ResumeAnalyser } from "./pages/analyse/ResumeAnalyser";
+import { Navbar } from "./components/Navbar.jsx";
+import { Footer } from "./components/Footer.jsx";
+import { Home } from "./pages/home/Home.jsx";
+import { Dashboard } from "./pages/resume/dashboard.jsx";
+import { ResumeEditor } from "./pages/resume/edit/ResumeEditor.jsx";
+import { MentionsLegales } from "./pages/legal/MentionsLegales.jsx";
+import { PolitiqueConfidentialite } from "./pages/legal/PolitiqueConfidentialite.jsx";
+import { CGU } from "./pages/legal/CGU.jsx";
+import { PrivateRoute } from "./private/PrivateRoute.jsx";
+import NotFound from "./pages/notFound/NotFound.jsx";
+import { Profile } from "./pages/profile/Profile.jsx";
+import { ResumeAnalyser } from "./pages/analyse/ResumeAnalyser.jsx";
 
 import axios from "axios";
 axios.defaults.withCredentials = true;

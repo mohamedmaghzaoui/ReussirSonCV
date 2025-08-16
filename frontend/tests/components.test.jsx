@@ -3,9 +3,9 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import App from "../src/App";
-import { UserProvider } from "../src/context/UserContext";
-import { ResumeProvider } from "../src/context/ResumeContext";
+import App from "../src/App.jsx";
+import { UserProvider } from "../src/context/UserContext.jsx";
+import { ResumeProvider } from "../src/context/ResumeContext.jsx";
 
 const queryClient = new QueryClient();
 

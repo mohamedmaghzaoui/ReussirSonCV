@@ -1,5 +1,5 @@
-import { UnauthenticatedNavbar } from "./UnauthenticatedNavbar";
-import { AuthenticatedNavbar } from "./AuthenticatedNavbar";
+import { UnauthenticatedNavbar } from "./UnauthenticatedNavbar.jsx";
+import { AuthenticatedNavbar } from "./AuthenticatedNavbar.jsx";
 import { useUser } from "../context/UserContext.jsx";
 import { HashLoader } from "react-spinners";
 

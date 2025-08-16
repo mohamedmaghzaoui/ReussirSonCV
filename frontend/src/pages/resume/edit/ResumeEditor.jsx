@@ -1,12 +1,12 @@
 import { useParams } from "react-router-dom";
-import { useResumes } from "../../../context/ResumeContext";
+import { useResumes } from "../../../context/ResumeContext.jsx";
 import { useEffect, useState } from "react";
-import { ColorSelector } from "../themes/ColorSelector";
+import { ColorSelector } from "../themes/ColorSelector.jsx";
 import { BackgroundColorSelector } from "../themes/BackgroundColorSelector";
 import { FontSelector } from "../themes/FontSelector";
 import { Download, CheckCircle, Home } from "lucide-react";
-import { ResumePreview } from "../preview/ResumePreview";
-import { ResumeForm } from "../form/ResumeForm";
+import { ResumePreview } from "../preview/ResumePreview.jsx";
+import { ResumeForm } from "../form/ResumeForm.jsx";
 import { useReactToPrint } from "react-to-print";
 import { usePDF } from 'react-to-pdf';
 import { useRef } from "react";

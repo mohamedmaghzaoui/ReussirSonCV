@@ -1,4 +1,4 @@
-import { useUser } from "../../context/UserContext";
+import { useUser } from "../../context/UserContext.jsx";
 import { Pencil, Trash2, Copy, Check, X, LogOut } from "lucide-react";
 import { useState, useEffect } from "react";
 import userIcon from "../../assets/user_icon.jpg";

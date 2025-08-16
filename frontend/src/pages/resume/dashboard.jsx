@@ -7,7 +7,7 @@ import addIcon from "../../assets/add_icon_purple.png";
 import { Suspense } from "react";
 const ResumePopUp = React.lazy(() => import("../../components/ResumePopUp"));
 
-import { useResumes } from "../../context/ResumeContext";
+import { useResumes } from "../../context/ResumeContext.jsx";
 export const Dashboard = () => {
   const navigate = useNavigate();
 

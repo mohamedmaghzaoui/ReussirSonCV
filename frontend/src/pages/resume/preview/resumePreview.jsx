@@ -1,10 +1,10 @@
-import { PersonalInfoPreview } from "./previewList/PersonalInfoPreview";
-import { ProfilePreview } from "./previewList/ProfilePreview";
-import { EducationPreview } from "./previewList/EducationPreview";
-import { ExperiencesPreview } from "./previewList/ExperiencesPreview";
-import { ProjectsPreview } from "./previewList/ProjectsPreview";
-import { SkillsPreview } from "./previewList/SkillsPreview";
-import { LanguagesPreview } from "./previewList/LanguagesPreview";
+import { PersonalInfoPreview } from "./previewList/PersonalInfoPreview.jsx";
+import { ProfilePreview } from "./previewList/ProfilePreview.jsx";
+import { EducationPreview } from "./previewList/EducationPreview.jsx";
+import { ExperiencesPreview } from "./previewList/ExperiencesPreview.jsx";
+import { ProjectsPreview } from "./previewList/ProjectsPreview.jsx";
+import { SkillsPreview } from "./previewList/SkillsPreview.jsx";
+import { LanguagesPreview } from "./previewList/LanguagesPreview.jsx";
 
 export const ResumePreview = ({ resume }) => {
   const theme = resume?.theme;
