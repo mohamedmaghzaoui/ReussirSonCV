@@ -51,14 +51,16 @@ class Language(models.Model):
 class PersonalInfo(models.Model):
     cv = models.OneToOneField(CV, on_delete=models.CASCADE, related_name='personal_info')
     
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    title = models.CharField(max_length=255)
-    email = models.EmailField(blank=True)
+        # Required fields
+    first_name = models.CharField(max_length=100) 
+    last_name = models.CharField(max_length=100)   
+    title = models.CharField(max_length=255)       
+    email = models.EmailField()                    
+
     phone_number = models.CharField(max_length=20, blank=True)
     address = models.CharField(max_length=255, blank=True)
     age = models.PositiveIntegerField(null=True, blank=True)
     user_picture = models.ImageField(upload_to='resumeImages/', blank=True, null=True)
-    linkedin = models.URLField(blank=True, null=True)
-    website = models.URLField(blank=True, null=True)
-    portfolio = models.URLField(blank=True, null=True)
+    linkedin = models.URLField(blank=True)
+    website = models.URLField(blank=True)
+    portfolio = models.URLField(blank=True)

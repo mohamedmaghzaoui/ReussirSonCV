@@ -85,6 +85,7 @@ export const FirstPersonalInfoForm = ({ goToNextStep, resume, setResume }) => {
         <div>
           <label className="label text-base-content">Adresse email</label>
           <input
+            required
             type="email"
             name="email"
             value={formData.email}
@@ -99,6 +100,7 @@ export const FirstPersonalInfoForm = ({ goToNextStep, resume, setResume }) => {
           <div className="flex-1">
             <label className="label text-base-content">Nom</label>
             <input
+              required
               type="text"
               name="last_name"
               value={formData.last_name}
@@ -110,6 +112,7 @@ export const FirstPersonalInfoForm = ({ goToNextStep, resume, setResume }) => {
           <div className="flex-1">
             <label className="label text-base-content">Prénom</label>
             <input
+              required
               type="text"
               name="first_name"
               value={formData.first_name}
@@ -125,6 +128,7 @@ export const FirstPersonalInfoForm = ({ goToNextStep, resume, setResume }) => {
           <div className="flex-1">
             <label className="label text-base-content">Âge</label>
             <input
+            
               type="number"
               name="age"
               value={formData.age}
@@ -153,6 +157,7 @@ export const FirstPersonalInfoForm = ({ goToNextStep, resume, setResume }) => {
         <div>
           <label className="label text-base-content">Titre du CV</label>
           <input
+            required
             type="text"
             name="title"
             value={formData.title}

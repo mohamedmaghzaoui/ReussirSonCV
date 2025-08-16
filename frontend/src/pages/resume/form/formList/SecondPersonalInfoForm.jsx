@@ -63,6 +63,10 @@ export const SecondPersonalInfoForm = ({
       formPayload.append("portfolio", formData.portfolio);
       formPayload.append("website", formData.website);
       formPayload.append("cv", resume.id);
+      formPayload.append("email", resume.personal_info.email);
+      formPayload.append("first_name", resume.personal_info.first_name);
+      formPayload.append("last_name", resume.personal_info.last_name);
+      formPayload.append("title", resume.personal_info.title);
 
       if (formData.user_picture instanceof File) {
         formPayload.append("user_picture", formData.user_picture);

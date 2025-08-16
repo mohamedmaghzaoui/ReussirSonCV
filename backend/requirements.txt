@@ -1,1 +1,33 @@
+# Django core
 Django>=4.2,<5.0
+
+# REST API
+djangorestframework>=3.15
+
+# CORS for cross-origin requests
+django-cors-headers>=4.0
+
+# MySQL support
+mysqlclient>=2.1
+
+# Environment variables
+python-dotenv>=1.0
+django-environ>=0.10.0
+
+# WSGI server for production
+gunicorn>=21.2
+
+# Authentication
+djangorestframework-simplejwt>=5.0   # JWT auth
+django-allauth>=0.60.0               # Social/email auth
+
+# HTTP client for Gemini API
+requests>=2.31
+
+# Utilities
+Pillow>=10.0                         # Image handling
+django-filter>=23.2                   # Filtering for DRF
+
+# Django forms
+django-crispy-forms>=1.15
+crispy-bootstrap5>=0.7

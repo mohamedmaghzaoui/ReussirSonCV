@@ -387,7 +387,9 @@ class ResumeCRUDTestCase(APITestCase):
             "cv": self.cv.id,
             "first_name": "Jane",
             "last_name": "Smith",
-            "email": "jane@example.com"
+            "email": "jane@example.com",
+            "title": "dev"
+            
         }
         # Create
         response = self.client.post(list_url, data, format="json")
