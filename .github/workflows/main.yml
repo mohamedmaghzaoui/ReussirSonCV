@@ -11,7 +11,7 @@ jobs:
     name: Backend Django
     runs-on: ubuntu-latest
     env:
-      # Secrets pour la base de données
+      
       DB_NAME: ${{ secrets.DB_NAME }}
       DB_USER: ${{ secrets.DB_USER }}
       DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
@@ -47,7 +47,6 @@ jobs:
 
       - name: Run backend tests
         run: python manage.py test
-
   frontend:
     name: Frontend React
     runs-on: ubuntu-latest
@@ -64,10 +63,11 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: npm install
-
-      - name: Clean Vite cache
-        run: rm -rf node_modules/.vite
+        run: npm ci
 
       - name: Run frontend tests
-        run: npm test -- --watchAll=false
+        run: npm test
+
+      - name: Build frontend
+        run: npm run build
+  
