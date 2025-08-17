@@ -54,20 +54,28 @@ jobs:
       run:
         working-directory: frontend
     steps:
-      - name: Checkout repository
+      # 1. Checkout the repository
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
+      # 2. Setup Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20.17.0'
-          cache: 'npm'
+          node-version: 20
 
+      # 3. Install dependencies
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      - name: Run frontend tests
-        run: npm run test -- --watchAll=false
+      # 4. Run lint
+      - name: Run ESLint
+        run: npm run lint
 
-      - name: Build frontend
+      # 5. Run tests with Vitest
+      - name: Run tests
+        run: npm run test
+
+      # 6. Build the app
+      - name: Build
         run: npm run build
