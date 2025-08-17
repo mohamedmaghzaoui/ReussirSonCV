@@ -64,7 +64,7 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Run frontend tests
         run: npm run test -- --watchAll=false
