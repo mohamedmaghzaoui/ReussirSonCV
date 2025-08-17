@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { SignUp } from "../pages/signUp/signUp.jsx";
+import { SignUp } from "../pages/signUp/SignUp.jsx";
 import { useState } from "react";
 import { Login } from "../pages/login/Login.jsx"
 

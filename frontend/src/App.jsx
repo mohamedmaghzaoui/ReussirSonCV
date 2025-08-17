@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/Navbar.jsx";
 import { Footer } from "./components/Footer.jsx";
 import { Home } from "./pages/home/Home.jsx";
-import { Dashboard } from "./pages/resume/dashboard.jsx";
+import { Dashboard } from "./pages/resume/Dashboard.jsx";
 import { ResumeEditor } from "./pages/resume/edit/ResumeEditor.jsx";
 import { MentionsLegales } from "./pages/legal/MentionsLegales.jsx";
 import { PolitiqueConfidentialite } from "./pages/legal/PolitiqueConfidentialite.jsx";
