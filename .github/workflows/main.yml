@@ -11,7 +11,6 @@ jobs:
     name: Backend Django
     runs-on: ubuntu-latest
     env:
-      
       DB_NAME: ${{ secrets.DB_NAME }}
       DB_USER: ${{ secrets.DB_USER }}
       DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
@@ -47,6 +46,7 @@ jobs:
 
       - name: Run backend tests
         run: python manage.py test
+
   frontend:
     name: Frontend React
     runs-on: ubuntu-latest
@@ -56,19 +56,18 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-  
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 20.17.0  # same version
+          node-version: '20.17.0'
           cache: 'npm'
-  
+
       - name: Install dependencies
         run: npm ci
-  
+
       - name: Run frontend tests
-        run: npm run test -- --run
-  
+        run: npm run test -- --watchAll=false
+
       - name: Build frontend
         run: npm run build
-  
