@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { useCSRF } from "../hooks/useCSRF";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -10,6 +11,7 @@ axios.defaults.withCredentials = true;
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
+  useCSRF()
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate(); // <-- Use navigate hook
 

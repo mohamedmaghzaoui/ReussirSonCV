@@ -11,11 +11,13 @@ import { PrivateRoute } from "./private/PrivateRoute.jsx";
 import NotFound from "./pages/notFound/NotFound.jsx";
 import { Profile } from "./pages/profile/Profile.jsx";
 import { ResumeAnalyser } from "./pages/analyse/ResumeAnalyser.jsx";
+import { useCSRF } from "./hooks/useCSRF.js";
 
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
 function App() {
+  useCSRF();
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />

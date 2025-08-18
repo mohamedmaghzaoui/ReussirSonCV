@@ -21,7 +21,7 @@ export const Home = () => {
 
         <div>
           <img
-            src="/site_img.jpg"
+            src="/site_img.webp"
             alt="site preview"
             className="w-full max-w-xl h-auto mx-auto"
           />

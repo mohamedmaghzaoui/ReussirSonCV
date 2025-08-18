@@ -5,7 +5,11 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from .models import User
 from .serializers import UserSerializer
+from django.middleware.csrf import get_token
 from django.contrib.auth import update_session_auth_hash
+
+
+
 
 #add a new user
 @api_view(['POST'])
@@ -79,3 +83,5 @@ def change_password_view(request):
     update_session_auth_hash(request, user)
 
     return Response({'message': 'Password updated successfully'})
+
+
