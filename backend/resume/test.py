@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from rest_framework.test import APITestCase
+from django.test import override_settings
 from rest_framework import status
 from django.urls import reverse
 from .models import CV, Profile, Experience, Education, Project, Skill, Language, PersonalInfo
@@ -9,8 +10,16 @@ User = get_user_model()
 class ResumeCRUDTestCase(APITestCase):
     def setUp(self):
         # Create two users: one owner and one other user for permission tests
-        self.user = User.objects.create_user(email="user1@email.com", password="password123")
-        self.other_user = User.objects.create_user(email="user2@email.com", password="password123")
+        self.user = User.objects.create_user(
+        email="user1@email.com",
+        password="password123",
+        is_active=True  # force active for tests
+    )
+        self.other_user = User.objects.create_user(
+        email="user2@email.com",
+        password="password123",
+        is_active=True  # force active for tests
+    )
         
         # Log in as owner user
         self.client.login(email="user1@email.com", password="password123")
