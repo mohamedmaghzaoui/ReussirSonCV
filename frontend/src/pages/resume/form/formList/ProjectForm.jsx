@@ -89,7 +89,8 @@ export const ProjectForm = ({
           responses.push(project);
           continue;
         }
-        const payload = { ...project, cv: resume.id };
+        const payload = { ...project, cv: resume.id,start_date: project.start_date === "" ? null : project.start_date,
+  end_date: project.end_date === "" ? null : project.end_date, };
         const response = await axios.post(`${apiUrl}/projects/`, payload);
         responses.push(response.data);
       }

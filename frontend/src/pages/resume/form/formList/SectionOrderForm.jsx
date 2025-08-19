@@ -50,8 +50,7 @@ function SortableItem({ id }) {
 export const SectionOrderForm = ({
   resume,
   setResume,
-  goToPrevStep,
-  goToNextStep,
+  goToPrevStep
 }) => {
   const apiUrl = import.meta.env.VITE_API_URL; // API URL from environment variables
   const [items, setItems] = useState(
@@ -85,7 +84,7 @@ export const SectionOrderForm = ({
         section_order: items,
       });
       setResume({ ...resume, section_order: items }); // Update the resume state with the new order
-      goToNextStep(); // Move to the next step
+     
     } catch (error) {
       console.error(
         "Erreur lors de la mise à jour de l’ordre des sections :",
@@ -128,7 +127,7 @@ export const SectionOrderForm = ({
           Précédent
         </button>
         <button onClick={saveSectionOrder} className="btn btn-primary">
-          {loading ? <Loader2 className="animate-spin h-4 w-4" /> : "Suivant"}
+          {loading ? <Loader2 className="animate-spin h-4 w-4" /> : "Sauvegarder"}
         </button>
       </div>
     </div>

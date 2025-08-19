@@ -39,7 +39,7 @@ export const UnauthenticatedNavbar = ({ refetch }) => {
                 }}
                 className="btn btn-primary mt-2 "
               >
-                Login
+                Connexion
               </button>
             </li>
             <li>
@@ -50,7 +50,7 @@ export const UnauthenticatedNavbar = ({ refetch }) => {
                 className="btn btn-neutral mt-2"
               >
                 {" "}
-                Sign up
+               Inscription
               </button>
             </li>
           </ul>
@@ -76,7 +76,7 @@ export const UnauthenticatedNavbar = ({ refetch }) => {
           }}
           className="btn btn-primary mr-5 ml-10 btn-block"
         >
-          Login
+          Se connecter
         </button>
         <button
           onClick={() => {
@@ -84,7 +84,7 @@ export const UnauthenticatedNavbar = ({ refetch }) => {
           }}
           className="btn btn-neutral btn-block"
         >
-          Sign up
+          S’inscrire
         </button>
       </div>
       {openSignUp && <SignUp setOpenSignUp={setOpenSignUp} />}

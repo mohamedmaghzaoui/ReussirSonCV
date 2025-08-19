@@ -14,7 +14,7 @@ def send_verification_email(user, request):
     )
     
     subject = "Confirme ton email"
-    message = f"Bonjour {user.username},\n\nClique sur ce lien pour activer ton compte : {activation_link}"
+    message = f"Bonjour {user.first_name},\n\nClique sur ce lien pour activer ton compte : {activation_link}"
     from_email = settings.DEFAULT_FROM_EMAIL
     recipient_list = [user.email]
     

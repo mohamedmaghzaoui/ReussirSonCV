@@ -35,7 +35,7 @@ class Project(models.Model):
     cv = models.ForeignKey(CV, on_delete=models.CASCADE, related_name='projects')
     title = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
-    start_date = models.DateField(null=True, blank=True)
+    start_date = models.DateField()
     end_date = models.DateField(null=True, blank=True)
 
 class Skill(models.Model):
