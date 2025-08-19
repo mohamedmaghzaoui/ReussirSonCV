@@ -7,9 +7,31 @@ from .models import User
 from .serializers import UserSerializer
 from django.middleware.csrf import get_token
 from django.contrib.auth import update_session_auth_hash
+from .tokens import account_activation_token
+from django.utils.http import urlsafe_base64_decode
+from django.utils.encoding import force_str
+from .utils import send_verification_email
+from django.shortcuts import render
 
 
+# verify email
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def activate_view(request, uidb64, token):
+    success = False
+    try:
+        uid = force_str(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
 
+    if user and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+        login(request, user)
+        success = True
+
+    return render(request, 'activation.html', {'success': success})
 
 #add a new user
 @api_view(['POST'])
@@ -17,9 +39,9 @@ from django.contrib.auth import update_session_auth_hash
 def register_view(request):
     serializer = UserSerializer(data=request.data)
     if serializer.is_valid():
-        user = serializer.save()
-        login(request, user)  # automatically log in after registration
-        return Response({'message': 'User registered and logged in'}, status=201)
+        user = serializer.save(is_active=False)
+        send_verification_email(user, request)
+        return Response({'message': 'Utilisateur créé. Vérifie ton email pour l’activer.'}, status=201)
     return Response(serializer.errors, status=400)
 
 #login
@@ -40,6 +62,7 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return Response({'message': 'Logged out'})
+
 # put and get request to user data
 @api_view(['GET', 'PUT'])
 @permission_classes([IsAuthenticated])
@@ -61,7 +84,7 @@ def user_view(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-
+#modify password view
 @api_view(['PUT'])
 @permission_classes([IsAuthenticated])
 def change_password_view(request):
