@@ -2,11 +2,13 @@ import { useUser } from "../../context/UserContext.jsx";
 import { Pencil, Trash2, Copy, Check, X, LogOut } from "lucide-react";
 import { useState, useEffect } from "react";
 import userIcon from "../../assets/user_icon.jpg";
+import DeleteAccountModal from "../../components/DeleteAccountModal.jsx";
 import axios from "axios";
 export const Profile = () => {
-  const { user, logout } = useUser();
+  const { user, refetch} = useUser();
   const apiUrl = import.meta.env.VITE_API_URL;
-
+  
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingField, setEditingField] = useState(null);
   const [userData, setUserData] = useState(user || {});
   const [loading, setLoading] = useState(false);
@@ -113,6 +115,20 @@ export const Profile = () => {
     }
   };
 
+  const deleteAccount = async () => {
+  try {
+    setLoading(true);
+    await axios.delete(`${apiUrl}/user/delete/`);
+    refetch();
+  } catch (err) {
+    console.error(err.response?.data || err.message);
+    alert("Erreur lors de la suppression du compte.");
+  } finally {
+    setLoading(false);
+  }
+};
+
+
   return (
     <div className="p-8 grid grid-cols-1 md:grid-cols-3 gap-8 ">
       {/* Profile Panel */}
@@ -186,11 +202,17 @@ export const Profile = () => {
             </div>
           ))}
 
-          {/* Logout */}
-          <button className="btn btn-error btn-block mt-6" onClick={logout}>
-            <LogOut className="w-4 h-4 mr-2" />
-            Supprimer ce compte
-          </button>
+          {/* delete account */}
+          <button className="btn btn-error btn-block mt-6" onClick={() => setIsModalOpen(true)}>
+  <LogOut className="w-4 h-4 mr-2" />
+  Supprimer ce compte
+</button>
+<DeleteAccountModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onDelete={deleteAccount}
+      />
+
         </div>
       </div>
 

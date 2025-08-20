@@ -41,9 +41,8 @@ export const SignUp = ({ setOpenSignUp }) => {
       !formData.last_name ||
       !formData.email ||
       !formData.password ||
-      !formData.confirmPassword ||
-      !formData.birthdate ||
-      !imageName
+      !formData.confirmPassword
+      
     ) {
       setError("Veuillez remplir toutes les informations.");
       return;

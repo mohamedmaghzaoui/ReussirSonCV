@@ -51,11 +51,20 @@ def register_view(request):
 def login_view(request):
     email = request.data.get('email')
     password = request.data.get('password')
-    user = authenticate(request, email=email, password=password)
-    if user is not None:
-        login(request, user)
-        return Response({'message': 'Logged in successfully'})
-    return Response({'error': 'Invalid credentials'}, status=401)
+    
+    try:
+        user = User.objects.get(email=email)
+    except User.DoesNotExist:
+        return Response({'error': 'invalid'}, status=401)
+
+    if not user.check_password(password):
+        return Response({'error': 'invalid'}, status=401)
+
+    if not user.is_active:
+        return Response({'error': 'unverified'}, status=401)
+    
+    login(request, user)
+    return Response({'message': 'Logged in successfully'})
 
 #logout user
 @api_view(['POST'])
@@ -107,5 +116,13 @@ def change_password_view(request):
     update_session_auth_hash(request, user)
 
     return Response({'message': 'Password updated successfully'})
+
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def delete_user_view(request):
+    user = request.user
+    user.delete()
+    logout(request)  # log the user out after deletion
+    return Response({'message': 'User deleted successfully'})
 
 

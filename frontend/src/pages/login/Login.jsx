@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { useCSRF } from "../../hooks/useCSRF";
 const apiUrl = import.meta.env.VITE_API_URL;
 export const Login = ({ setOpenLogin, refetch }) => {
   const [formData, setFormData] = useState({
@@ -34,12 +35,22 @@ export const Login = ({ setOpenLogin, refetch }) => {
       const response = await axios.post(`${apiUrl}/login/`, formData);
 
       console.log("Login success:", response.data);
+      const csrfRes = await axios.get(`${apiUrl}/csrf/`, {
+    withCredentials: true,
+  });
+      axios.defaults.headers.common["X-CSRFToken"] = csrfRes.data.csrfToken;
       refetch();
       setOpenLogin(false);
     } catch (err) {
       console.error("Login error:", err);
-      setError("Email ou mot de passe incorrect.");
+      const errorType = err.response?.data?.error;
+      if (errorType === "unverified") {
+        setError("Votre compte n'est pas vérifié.");
+  }   else {
+        setError("Email ou mot de passe incorrect.");
+  }
     } finally {
+      
       setIsSubmitting(false);
     }
   };
