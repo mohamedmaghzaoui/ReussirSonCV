@@ -8,7 +8,7 @@ export const AuthenticatedNavbar = ({ user, logout }) => {
     await logout();
     setIsLoading(false);
   };
-  console.log(`${user.profile_picture}`);
+  console.log(user);
 
   return (
     <div className="navbar bg-base-100 shadow-sm px-4">

@@ -23,6 +23,8 @@ django-allauth>=0.60.0               # Social/email auth
 
 # HTTP client for Gemini API
 requests>=2.31
+#cloud
+gunicorn
 
 # Utilities
 Pillow>=10.0                         # Image handling
