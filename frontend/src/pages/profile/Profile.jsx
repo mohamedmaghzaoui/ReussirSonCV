@@ -7,6 +7,7 @@ import axios from "axios";
 export const Profile = () => {
   const { user, refetch} = useUser();
   const apiUrl = import.meta.env.VITE_API_URL;
+  const baseUrl = import.meta.env.VITE_BASE_URL;
   
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingField, setEditingField] = useState(null);
@@ -137,13 +138,15 @@ export const Profile = () => {
           <img
             src={
               user?.profile_picture
-                ? `${apiUrl}/${user.profile_picture}`
+                ? `${baseUrl}/${user.profile_picture}`
                 : userIcon
             }
+            
             alt="User Icon"
             className="w-20 h-20 rounded-full object-contain"
           />
         </div>
+        {console.log(`${apiUrl}/${user.profile_picture}`)}
 
         <h2 className="text-2xl font-bold text-primary mb-6 text-center">
           {userData.first_name} {userData.last_name}
