@@ -16,7 +16,7 @@ export const Dashboard = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const { resumes, deleteResume,loading } = useResumes();
-  console.log(resumes);
+
 
   const openPopUp = () => {
     setIsPopUpOpen(true);

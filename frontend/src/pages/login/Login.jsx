@@ -34,7 +34,7 @@ export const Login = ({ setOpenLogin, refetch }) => {
     try {
       const response = await axios.post(`${apiUrl}/login/`, formData);
 
-      console.log("Login success:", response.data);
+      
       const csrfRes = await axios.get(`${apiUrl}/csrf/`, {
     withCredentials: true,
   });

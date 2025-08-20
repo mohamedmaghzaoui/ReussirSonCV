@@ -1,7 +1,7 @@
 import React from "react";
 
 export const EducationPreview = ({ data, theme }) => {
-  console.log(data);
+
   return (
     <div className="my-3">
       <h1

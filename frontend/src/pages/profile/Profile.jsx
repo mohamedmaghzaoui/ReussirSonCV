@@ -56,7 +56,7 @@ export const Profile = () => {
         { [field]: formData[field] },
         { withCredentials: true },
       );
-      console.log(res);
+     
       setUserData(res.data.user);
       setEditingField(null);
     } catch (err) {
@@ -138,7 +138,7 @@ export const Profile = () => {
           <img
             src={
               user?.profile_picture
-                ? `${baseUrl}/${user.profile_picture}`
+                ? `${baseUrl}${user.profile_picture}`
                 : userIcon
             }
             
@@ -146,7 +146,6 @@ export const Profile = () => {
             className="w-20 h-20 rounded-full object-contain"
           />
         </div>
-        {console.log(`${baseUrl}/${user.profile_picture}`)}
 
         <h2 className="text-2xl font-bold text-primary mb-6 text-center">
           {userData.first_name} {userData.last_name}

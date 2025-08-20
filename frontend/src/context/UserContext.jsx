@@ -5,7 +5,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const apiUrl = import.meta.env.VITE_API_URL;
-console.log(apiUrl)
+
 axios.defaults.withCredentials = true;
 
 const UserContext = createContext();
@@ -20,7 +20,7 @@ export const UserProvider = ({ children }) => {
     try {
       setLoading(true);
       const res = await axios.get(`${apiUrl}/user/`);
-      console.log(res);
+     
       return res.data;
     } catch (err) {
       const status = err.response?.status;
@@ -59,7 +59,7 @@ export const UserProvider = ({ children }) => {
     staleTime: 1000 * 60 * 5,
     retry:"false",
     onSuccess: (data) => {
-      console.log("User data fetched successfully:", data);
+     
     },
     refetchOnWindowFocus: false,
   });
@@ -74,9 +74,7 @@ export const UserProvider = ({ children }) => {
       // Immediately refetch the user data after logging out
       refetch(); // trigger a fresh fetch of the user data
 
-      console.log(
-        "Logged out successfully, data will be refetched immediately.",
-      );
+      
     } catch (err) {
       console.error("Logout failed:", err);
     }

@@ -37,7 +37,7 @@ export const ResumeAnalyser = () => {
         const response = await axios.post(`${apiUrl}/analyse-cv/`, {
           cv: resume,
         });
-        console.log(response);
+        
 
         // parse analysis JSON string from response
 

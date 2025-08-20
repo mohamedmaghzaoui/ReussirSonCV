@@ -38,7 +38,7 @@ export const ProfileForm = ({
       } else {
         response = await axios.post(`${apiUrl}/profiles/`, payload);
       }
-      console.log("response = ", response);
+      
 
       setResume((prev) => ({
         ...prev,

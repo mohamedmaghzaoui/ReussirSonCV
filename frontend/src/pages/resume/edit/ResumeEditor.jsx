@@ -21,7 +21,7 @@ export const ResumeEditor = () => {
   const { id } = useParams();
   const { resumes } = useResumes();
   const [resume, setResume] = useState(null);
-  console.log(resume);
+ 
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

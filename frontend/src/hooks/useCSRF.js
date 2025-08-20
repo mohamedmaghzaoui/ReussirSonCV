@@ -10,7 +10,7 @@ export const useCSRF = () => {
         const res = await axios.get(`${apiUrl}/csrf/`, {
           withCredentials: true,
         });
-        console.log(res)
+  
         axios.defaults.headers.common["X-CSRFToken"] = res.data.csrfToken;
       } catch (error) {
         console.error("Erreur lors de la récupération du CSRF token", error);

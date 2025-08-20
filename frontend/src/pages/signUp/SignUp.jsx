@@ -74,7 +74,7 @@ export const SignUp = ({ setOpenSignUp }) => {
     try {
       const response = await axios.post(`${apiUrl}/register/`, data);
 
-      console.log("Success:", response.data);
+    
       setOpenSignUp(false);
     } catch (error) {
       console.error("Error:", error);
