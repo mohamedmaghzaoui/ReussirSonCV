@@ -137,7 +137,7 @@ export const Profile = () => {
           <img
             src={
               user?.profile_picture
-                ? `http://127.0.0.1:8000/${user.profile_picture}`
+                ? `${apiUrl}/${user.profile_picture}`
                 : userIcon
             }
             alt="User Icon"

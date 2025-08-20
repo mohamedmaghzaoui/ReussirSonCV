@@ -3,6 +3,7 @@ import userIcon from "../assets/user_icon.jpg";
 import { Link } from "react-router-dom";
 export const AuthenticatedNavbar = ({ user, logout }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const apiUrl = import.meta.env.VITE_API_URL;
   const handleLogout = async () => {
     setIsLoading(true);
     await logout();
@@ -41,7 +42,7 @@ export const AuthenticatedNavbar = ({ user, logout }) => {
             <img
               src={
                 user?.profile_picture
-                  ? `http://127.0.0.1:8000/${user.profile_picture}`
+                  ? `${apiUrl}/${user.profile_picture}`
                   : userIcon
               }
               alt="User Icon"
