@@ -12,6 +12,7 @@ import NotFound from "./pages/notFound/NotFound.jsx";
 import { Profile } from "./pages/profile/Profile.jsx";
 import { ResumeAnalyser } from "./pages/analyse/ResumeAnalyser.jsx";
 import { useCSRF } from "./hooks/useCSRF.js";
+import FAQ from "./pages/static/FAQ.jsx";
 
 import axios from "axios";
 axios.defaults.withCredentials = true;
@@ -46,6 +47,7 @@ function App() {
             element={<PolitiqueConfidentialite />}
           />
           <Route path="/cgu" element={<CGU />} />
+          <Route path="/FAQ" element={<FAQ />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
