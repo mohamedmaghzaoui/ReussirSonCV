@@ -117,6 +117,8 @@ def change_password_view(request):
 
     return Response({'message': 'Password updated successfully'})
 
+# delete user view
+
 @api_view(['DELETE'])
 @permission_classes([IsAuthenticated])
 def delete_user_view(request):

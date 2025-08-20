@@ -3,7 +3,6 @@ import userIcon from "../assets/user_icon.jpg";
 import { Link } from "react-router-dom";
 export const AuthenticatedNavbar = ({ user, logout }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const apiUrl = import.meta.env.VITE_API_URL;
   const baseUrl = import.meta.env.VITE_BASE_URL;
   const handleLogout = async () => {
     setIsLoading(true);

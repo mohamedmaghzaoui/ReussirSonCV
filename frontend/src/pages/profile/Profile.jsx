@@ -146,7 +146,7 @@ export const Profile = () => {
             className="w-20 h-20 rounded-full object-contain"
           />
         </div>
-        {console.log(`${apiUrl}/${user.profile_picture}`)}
+        {console.log(`${baseUrl}/${user.profile_picture}`)}
 
         <h2 className="text-2xl font-bold text-primary mb-6 text-center">
           {userData.first_name} {userData.last_name}

@@ -33,6 +33,7 @@ class LanguageSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class PersonalInfoSerializer(serializers.ModelSerializer):
+    # allow empty age field when sending data
     age = serializers.IntegerField(required=False, allow_null=True)
 
     def to_internal_value(self, data):

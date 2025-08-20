@@ -24,7 +24,7 @@ class ResumeCRUDTestCase(APITestCase):
         # Log in as owner user
         self.client.login(email="user1@email.com", password="password123")
         
-        # Create CV for the owner user
+        # create CV for the owner user
         self.cv = CV.objects.create(
             user=self.user,
             name="Test CV",
@@ -34,7 +34,7 @@ class ResumeCRUDTestCase(APITestCase):
         
         
         
-        # Create instances for other models similarly:
+        # Create  other models :
         self.experience = Experience.objects.create(
             cv=self.cv,
             title="Software Engineer",
@@ -88,14 +88,14 @@ class ResumeCRUDTestCase(APITestCase):
         self.client.logout()
         self.client.login(email="user1@email.com", password="password123")
 
-    #### CV tests ####
+    #### Resume tests  ####
     
 
     def test_cv_crud(self):
         # List URL (GET / POST)
         url = reverse('cv-list')
         
-        # Create
+        # add
         data = {"name": "New CV", "theme": {"color": "red"}, "section_order": ["profile"]}
         response = self.client.post(url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -124,7 +124,7 @@ class ResumeCRUDTestCase(APITestCase):
         response = self.client.delete(detail_url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         
-        # Permission denied test for delete (using existing self.cv)
+        # Permission denied test for delete 
         
         another_detail_url = reverse('cv-detail', args=[self.cv.id])
         self.assertAccessForbidden(another_detail_url, method="delete")
@@ -145,7 +145,7 @@ class ResumeCRUDTestCase(APITestCase):
         response = self.client.get(list_url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-        # Detail URL
+        # Detailed  URL with id
         detail_url = reverse('profile-detail', args=[profile_id])
 
         # Retrieve
@@ -157,7 +157,7 @@ class ResumeCRUDTestCase(APITestCase):
         response = self.client.put(detail_url, data_update, format="json")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-        # Permission denied update
+        # Permission denied update  (cant modify other user data)
         self.assertAccessForbidden(detail_url, method="put", data=data_update)
 
         # Delete
@@ -180,16 +180,16 @@ class ResumeCRUDTestCase(APITestCase):
             "description": "Desc",
             "address": "Addr"
         }
-        # Create
+        # add new experience
         response = self.client.post(list_url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         experience_id = response.data["id"]
 
-        # List
+        # get all experiences
         response = self.client.get(list_url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-        # Detail URL
+        # Detail URL with id
         detail_url = reverse('experience-detail', args=[experience_id])
 
         # Retrieve
@@ -209,7 +209,7 @@ class ResumeCRUDTestCase(APITestCase):
         response = self.client.delete(detail_url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
-        # Permission denied delete (existing experience)
+        # Permission denied delete 
         existing_detail_url = reverse('experience-detail', args=[self.experience.id])
         self.assertAccessForbidden(existing_detail_url, method="delete")
 
@@ -256,7 +256,7 @@ class ResumeCRUDTestCase(APITestCase):
         response = self.client.delete(detail_url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
-        # Permission denied delete (existing education)
+        # Permission denied delete 
         existing_detail_url = reverse('education-detail', args=[self.education.id])
         self.assertAccessForbidden(existing_detail_url, method="delete")
 
@@ -300,7 +300,7 @@ class ResumeCRUDTestCase(APITestCase):
         response = self.client.delete(detail_url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
-        # Permission denied delete (existing project)
+        # Permission denied delete 
         existing_detail_url = reverse('project-detail', args=[self.project.id])
         self.assertAccessForbidden(existing_detail_url, method="delete")
 
@@ -341,7 +341,7 @@ class ResumeCRUDTestCase(APITestCase):
         response = self.client.delete(detail_url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
-        # Permission denied delete (existing skill)
+        # Permission denied delete 
         existing_detail_url = reverse('skill-detail', args=[self.skill.id])
         self.assertAccessForbidden(existing_detail_url, method="delete")
 
@@ -390,6 +390,7 @@ class ResumeCRUDTestCase(APITestCase):
 
 
     #### PersonalInfo tests ####
+   
     def test_personalinfo_crud(self):
         list_url = reverse('personalInfo-list')
         data = {

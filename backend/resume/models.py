@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from user.models import User
 
 class CV(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)  # Update this line
+    user = models.ForeignKey(User, on_delete=models.CASCADE)  
     theme = models.JSONField(default=dict)
     name = models.CharField(max_length=255)
     section_order = models.JSONField(default=list)

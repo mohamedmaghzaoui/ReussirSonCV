@@ -10,10 +10,9 @@ GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent"
 HEADERS = {"Content-Type": "application/json"}
+# prepare json
 def clean_and_parse_json(raw_text):
-    # Nettoyer les backticks et la mention json
     cleaned = raw_text.strip("```json\n").strip("```")
-    # Convertir la chaîne JSON en dict Python
     return json.loads(cleaned)
 
 
@@ -31,7 +30,7 @@ def call_gemini(prompt):
     except (KeyError, IndexError):
         return None, {"error": "Réponse inattendue de Gemini"}
 
-
+# ai analyse post endpoint
 @api_view(['POST'])
 def analyse_cv(request):
     cv_data = request.data.get("cv")
