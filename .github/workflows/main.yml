@@ -17,6 +17,7 @@ jobs:
       DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
       DB_HOST: ${{ secrets.DB_HOST }}
       DB_PORT: ${{ secrets.DB_PORT }}
+      
     defaults:
       run:
         working-directory: backend
@@ -41,6 +42,8 @@ jobs:
           echo "DB_PASSWORD=${DB_PASSWORD}" >> .env
           echo "DB_HOST=${DB_HOST}" >> .env
           echo "DB_PORT=${DB_PORT}" >> .env
+          echo "CSRF_TRUSTED_ORIGINS=http://localhost:5173,https://reussirsoncv-api.onrender.com" >> .env
+          echo "CORS_ALLOWED_ORIGINS=http://localhost:5173" >> .env3
 
       - name: Run migrations
         run: python manage.py migrate
