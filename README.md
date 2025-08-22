@@ -243,7 +243,7 @@ curl -X POST http://localhost:8000/api/experience/ -H "Content-Type: application
 }'
 ```
 Les endpoints pour **Education, Project, Skill, Language, PersonalInfo et Profile** fonctionnent de la même manière que **Experience**
-### 3. Gestion des CV et sous-modèle
+### 3. Analyse IA du CV
 - **URL** : `/api/analyse-cv/`
 - **Méthode** : `POST`(auth required)
 - **Données envoyées (JSON)** :
