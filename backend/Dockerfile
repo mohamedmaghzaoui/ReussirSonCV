@@ -22,3 +22,8 @@ COPY . /app
 
 # Default command for production (can be overridden in docker-compose for dev)
 CMD ["sh", "-c", "python manage.py migrate && gunicorn reussirsoncv.wsgi:application --bind 0.0.0.0:8000 --workers 3"]
+
+
+
+
+
