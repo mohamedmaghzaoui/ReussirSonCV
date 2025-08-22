@@ -83,6 +83,215 @@ Elle aide les étudiants, demandeurs d’emploi et professionnels en reconversio
 | `/api/analyse-cv/` | POST | Analyse IA du CV |
 
 ---
+## 🔗  Description des Routes 
+
+### 1. Authentification et gestion utilisateur
+
+### Register
+- **URL** : `/api/register/`
+- **Méthode** : `POST`
+- **Données envoyées (JSON)** :
+```bash
+curl -X POST http://localhost:8000/api/register/ \
+-H "Content-Type: application/json" \
+-d '{
+  "email": "user@example.com",
+  "first_name": "John",
+  "last_name": "Doe",
+  "password": "StrongPass123",
+  "profile_picture": null,
+  "birthdate": "1990-01-01"
+}'
+```
+**Réponse (succès) :**
+```bash
+{
+  "message": "Utilisateur créé. Vérifie ton email pour l’activer."
+}
+```
+
+
+### Activer email
+- **URL** : `/api/activate/<uidb64>/<token>/`
+- **Méthode** : `GET`
+- **Réponse** : `page HTML activation.html`
+
+### Login
+- **URL** : `/api/login/`
+- **Méthode** : `POST`
+- **Données envoyées (JSON)** :
+```bash
+curl -X POST http://localhost:8000/api/login/ \
+-H "Content-Type: application/json" \
+-d '{
+  "email": "user@example.com",
+  "password": "StrongPass123"
+}'
+```
+**Réponse (succès) :**
+```bash
+{ 
+    "message": "Logged in successfully" 
+}
+```
+**Réponse (erreur) :**
+```bash
+{
+     "error": "invalid" 
+} 
+{
+     "error": "unverified" 
+}
+```
+
+### Logout
+- **URL** : `/api/logout/`
+- **Méthode** : `POST`(auth required)
+- **Données envoyées (JSON)** :
+```bash
+curl -X POST http://localhost:8000/api/logout/ -b cookies.txt
+```
+**Réponse (succès) :**
+```bash
+{ 
+    "message": "Logged out" 
+}
+```
+
+### User info
+- **URL** : `/api/user/`
+- **Méthode** : `GET,PUT`(auth required)
+- **Exemple PUT** :
+```bash
+curl -X PUT http://localhost:8000/api/user/ -H "Content-Type: application/json" \
+-d '{
+  "first_name": "Jane",
+  "last_name": "Doe"
+}' -b cookies.txt
+```
+**Réponse PUT (succès) :**
+```bash
+{
+  "message": "User updated successfully",
+  "user": { ... }
+}
+```
+- **Exemple Get** :
+```bash
+curl -X GET http://localhost:8000/api/user/ -b cookies.txt
+```
+
+### Change Password
+- **URL** : `/api/change-password/`
+- **Méthode** : `PUT`(auth required)
+- **Données envoyées (JSON)** :
+```bash
+curl -X PUT http://localhost:8000/api/change-password/ -H "Content-Type: application/json" \
+-d '{
+  "old_password": "OldPass123",
+  "new_password": "NewStrongPass456"
+}' -b cookies.txt
+```
+**Réponse (succès) :**
+```bash
+{
+     "message": "Password updated successfully" 
+}
+```
+
+### Delete User
+- **URL** : `/api/delete-user/`
+- **Méthode** : `DELETE`(auth required)
+- **Données envoyées (JSON)** :
+```bash
+curl -X DELETE http://localhost:8000/api/delete-user/ -b cookies.txt
+```
+**Réponse (succès) :**
+```bash
+{ 
+    "message": "User deleted successfully" 
+}
+```
+
+### 2. Gestion des CV et sous-modèles
+
+### CV
+- **URL** : `/api/cv/`
+- **Méthode** : `GET, POST, PUT, DELETE`(auth required)
+- **Exemple POST :** :
+```bash
+curl -X POST http://localhost:8000/api/cv/ -H "Content-Type: application/json" -b cookies.txt \
+-d '{
+  "name": "Mon CV"
+}'
+```
+
+### Experience
+- **URL** : `/api/experience/`
+- **Méthode** : `GET, POST, PUT, DELETE`(auth required)
+- **Exemple POST :** :
+```bash
+curl -X POST http://localhost:8000/api/experience/ -H "Content-Type: application/json" -b cookies.txt \
+-d '{
+  "cv": 1,
+  "title": "Développeur Web",
+  "company": "TechCorp",
+  "start_date": "2020-01-01",
+  "end_date": "2022-12-31",
+  "description": "Travail sur projets Django/React",
+  "address": "Paris, France"
+}'
+```
+Les endpoints pour **Education, Project, Skill, Language, PersonalInfo et Profile** fonctionnent de la même manière que **Experience**
+### 3. Gestion des CV et sous-modèle
+- **URL** : `/api/analyse-cv/`
+- **Méthode** : `POST`(auth required)
+- **Données envoyées (JSON)** :
+```bash
+curl -X POST http://localhost:8000/api/analyse-cv/ -H "Content-Type: application/json" -b cookies.txt \
+-d '{
+  "cv": {
+    "personal_info": {...},
+    "experiences": [...],
+    "educations": [...],
+    "projects": [...],
+    "skills": [...],
+    "languages": [...]
+  }
+}'
+```
+**Réponse (succès) :**
+```bash
+{
+  "analysis": {
+    "score_global": 75,
+    "niveau": "Moyen",
+    "resume": "...",
+    "points_forts": [...],
+    "points_faibles": [...],
+    "suggestions": [...],
+    "orthographe_et_grammaire": [...],
+    "sections": {
+        "informations_de_contact": "OK",
+        "competences": "Amélioration nécessaire",
+        "education": "OK",
+        "resume_professionnel": "OK",
+        "experience_professionnelle": "OK",
+        "formatage": "OK",
+        "longueur": "OK"
+    }
+  }
+}
+```
+**Réponse (erreur) :**
+
+```bash
+{ 
+    "error": "CV requis" 
+}
+```
+⚠️ Toutes les API nécessitent une authentification (cookie/session) sauf register, login et activation email.
+
 
 ## ⚙️ Variables d’environnement (.env)
 ### Backend (`backend/.env`)
@@ -293,24 +502,46 @@ Usage pédagogique uniquement.
 ## 📸 Captures d’écran
 
 ### Pages principales
+
+**Page d'accueil**  
 ![Page d'accueil](screens/home_page.png)
+
+**Dashboard utilisateur**  
 ![Dashboard utilisateur](screens/dashbord.png)
+
+**CV rempli (exemple)**  
 ![CV rempli](screens/cv_completé_exemple.png)
+
+**Formulaire CV (expérience 1)**  
 ![Formulaire CV](screens/cv_form_exp1.png)
+
+**Téléchargement du CV**  
 ![Téléchargement du CV](screens/download_cv.png)
+
+**Personnalisation des thèmes**  
 ![Personnalisation des thèmes](screens/themes.png)
+
+**Navigation profil**  
 ![Navigation profil](screens/profile_nav.png)
+
+**Modification profil**  
 ![Modification profil](screens/profile_modify.png)
 
 ### Analyse IA & Limites
+**Analyse IA du CV**  
 ![Analyse IA du CV](screens/cv_analyse.png)
-![Limitation des requêtes](screens/limit_requests.png)
 
 ### Authentification
+**Page de login**  
 ![Page de login](screens/login.png)
+
+**Page d'inscription**  
 ![Page d'inscription](screens/sign.png)
+
+**Erreur login**  
 ![Erreur login](screens/login_error1.png)
 
 ### Emails
+**Vérification email**  
 ![Vérification email](screens/email_verif.png)
 
