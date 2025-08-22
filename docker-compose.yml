@@ -15,3 +15,8 @@ services:
     # Override command for local dev
     command: sh -c "python manage.py migrate && gunicorn reussirsoncv.wsgi:application --bind 0.0.0.0:8000"
 
+
+
+
+
+

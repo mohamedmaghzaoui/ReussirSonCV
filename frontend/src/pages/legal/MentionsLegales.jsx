@@ -21,25 +21,44 @@ export const MentionsLegales = () => {
         <strong>Responsable de la publication :</strong> Mohamed Maghzaoui
       </p>
 
-      {/* <h2 className="text-xl font-semibold mt-6 mb-2">Hébergement</h2>
-      <p>
-        Le site est hébergé par : <strong>Vercel</strong>
-      </p>
-      <p>
-        <strong>Adresse :</strong> Vercel Inc, 440 N Barranca Ave #4133, Covina,
-        CA 91723, USA
-      </p>
-      <p>
-        <strong>Site web :</strong>{" "}
-        <a
-          className="link link-primary"
-          href="https://vercel.com"
-          target="_blank"
-          rel="noreferrer"
-        >
-          vercel.com
-        </a>
-      </p> */}
+      <h2 className="text-xl font-semibold mt-6 mb-2">Hébergement</h2>
+<p>
+  Le site est hébergé par :
+</p>
+<p>
+  <strong>Frontend :</strong> Netlify
+</p>
+<p>
+  <strong>Adresse :</strong> Netlify, Inc., 2325 3rd Street, Suite 215, San Francisco, CA 94107, USA
+</p>
+<p>
+  <strong>Site web :</strong>{" "}
+  <a
+    className="link link-primary"
+    href="https://www.netlify.com"
+    target="_blank"
+    rel="noreferrer"
+  >
+    netlify.com
+  </a>
+</p>
+<p className="mt-4">
+  <strong>Backend :</strong> Render
+</p>
+<p>
+  <strong>Adresse :</strong> Render, 160 Spear Street, Suite 1000, San Francisco, CA 94105, USA
+</p>
+<p>
+  <strong>Site web :</strong>{" "}
+  <a
+    className="link link-primary"
+    href="https://render.com"
+    target="_blank"
+    rel="noreferrer"
+  >
+    render.com
+  </a>
+</p>
 
       <h2 className="text-xl font-semibold mt-6 mb-2">
         Propriété intellectuelle
