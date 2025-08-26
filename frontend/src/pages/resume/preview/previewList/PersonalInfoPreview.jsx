@@ -4,7 +4,7 @@ import { Phone, Mail, Linkedin, Globe, Calendar } from "lucide-react";
 export const PersonalInfoPreview = ({ data, theme }) => {
   return (
     <div>
-      {/* En-tête avec image + nom + titre */}
+     
       <div className="flex items-center gap-4 mb-1 ml-[25%] mb-4">
         {/* Image */}
         {data?.user_picture && (
@@ -20,7 +20,7 @@ export const PersonalInfoPreview = ({ data, theme }) => {
           />
         )}
 
-        {/* Nom et titre */}
+        {/* name and title*/}
         <div>
           <h2 className="font-bold text-xl" style={{ color: theme }}>
             {data?.first_name} {data?.last_name}
@@ -29,7 +29,7 @@ export const PersonalInfoPreview = ({ data, theme }) => {
         </div>
       </div>
 
-      {/* Infos de contact */}
+      {/* contact infos */}
 
       <div className="flex flex-wrap justify-center gap-2 px-2 text-xs">
         {data?.phone_number && (

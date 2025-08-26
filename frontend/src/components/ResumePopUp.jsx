@@ -8,8 +8,8 @@ const ResumePopUp = ({ closePopUp }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // empêche le reload
-    if (!resumeName) return; // sécurité supplémentaire
+    e.preventDefault(); // no reload
+    if (!resumeName) return; // check data
 
     setIsLoading(true);
     await addResume({

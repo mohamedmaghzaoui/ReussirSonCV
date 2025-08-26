@@ -16,12 +16,14 @@ export const ResumePreview = ({ resume }) => {
     "skills",
     "languages",
   ];
+  // check if resume sub module data exist or not 
   const hasData = (data) => {
   if (!data) return false;
   if (Array.isArray(data)) return data.length > 0;
   if (typeof data === "object") return Object.keys(data).length > 0;
-  return true; // pour les autres types (string, number), tu peux ajuster si besoin
+  return true; 
 };
+// if no sub module data return null 
 const sectionComponents = {
   personal_info: hasData(resume.personal_info) ? (
     <PersonalInfoPreview theme={theme.color} data={resume.personal_info} />

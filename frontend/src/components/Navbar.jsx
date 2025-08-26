@@ -6,7 +6,7 @@ import { HashLoader } from "react-spinners";
 export const Navbar = () => {
   const { user, loading, logout, refetch } = useUser();
 
-  // 👉 While loading, show a placeholder with same height as navbar to avoid layout shift
+  // While loading, show a placeholder 
   if (loading) {
     return (
      <div className="fixed inset-0 flex items-center justify-center bg-gray-100 z-50">
@@ -15,7 +15,7 @@ export const Navbar = () => {
     );
   }
 
-  // 👉 Once loaded, show the correct navbar
+  // show the correct navbar
   if (!user) {
     return <UnauthenticatedNavbar refetch={refetch} />;
   }

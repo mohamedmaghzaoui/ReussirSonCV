@@ -159,7 +159,7 @@ export const Profile = () => {
 
                 {editingField === field ? (
                   field === "email" ? (
-                    // Email non modifiable : on affiche juste la valeur, pas d'input
+                    // Email non modifiable : we show only the value, no input
                     <p className="text-base mt-1">{formData[field]}</p>
                   ) : (
                     <div className=" gap-2 mt-1">
@@ -218,7 +218,7 @@ export const Profile = () => {
         </div>
       </div>
 
-      {/* Changer Mot de passe panel */}
+      {/* Changer password panel */}
       <div className="col-span-1 md:col-span-2">
         <div className="bg-white p-5 rounded-lg shadow-md border border-gray-300 hover:shadow-lg transition">
           <h2 className="text-2xl font-semibold mb-6 text-center">

@@ -21,20 +21,14 @@ export const Login = ({ setOpenLogin, refetch }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Vérification basique
     if (!formData.email || !formData.password) {
       setError("Veuillez remplir tous les champs.");
       return;
     }
-
     setIsSubmitting(true);
     setError("");
-
     try {
       const response = await axios.post(`${apiUrl}/login/`, formData);
-
-      
       const csrfRes = await axios.get(`${apiUrl}/csrf/`, {
     withCredentials: true,
   });
@@ -73,14 +67,14 @@ export const Login = ({ setOpenLogin, refetch }) => {
             Veuillez remplir les informations pour se connecter.
           </p>
 
-          {/* Affichage des erreurs */}
+          {/* show diffrent errors */}
           {error && (
             <div className="alert alert-error my-4">
               <span>{error}</span>
             </div>
           )}
 
-          {/* FORMULAIRE */}
+          {/* form */}
           <form
             onSubmit={handleSubmit}
             className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6"

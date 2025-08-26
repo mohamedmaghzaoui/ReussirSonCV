@@ -13,7 +13,7 @@ const UserContext = createContext();
 export const UserProvider = ({ children }) => {
   useCSRF()
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate(); // <-- Use navigate hook
+  const navigate = useNavigate(); // Use navigate hook
 
   // Fetch user from Django server
   const fetchUser = async () => {
@@ -40,7 +40,6 @@ export const UserProvider = ({ children }) => {
   // Logout user function
   const logoutUser = async () => {
     try {
-      // Call your logout API to invalidate the session
       await axios.post(`${apiUrl}/logout/`);
     } catch (err) {
       console.error("Logout error:", err);

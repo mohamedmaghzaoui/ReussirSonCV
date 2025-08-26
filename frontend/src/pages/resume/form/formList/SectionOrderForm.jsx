@@ -58,7 +58,7 @@ export const SectionOrderForm = ({
   ); // State for section order
   const [loading, setLoading] = useState(false); // Loading state
 
-  // Setting up drag sensors (Pointer and Keyboard sensors)
+  // Setting up drag sensors
   const sensors = useSensors(useSensor(PointerSensor));
 
   // Handle dragging items and changing their order

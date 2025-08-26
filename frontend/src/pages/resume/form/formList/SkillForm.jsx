@@ -2,7 +2,7 @@ import { ArrowRight, ArrowLeft, Loader2, Plus, Trash2 } from "lucide-react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css"; // thème de base
+import "react-quill/dist/quill.snow.css"; 
 
 export const SkillForm = ({
   goToPrevStep,
@@ -55,11 +55,11 @@ export const SkillForm = ({
         await axios.delete(`${apiUrl}/skills/${skill.id}/`);
       }
 
-      // Supprimer localement du tableau
+
       const updatedSkills = skills.filter((_, i) => i !== index);
       setSkills(updatedSkills);
 
-      // 🔁 Met à jour aussi le resume global
+      // update resume state
       setResume((prev) => ({
         ...prev,
         skills: updatedSkills,

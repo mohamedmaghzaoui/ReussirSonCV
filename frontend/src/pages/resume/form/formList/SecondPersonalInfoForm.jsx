@@ -140,7 +140,7 @@ export const SecondPersonalInfoForm = ({
           />
         </div>
 
-        {/* Portfolio et site web */}
+        {/* Portfolio and web site */}
         <div className="flex flex-col md:flex-row gap-4">
           <div className="flex-1">
             <label className="label text-base-content">Portfolio</label>
@@ -168,7 +168,7 @@ export const SecondPersonalInfoForm = ({
           </div>
         </div>
 
-        {/* Téléversement de photo */}
+        {/* user photo */}
         <div>
           <label className="label text-base-content">Photo de profil</label>
           <input

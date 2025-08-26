@@ -2,7 +2,7 @@ import { ArrowRight, ArrowLeft, Loader2, Plus, Trash2 } from "lucide-react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css"; // thème de base
+import "react-quill/dist/quill.snow.css"; 
 
 export const ProjectForm = ({
   goToPrevStep,
@@ -57,16 +57,16 @@ export const ProjectForm = ({
     setDeletingIndex(index);
 
     try {
-      // Si l'éducation a été enregistrée dans la BDD
+      // check if project already exist
       if (project.id) {
         await axios.delete(`${apiUrl}/projects/${project.id}/`);
       }
 
-      // Supprimer localement du tableau
+      
       const updatedProjects = projects.filter((_, i) => i !== index);
       setProjects(updatedProjects);
 
-      // 🔁 Met à jour aussi le resume global
+      // set resume global state
       setResume((prev) => ({
         ...prev,
         projects: updatedProjects,
@@ -119,7 +119,7 @@ export const ProjectForm = ({
       <h1 className="text-xl font-bold text-info-content mb-6">Projets</h1>
 
       <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Experience Form Inputs */}
+        {/* project Form Inputs */}
         <input
           name="title"
           value={form.title}

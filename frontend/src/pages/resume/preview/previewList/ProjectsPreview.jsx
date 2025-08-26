@@ -20,7 +20,7 @@ export const ProjectsPreview = ({ data, theme }) => {
 
       {data?.map((project, index) => (
         <div key={index} className="my-3">
-          {/* Ligne 1 : École (gauche) | Date (droite) */}
+        
           <div className="flex justify-between items-center">
             <h2 className="text-sm font-bold capitalize">{project.title}</h2>
             <span className="text-xs font-bold text-right">
@@ -38,7 +38,7 @@ export const ProjectsPreview = ({ data, theme }) => {
             </span>
           </div>
 
-          {/* Description */}
+    
           {project?.description && (
             <p
               className="text-xs my-2"

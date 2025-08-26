@@ -14,7 +14,7 @@ export const ResumeForm = ({ setResume, resume }) => {
   const [step, setStep] = useState(1);
   const goToNextStep = () => setStep((prev) => prev + 1);
   const goToPrevStep = () => setStep((prev) => prev - 1);
- 
+ //return component logic
   return (
     <>
       {step === 1 && (

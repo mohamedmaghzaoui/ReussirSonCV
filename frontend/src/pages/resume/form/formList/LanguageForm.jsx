@@ -2,7 +2,7 @@ import { ArrowRight, ArrowLeft, Loader2, Plus, Trash2 } from "lucide-react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css"; // thème de base
+import "react-quill/dist/quill.snow.css"; 
 
 export const LanguageForm = ({
   goToPrevStep,
@@ -57,11 +57,11 @@ export const LanguageForm = ({
         await axios.delete(`${apiUrl}/languages/${language.id}/`);
       }
 
-      // Supprimer localement du tableau
+      
       const updatedLanguages = languages.filter((_, i) => i !== index);
       setLanguages(updatedLanguages);
 
-      // 🔁 Met à jour aussi le resume global
+      // set resume state
       setResume((prev) => ({
         ...prev,
         languages: updatedLanguages,

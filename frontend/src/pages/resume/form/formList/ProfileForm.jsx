@@ -76,7 +76,7 @@ export const ProfileForm = ({
           />
         </div>
 
-        {/* Boutons dans le formulaire */}
+        {/* Boutons  */}
         <div className="mt-8 flex flex-wrap justify-between gap-4">
           <button type="button" onClick={goToPrevStep} className="btn">
             <ArrowLeft className="w-4 h-4" />

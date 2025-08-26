@@ -2,7 +2,7 @@ import { ArrowRight, ArrowLeft, Loader2, Plus, Trash2 } from "lucide-react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css"; // thème de base
+import "react-quill/dist/quill.snow.css"; 
 
 export const ExperienceForm = ({
   goToPrevStep,
@@ -64,16 +64,16 @@ export const ExperienceForm = ({
     setDeletingIndex(index);
 
     try {
-      // Si l'éducation a été enregistrée dans la BDD
+      // check if experience alrady exist in db
       if (exp.id) {
         await axios.delete(`${apiUrl}/experiences/${exp.id}/`);
       }
 
-      // Supprimer localement du tableau
+      
       const updatedexperiences = experiences.filter((_, i) => i !== index);
       setExperiences(updatedexperiences);
 
-      // 🔁 Met à jour aussi le resume global
+      // update resume state
       setResume((prev) => ({
         ...prev,
         experiences: updatedexperiences,

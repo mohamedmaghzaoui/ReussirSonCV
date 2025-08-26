@@ -24,7 +24,7 @@ export const ResumeProvider = ({ children }) => {
     refetchOnWindowFocus: false,
   });
 
-  // ADD resume with optimistic update
+  // ADD resume 
   const { mutateAsync: addResume } = useMutation({
     mutationFn: async (resumeData) => {
       const res = await axios.post(`${apiUrl}/cvs/`, resumeData);
@@ -38,7 +38,7 @@ export const ResumeProvider = ({ children }) => {
     },
   });
 
-  // DELETE resume with optimistic update
+  // DELETE resume 
   const { mutateAsync: deleteResume } = useMutation({
     mutationFn: async (id) => {
       await axios.delete(`${apiUrl}/cvs/${id}/`);

@@ -19,7 +19,7 @@ export const AuthenticatedNavbar = ({ user, logout }) => {
   <img
     src="/logo.png"
     alt="site preview"
-    className="h-15 w-auto" // height matches text, keeps aspect ratio
+    className="h-15 w-auto" 
   />
   <h1>
     Reussir<span className="text-primary">SonCV</span>

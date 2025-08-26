@@ -2,6 +2,7 @@
 import { useEffect } from "react";
 import axios from "axios";
 const apiUrl = import.meta.env.VITE_API_URL;
+// get csrf token from django backend
 export const useCSRF = () => {
   axios.defaults.withCredentials = true;
   useEffect(() => {
@@ -20,3 +21,7 @@ export const useCSRF = () => {
     fetchCSRFToken();
   }, []);
 };
+
+
+
+

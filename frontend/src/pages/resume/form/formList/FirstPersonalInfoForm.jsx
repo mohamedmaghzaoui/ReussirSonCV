@@ -16,7 +16,7 @@ export const FirstPersonalInfoForm = ({ goToNextStep, resume, setResume }) => {
 
   const [loading, setLoading] = useState(false);
 
-  // Préremplir les champs si les données existent
+  // set personal info data if alrady exist
   useEffect(() => {
     if (resume?.personal_info) {
       setFormData({
@@ -95,7 +95,7 @@ export const FirstPersonalInfoForm = ({ goToNextStep, resume, setResume }) => {
           />
         </div>
 
-        {/* Nom et prénom */}
+        {/* first and last name */}
         <div className="flex flex-col md:flex-row gap-4">
           <div className="flex-1">
             <label className="label text-base-content">Nom</label>
@@ -123,7 +123,7 @@ export const FirstPersonalInfoForm = ({ goToNextStep, resume, setResume }) => {
           </div>
         </div>
 
-        {/* Âge et téléphone */}
+        {/* age and phone number */}
         <div className="flex flex-col md:flex-row gap-4">
           <div className="flex-1">
             <label className="label text-base-content">Âge</label>
@@ -153,7 +153,7 @@ export const FirstPersonalInfoForm = ({ goToNextStep, resume, setResume }) => {
           </div>
         </div>
 
-        {/* Titre du CV */}
+        {/* cv title */}
         <div>
           <label className="label text-base-content">Titre du CV</label>
           <input

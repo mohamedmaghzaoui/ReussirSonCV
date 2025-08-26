@@ -38,7 +38,7 @@ export const ColorSelector = ({ resume, setResume }) => {
         ...resume,
         theme: {
           ...resume.theme, // Keep the existing theme properties
-          color: color, // Change the text color (this is the new color)
+          color: color, // Change the text color 
           background_color: resume.theme.background_color, // Keep the existing background color
         },
       });
