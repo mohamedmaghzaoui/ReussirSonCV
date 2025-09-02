@@ -2,7 +2,7 @@
 
 **Auteur :** Mohamed Maghzaoui  
 **Titre :** Concepteur Développeur d’Applications (CDA)  
-**Formation :** École Hexagone – Bac +3  
+**Formation :** École Hexagone
 **Projet individuel**
 
 ## 🌐 Lien public
