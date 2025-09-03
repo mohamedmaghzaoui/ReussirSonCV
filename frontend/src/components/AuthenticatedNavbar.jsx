@@ -23,7 +23,7 @@ export const AuthenticatedNavbar = ({ user, logout }) => {
   />
   <h1>
     Reussir<span className="text-primary">SonCV</span>
-    {console.log(user)}
+
   </h1>
 </Link>
       </div>
